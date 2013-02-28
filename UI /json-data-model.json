@@ -1,0 +1,112 @@
+{
+    "user": {
+        "options": {
+            "locations": [
+                "Hyderabad",
+                "Bangalore",
+                "Chennai"
+            ]
+        }
+    },
+    "grievance": {
+        "categories": [
+            {
+                "name": "civic & administration",
+                "sub categories": [
+                    {
+                        "name": "civic",
+                        "sub categories": [
+                            {
+                                "name": "xxx",
+                                "image": "<binary data>"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "administration",
+                        "sub categories": [
+                            {
+                                "name": "yyy",
+                                "image": "<binary data>"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "Utilities",
+                "sub categories": [
+                    {
+                        "name": "utils",
+                        "sub categories": [
+                            {
+                                "name": "xxx",
+                                "image": "<binary data>"
+                            }
+                        ]
+                    },
+                    {
+                        "name": "services",
+                        "sub categories": [
+                            {
+                                "name": "yyy",
+                                "image": "<binary data>"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "topics": [
+            {
+                "id": "temp-topic-1",
+                "title": "water problem at secunderabad",
+                "summary": "..........................",
+                "contacts": [
+                    {
+                        "type": "govt",
+                        "details": "water supply board, secunderabad"
+                    },
+                    {
+                        "type": "advertisement",
+                        "details": "water cans at cheapter rate"
+                    }
+                ],
+                "messages": [
+                    {
+                        "title": "title of the message",
+                        "categories": [
+                            "civic",
+                            "products"
+                        ],
+                        "time": "12/12/13,7:50pm",
+                        "location": "secunderabad",
+                        "source": "twitter",
+                        "content": "......."
+                    },
+                    {
+                        "title": "title of the message",
+                        "time": "12/12/13,7:50pm",
+                        "location": "secunderabad",
+                        "source": "twitter",
+                        "content": "......."
+                    },
+                    {
+                        "title": "title of the message",
+                        "time": "12/12/13,7:50pm",
+                        "location": "secunderabad",
+                        "source": "twitter",
+                        "content": "......."
+                    },
+                    {
+                        "title": "title of the message",
+                        "time": "12/12/13,7:50pm",
+                        "location": "secunderabad",
+                        "source": "twitter",
+                        "content": "......."
+                    }
+                ]
+            }
+        ]
+    }
+}
