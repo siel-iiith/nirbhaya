@@ -13,6 +13,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.google.gson.Gson;
+
 import net.billylieurance.azuresearch.AzureSearchResultSet;
 import net.billylieurance.azuresearch.AzureSearchWebQuery;
 import net.billylieurance.azuresearch.AzureSearchWebResult;
@@ -34,7 +36,7 @@ public class BingSearch {
 	        aq.setQuery(query);
 	        aq.doQuery();
 	        AzureSearchResultSet<AzureSearchWebResult> aswr = aq.getQueryResult();
-	        ArrayList<BingSearchResult> bsrList=new ArrayList<>();
+	        ArrayList<BingSearchResult> bsrList=new ArrayList<BingSearchResult>();
 	        
 	        for (AzureSearchWebResult a : aswr){
 	            BingSearchResult bsr=new BingSearchResult(a.getUrl(),a.getTitle(),a.getDescription());            
@@ -50,21 +52,32 @@ public class BingSearch {
         Iterator<BingSearchResult> it=results.iterator();
         BingSearchResult current;
         
-        String result = "";
+        String result=null;// = "{\"searchResults\": [";
         
-        while(it.hasNext()) {
+        while(it.hasNext()) 
+        {
             current=it.next();
 //            System.out.println("\nURL: "+current.getURL());
 //            System.out.println("\nTitle: "+current.getTitle());
 //            System.out.println("\nSnippet: "+current.getSnippet());
-            
-            result += "{ " + "\"jBingURL\":\"" + current.getURL() +
+                Gson gson =new Gson();        
+            if (it.hasNext()){
+            	BingSearchResult tempR = new BingSearchResult(current.getURL(),current.getTitle(), current.getSnippet());
+            	result=gson.toJson(tempR);
+            }
+            /*result += "{ " + "\"jBingURL\":\"" + current.getURL() +
                     "\" , \"jBingTitle\":\"" + current.getTitle() +
                     "\" , \"jBingDesc\":\"" + current.getSnippet() +
-                    "\" }," + "\n"; 
+                  "\" }," + "\n";*/ 
+            
         }
-        result += "]" + "\n" + "}";
-//        System.out.println(result);
+        //result=result.substring(0, result.length()-2);
+        //result += "]" + "\n" + "}";
+
+        //        System.out.println(result);
+        //result.lastIndexOf(",");
+        //result ="callback(" +result+");";
+        
         return result;
     }
     
