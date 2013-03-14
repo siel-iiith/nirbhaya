@@ -1,0 +1,26 @@
+{
+   "categories":[
+         {
+            "name":"civic & administration",
+            "subcategories":[
+               {
+                  "subname":"waterlogging"
+               },
+               {
+                  "subname":"waterlogging"
+               }
+            ]
+         },
+         {
+            "name":"Crime",
+            "subcategories":[
+               {
+                  "subname":"Theft"
+               },
+               {
+                  "subname":"Assaults"
+               }
+            ]
+         }
+      ]
+   }
