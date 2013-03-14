@@ -276,6 +276,7 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
     height: 700px;
     background-image: url(images/bg.png);
     float: left;
+    margin-top: 1em;
 }
 
 #columnwrapper{
@@ -333,6 +334,7 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
     font-size: medium;
     font-family: "Times New Roman", Times, Serif;
     text-align: justify;
+    margin-left: 4px;
 }
 
 .vsurl{
@@ -341,6 +343,7 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
     font-size: medium;
     text-align: justify;
     font-family: "Times New Roman", Times, Serif;
+    margin-left: 4px;
 }
 
 .vsdescription{
@@ -480,14 +483,93 @@ h5{
     height: 92%;
 }
 
-#content2, #content3{
+#content2, #content3{ 
     display: none;
+}
+
+#content2, #content1{
+    overflow-x: hidden;
+    overflow-y: scroll; 
+}
+
+#solutionspace, #talkspace{
+    width: 100%;
+    height: 100%;
 }
 
 #tabs{
     margin: 0px;
     padding: 0px;
     margin-top: 6px;
+}
+
+.spacer{
+    display: block;
+    margin: 2em;
+}
+
+.floater{
+    display: inline-block;
+}
+
+#nameinput, #typeinput, #lxninput, #commentinput{
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-color: #2ba6cb;
+    width: 200px;
+}
+
+#grievancename, #grievancetype, #lxn, #grievancecomment, #grievancesubmit{
+    color: #2ba6cb;
+}
+
+#grievancename{
+    margin-right: 2.5em;
+}
+
+#grievancetype{
+    margin-right: 3.3em;
+}
+
+#lxn{
+    margin-right: 4em;    
+}
+
+#grievancecomment{
+    margin-right: 0.5em;    
+}
+
+#submitbutton{
+    width: 70px;
+    border-radius: 5px;
+    border-color: #003f3f;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-weight: 400;
+    color: #003333;
+}
+
+#submitbutton:hover{
+    cursor: pointer;
+}
+
+.deptcontact{
+    color: #2ba6cb;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.columnsizer{
+    width: auto;
+    height: auto;
+    padding: 5px;
+    border-color: #eeeeee;
+    border-style: groove;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 
 span{

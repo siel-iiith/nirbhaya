@@ -3,7 +3,8 @@ $(document).ready(function(){
 });
    
 function trendShow(){
-   var strURL = "http://10.2.4.216:8080/Trending/trending-types?callback=?";
+   //var strURL = "http://10.2.4.216:8080/Trending/trending-types?callback=?";
+   var strURL = "http://0.0.0.0:8080/Trending/trending-types?callback=?";
    $.ajax({
       url:strURL,
       timeout:10000,

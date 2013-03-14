@@ -10,6 +10,8 @@
   <script src="js/trendshow.js" type="text/javascript"></script>
   <script src="js/tablet.js" type="text/javascript"></script>
   <script src="js/verticalSearch.js" type="text/javascript"></script>
+  <script src="js/twittertalk.js" type="text/javascript"></script>
+  <script src="js/solutions.js" type="text/javascript"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- Map interface-->
   <script type="text/javascript"> 
@@ -98,12 +100,7 @@
         </div>
         <div id="element">
           <ul class="nav">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
+            
           </ul>
         </div>
         <div id="element">
@@ -173,11 +170,39 @@
                     <ul id="tabs">
                         <li><a href="javascript:tabSwitch('tab1','content1');" id="tab1" title="content1" class="tab active">User Comments</a></li>
                         <li><a href="javascript:tabSwitch('tab2','content2');" id="tab2" title="content2" class="tab">Useful Contacts</a></li>
-                        <li><a href="javascript:tabSwitch('tab3','content3');" id="tab3" title="content3" class="tab">Start New Grievance</a></li>
+                        <li><a href="javascript:tabSwitch('tab3','content3');" id="tab3" title="content3" class="tab">Report New Grievance</a></li>
                     </ul>
-                    <div id="content1" class="content"> Content for User Comments</div>
-                    <div id="content2" class="content"> Content for Useful Contacts</div>
-                    <div id="content3" class="content"> Start a New Grievance !!</div>
+                    <div id="content1" class="content">
+                        <div id="talkspace">
+                            
+                        </div>
+                    </div>
+                    <div id="content2" class="content">
+                        <div id="solutionspace">
+                            
+                        </div>
+                    </div>
+                    <div id="content3" class="content">
+                        <div id="namer" class="spacer">
+                            <span class="floater" id="grievancename"> Report Grievance: </span>
+                            <input type="text" class="floater" name="grievance" id="nameinput"/>
+                        </div>
+                        <div id="categ" class="spacer">
+                            <span class="floater" id="grievancetype"> Grievance Type: </span>
+                            <input class="floater" name="gtype" id="typeinput" type="text"/>
+                        </div>
+                        <div id="lxn" class="spacer">
+                            <span class="floater" id="lxn"> Your Location: </span>
+                            <input type="text" class="floater" name="lxn" id="lxninput"/>
+                        </div>
+                        <div id="comment" class="spacer">
+                            <span class="floater" id="grievancecomment"> Enter Your Comments: </span>
+                            <input class="floater" name="gcomment" id="commentinput" type="text"/>
+                        </div>
+                        <div id="gsubmit" class="spacer">
+                            <input class="floater" name="gcomment" id="submitbutton" value="submit" type="button"/>
+                        </div>                        
+                    </div>
                 </div>
             </div>
         </div>

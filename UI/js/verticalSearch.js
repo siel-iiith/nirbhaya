@@ -5,10 +5,11 @@ function getURLParameter(name) {
     );
 }
 
-function sendQueryToBackend (qresult) {
+function sendQueryToBackend(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
-		var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
-        
+		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
+		//var strURL = "http://10.2.4.251:8080/Nirbhaya/BingSearch?q="+qresult+"&callback=?";
+		var strURL = "http://0.0.0.0:8080/Nirbhaya/BingSearch?q="+qresult+"&callback=?";
             
 		$.ajax({
 			url:strURL,
@@ -49,8 +50,6 @@ function sendQueryToBackend (qresult) {
 
 
 $(document).ready(function() {
-	var searchquery = getURLParameter("query");
-	var bingJSON;
-  
-                sendQueryToBackend(searchquery);
+    var searchquery = getURLParameter("query");
+    sendQueryToBackend(searchquery);
 });
