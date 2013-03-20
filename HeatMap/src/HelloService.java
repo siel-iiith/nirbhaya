@@ -1,5 +1,0 @@
-
-@pa
-public class HelloService {
-
-}
