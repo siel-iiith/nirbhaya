@@ -1,2 +1,1 @@
-
-mvn install:install-file -Dfile=/home/aditya/Dropbox/Nirbhaya/SolutionsModule/lib/saplo4java-3.0.0.jar -DgroupId=com.saplo.api -DartifactId=saplo4java -Dversion=3.0.0 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=/home/aditya/Dropbox/Nirbhaya/SolutionsModule/lib/mongo-2.10.1.jar -DgroupId=com.mongodb -DartifactId=mongodb-java-driver -Dversion=2.10.1 -Dpackaging=jar -DgeneratePom=true

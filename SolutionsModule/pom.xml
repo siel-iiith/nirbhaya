@@ -38,12 +38,18 @@
 -->
 
 <dependencies>
-    <dependency>
+<!-- 
+   <dependency>
       	<groupId>com.saplo.api</groupId>
 	<artifactId>saplo4java</artifactId>
 	<version>3.0.0</version>
-    </dependency>	
-    
+    </dependency>
+-->
+    <dependency>
+      	<groupId>com.mongodb</groupId>
+	<artifactId>mogodb-java-driver</artifactId>
+	<version>2.10.1</version>
+    </dependency> 
     <dependency>
 	    <groupId>org.nirbhaya.verticalsearch.activation</groupId>
 	    <artifactId>1.0</artifactId>
