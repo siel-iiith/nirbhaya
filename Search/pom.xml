@@ -1,255 +1,241 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>RestSimpleAppMaven</groupId>
-  <artifactId>RestSimpleAppMaven</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <resources>
-      <resource>
-        <directory>src</directory>
-        <excludes>
-          <exclude>**/*.java</exclude>
-        </excludes>
-      </resource>
-    </resources>
-  
-    <plugins>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-      
-       <!-- Attach the jar file to the artifact -->
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <version>1.5</version>
-            <executions>
-                <execution>
-                    <id>attach-artifacts</id>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>attach-artifact</goal>
-                    </goals>
-                    <configuration>
-                        <artifacts>
-                            <artifact>
-                                <file>azure-bing-search-java-0.12.0.jar</file>
-                                <type>jar</type>
-                            </artifact>
-                        </artifacts>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-      
-    </plugins>
-  </build>
-<!--
-  <dependencies>
-    	<dependency>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-resources-plugin</artifactId>
-    		<version>2.3</version>
-    	</dependency>
-    	<dependency>
-    		<groupId>org.apache.maven.plugins</groupId>
-    		<artifactId>maven-plugin-plugin</artifactId>
-    		<version>3.2</version>
-		</dependency>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>VerticalSearch</groupId>
+    <artifactId>VerticalSearch</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <build>
+	<sourceDirectory>src</sourceDirectory>
+	<resources>
+	    <resource>
+		<directory>src</directory>
+		<excludes>
+		    <exclude>**/*.java</exclude>
+		</excludes>
+	    </resource>
+	</resources>
+
+	<plugins>
+	    <plugin>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>2.3</version>
+		<configuration>
+		    <source>1.6</source>
+		    <target>1.6</target>
+		</configuration>
+	    </plugin>
+
+	    <!-- Attach the jar file to the artifact -->
+	    <plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>build-helper-maven-plugin</artifactId>
+		<version>1.5</version>
+		<executions>
+		    <execution>
+			<id>attach-artifacts</id>
+			<phase>package</phase>
+			<goals>
+			    <goal>attach-artifact</goal>
+			</goals>
+			<configuration>
+			    <artifacts>
+				<artifact>
+				    <file>azure-bing-search-java-0.12.0.jar</file>
+				    <type>jar</type>
+				</artifact>
+			    </artifacts>
+			</configuration>
+		    </execution>
+		</executions>
+	    </plugin>
+
+	</plugins>
+    </build>
+    <dependencies>
+	<dependency>
+	    <groupId>net.billylieurance.azuresearch</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.activation</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.asm</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.commonscodec</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.commonslogging</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.fluent</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.gson</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.httpclient</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.httpclientcache</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.httpcore</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.httpmime</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jacksoncore</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jacksonjaxrs</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jacksonmapper</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jacksonxc</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jaxbapi</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jaxbimpl</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jerseyclient</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jerseycore</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jerseyjson</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jerseyserver</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jerseyservlet</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jettison</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.jsr</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.stax</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.twitter4j.async</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.twitter4j.core</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.twitter4j.examples</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.twitter4j.media</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.twitter4j.stream</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+
+	<dependency>
+	    <groupId>org.nirbhaya.verticalsearch.wstx</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
     </dependencies>
--->
-<dependencies>
-<dependency>
-  <groupId>net.billylieurance.azuresearch</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.activation</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.asm</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.commonscodec</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.commonslogging</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.fluent</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.gson</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.httpclient</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.httpclientcache</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.httpcore</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.httpmime</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jacksoncore</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jacksonjaxrs</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jacksonmapper</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jacksonxc</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jaxbapi</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jaxbimpl</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jerseyclient</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jerseycore</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jerseyjson</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jerseyserver</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jerseyservlet</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jettison</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.jsr</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.stax</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.twitter4j.async</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.twitter4j.core</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.twitter4j.examples</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.twitter4j.media</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-<dependency>
-  <groupId>org.nikhil.twitter4j.stream</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-
-
-<dependency>
-  <groupId>org.nikhil.wstx</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-</dependencies>
 </project>

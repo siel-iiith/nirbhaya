@@ -1,0 +1,10 @@
+$(document).ready(function(){
+    $('#locationform').submit(function(e){
+        $('#maphider').slideDown("slow");
+        e.preventDefault();
+    });
+    $('#locationform').click(function(e){
+        $('#maphider').slideUp("slow");
+        e.preventDefault();
+    });
+});
