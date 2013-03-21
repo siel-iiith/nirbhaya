@@ -56,7 +56,6 @@ var st = "";
 						var thisLoc = newEntry[j].location.locationName;
 						var thisLat = newEntry[j].location.latitude;
 						var thisLon = newEntry[j].location.longitude;
-						
 						var innerDabba = [thisLat, thisLon, newProb];
 						allResults.push(innerDabba);
 						}
@@ -80,6 +79,7 @@ var st = "";
 				});
 
 				var i = 0;
+
 				for(i=0;i<allResults.length;i++){
 					var point = new google.maps.LatLng(allResults[i][0],allResults[i][1]);
 					var icon = 'http://www.google.com/intl/en_us/mapfiles/ms/icons/blue-dot.png';
