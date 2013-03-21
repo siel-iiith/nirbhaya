@@ -1,0 +1,13 @@
+$(document).ready(function(){
+    $('#locationimg').click(function(e){
+        $('#overlay').fadeIn('slow',function(e){
+            $('#maphider').slideDown("slow");  
+        });
+        e.preventDefault();
+    });
+    $('.mapboxclose').click(function(){
+        $('#maphider').slideUp('slow',function(){
+            $('#overlay').fadeOut("slow");
+        });
+    });
+});

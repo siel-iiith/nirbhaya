@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>Google Maps Sample</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+var map = null;
+function initialize() {
+var myOptions = {
+zoom: 12,
+center: new google.maps.LatLng(getUrlVars()["lat"], getUrlVars()["lon"]),
+mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+map = new google.maps.Map(document.getElementById("map_canvas"),
+myOptions);
+google.maps.event.addListener(map, 'click', function() {
+infowindow.close();
+});
+var items = [
+			//['Lat', 'Lon', 'Name'],
+			[19.37, 78.30, 'Adilabad Electricty Problems 15%'],
+			[16.50, 80.15, 'Amaravati Electricity Problems 20%'],
+			[14.41, 77.39, 'Anantapur Electricity Problems 40%'],
+			[15.34, 79.09, 'Cumbum Electricity Problems 30%'],
+			[20.37, 79.30, 'Adilabad Electricty Problems 15%'],
+			[19.50, 84.15, 'Amaravati Electricity Problems 20%'],
+			[21.41, 74.39, 'Anantapur Electricity Problems 40%'],
+			[13.34, 78.09, 'Cumbum Electricity Problems 30%'],
+			[24.37, 78.30, 'Water Problems 15%'],
+			[26.50, 80.15, 'Water Problems 20%'],
+			[24.41, 77.39, 'Water Problems 40%'],
+			[25.34, 79.09, 'Water Problems 30%'],
+			[20.37, 78.30, 'Water Problems 15%'],
+			[25.50, 80.15, 'Water Problems 20%'],
+			[26.41, 74.39, 'Water Problems 40%'],
+			[23.34, 75.09, 'Water Problems 30%'],
+			[24.37, 71.30, 'Sewage Problems 15%'],
+			[26.50, 82.15, 'Sewage Problems 20%'],
+			[24.41, 75.39, 'Sewage Problems 40%'],
+			[25.34, 78.09, 'Sewage Problems 30%'],
+			[22.37, 78.30, 'Sewage Problems 15%'],
+			[24.50, 80.15, 'Sewage Problems 20%'],
+			[24.41, 74.39, 'Sewage Problems 40%'],
+			[23.34, 75.09, 'Sewage Problems 30%'],
+			[21.37, 71.30, 'Other Problems 15%'],
+			[16.50, 82.15, 'Other Problems 20%'],
+			[29.41, 75.39, 'Other Problems 40%'],
+			[27.34, 78.09, 'Other Problems 30%'],
+			[21.37, 78.30, 'Other Problems 15%'],
+			[21.50, 80.15, 'Other Problems 20%'],
+			[20.41, 74.39, 'Other Problems 40%'],
+			[21.34, 75.09, 'Other Problems 30%']
+			];
+
+var i = 0;
+for(i=0;i<items.length;i++){
+var point = new google.maps.LatLng(items[i][0],items[i][1]);
+var icon = 'http://www.google.com/intl/en_us/mapfiles/ms/icons/blue-dot.png';
+var marker = createMarker(point,items[i][2], icon)
+}
+}
+var infowindow = new google.maps.InfoWindow(
+{
+size: new google.maps.Size(150,50)
+});
+function createMarker(latlng, html, icon) {
+var contentString = html;
+var marker = new google.maps.Marker({
+position: latlng,
+icon: icon,
+map: map,
+zIndex: Math.round(latlng.lat()*-100000)<<5
+});
+google.maps.event.addListener(marker, 'click', function() {
+infowindow.setContent(contentString);
+infowindow.open(map,marker);
+});
+}
+</script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+<div id="map_canvas"></div>
+</body>
+</html>

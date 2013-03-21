@@ -1,0 +1,240 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>Trending</groupId>
+    <artifactId>Trending</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <build>
+	<sourceDirectory>src</sourceDirectory>
+	<resources>
+	    <resource>
+		<directory>src</directory>
+		<excludes>
+		    <exclude>**/*.java</exclude>
+		</excludes>
+	    </resource>
+	</resources>
+
+	<plugins>
+	    <plugin>
+		<artifactId>maven-compiler-plugin</artifactId>
+		<version>2.3</version>
+		<configuration>
+		    <source>1.6</source>
+		    <target>1.6</target>
+		</configuration>
+	    </plugin>
+
+	    <!-- Attach the jar file to the artifact -->
+	    <plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>build-helper-maven-plugin</artifactId>
+		<version>1.5</version>
+		<executions>
+		    <execution>
+			<id>attach-artifacts</id>
+			<phase>package</phase>
+			<goals>
+			    <goal>attach-artifact</goal>
+			</goals>
+			<configuration>
+			    <artifacts>
+				<artifact>
+				    <file>azure-bing-search-java-0.12.0.jar</file>
+				    <type>jar</type>
+				</artifact>
+			    </artifacts>
+			</configuration>
+		    </execution>
+		</executions>
+	    </plugin>
+
+	</plugins>
+    </build>
+    <dependencies>
+	<dependency>
+	    <groupId>net.billylieurance.azuresearch</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.activation</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.asm</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.commonscodec</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.commonslogging</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.fluent</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.gson</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.httpclient</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.httpclientcache</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.httpcore</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.httpmime</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jacksoncore</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jacksonjaxrs</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jacksonmapper</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jacksonxc</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jaxbapi</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jaxbimpl</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jerseyclient</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jerseycore</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jerseyjson</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jerseyserver</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jerseyservlet</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jettison</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.jsr</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.stax</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.twitter4j.async</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.twitter4j.core</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.twitter4j.examples</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.twitter4j.media</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.twitter4j.stream</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+
+	<dependency>
+	    <groupId>org.nirbhaya.trending.wstx</groupId>
+	    <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+    </dependencies>
+</project>
