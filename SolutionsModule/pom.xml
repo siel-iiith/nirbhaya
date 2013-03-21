@@ -1,8 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<packaging>war</packaging>
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.solutions</groupId>
   <artifactId>SolutionsModule</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>SolutionsModule</name>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -17,12 +18,12 @@
   
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-war-plugin</artifactId>
+       <version>2.3</version>
+       <configuration>
+         <webappDirectory>WebContent</webappDirectory>
+       </configuration>
       </plugin>
     </plugins>
   </build>
