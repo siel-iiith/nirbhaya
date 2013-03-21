@@ -7,11 +7,17 @@
   <link rel="stylesheet" type="text/css" href="userpage.css"/>
   <script language="javascript" type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
   <script src="js/mapsinitial.js" type="text/javascript"></script>
+  <script src="js/forumexpander.js" type="text/javascript"></script>
+  <script src="js/greporter.js" type="text/javascript"></script>
   <script src="js/trendshow.js" type="text/javascript"></script>
   <script src="js/tablet.js" type="text/javascript"></script>
+  <script src="js/refinerHider.js" type="text/javascript"></script>
   <script src="js/verticalSearch.js" type="text/javascript"></script>
   <script src="js/twittertalk.js" type="text/javascript"></script>
   <script src="js/solutions.js" type="text/javascript"></script>
+  <script src="js/trendribbon.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
+  <link rel="stylesheet" href="jquery.simplyscroll.css" media="all" type="text/css">
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- Map interface-->
   <script type="text/javascript"> 
@@ -28,7 +34,7 @@
 		//var data = results[0].geometry.location;
 		//data = data.split('(').join('');
 		//alert("map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
-		$("#someFrame").attr("src", "map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
+		$("#someframe").attr("src", "map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
             } 
             else {
              alert('No results found: ' + status);
@@ -93,6 +99,30 @@
 </head>
 
 <body>
+    <a><img src="images/reporter.jpg" class="reporter" id="reporter"></a>
+    <div id="grievancereporter" class="grievancegreporter">
+        <a class="greportclose" id="greportclose"></a>
+        <div id="namer" class="spacer">
+            <span class="floater" id="grievancename"> Report Grievance: </span>
+            <input type="text" class="floater" name="grievance" id="nameinput"/>
+        </div>
+        <div id="categ" class="spacer">
+            <span class="floater" id="grievancetype"> Grievance Type: </span>
+            <input class="floater" name="gtype" id="typeinput" type="text"/>
+        </div>
+        <div id="lxn" class="spacer">
+            <span class="floater" id="lxn"> Your Location: </span>
+            <input type="text" class="floater" name="lxn" id="lxninput"/>
+        </div>
+        <div id="comment" class="spacer">
+            <span class="floater" id="grievancecomment"> Enter Your Comments: </span>
+            <input class="floater" name="gcomment" id="commentinput" type="text"/>
+        </div>
+        <div id="gsubmit" class="spacer">
+            <input class="floater" name="gcomment" id="submitbutton" value="submit" type="button"/>
+            </div>                        
+        </div>
+    </div>
    <div id="wrapper">
       <div id="header">
         <div id="element">
@@ -100,44 +130,39 @@
         </div>
         <div id="element">
           <ul class="nav">
-            
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
           </ul>
         </div>
         <div id="element">
-          <div id="searchtag" class="searchspace"> Search Your Region </div>
+          <div id="searchtag" class="searchspace"> Regional Grievances: </div>
+          <div id ="locationsearch" class="searchspace">
+            <a href=""><img src="images/maps.png" id="locationimg"/></a>
+          </div>
+        </div>
+      </div>
+      <!--<div class="overlay" id="overlay" style="display:none;"></div>-->
+      <div id="maphider">
+        <iframe name="someframe" id="someframe" width="99%" height="500px"></iframe>
           <div id ="locationsearch" class="searchspace">
             <form action="map6.html" id="locationform">
+              <span id="locationtext"> Search location: </span>
               <input type="text" id="query"/>
             </form>
+            <a class="mapboxclose" id="mapboxclose"></a>
           </div>
-      </div>
-        <div id="maphider">
-        <iframe name="someFrame" id="someFrame" width="99%" height="340px"></iframe>
       </div>
       <div id="container">
         <div id="columnwrapper">
             <div id="leftcolumn">
-                <div id="forumtalk">
-                    <span> Forum Talk</span>
-                    <div id="forumbar">
-                        <div id="forumbarspace" class="topics">
-                            <h5> Topics </h5>
-                        </div>                        
-                        <div id="forumbarspace" class="searchform">
-                            <form action="userpage.html" method="GET">
-                                <input type="text" name="query"/>
-                            </form> 
-                        </div>                        
-                        <div id="forumbarspace" class="search">
-                            <h5> Search:</h5>
-                        </div>
-                    </div>
-                    <div id ="vresults">
-                        
-                    </div>
-                </div>
+                <div class="overlay" id="overlay" style="display:none;"></div>
                 <div id="refiner">
                     <span> Refine Your Search </span>
+                    <a class="boxclose" id="boxclose"></a>
                     <form id="refinerwrapper">
                         <div id="refinerspace">
                             <h5> From </h5>
@@ -157,12 +182,45 @@
                         </div>
                         <div id="refinerspace">
                             <h5> Get Emerging Trends</h5>
-                            <input type="submit"/>
+                            <input type="submit" id="refsubmit"/>
                         </div>
                     </form>
                 </div>
+                <div id="forumtalk">
+                    <span> Search Results</span>
+                    <a><img src="images/solsearch.jpg" class="expander" id="expander"></a>
+                    <a><img src="images/hidetray.jpg" class="closer" id="closer"></a>
+                    <div id="forumbar">
+                        <div id="forumbarspace" class="topics">
+                            <h5> Topics </h5>
+                        </div>
+                        <div id="forumbarspace" class="search">
+                            <h5> Search:</h5>
+                        </div>
+                        <div id="forumbarspace" class="searchform">
+                            <form action="userpage.html" method="GET">
+                                <input type="text" name="query"/>
+                            </form> 
+                        </div>
+                        <div id="forumbarspace" class="refinesearch">
+                            <h5> Refine Results: </h5>
+                        </div>
+                        <a href=""><img src="images/refine.png" class="refineimg" id="forumbarspace"/></a>                        
+                    </div>
+                    <div id ="vresults">
+                        
+                    </div>
+                </div>
                 <div id="mediatalk">
                     <span> Popular Media Trends</span>
+                    <ul id="scroller">
+                        <li><a href="http://www.google.com" target="_blank"><img src="http://logicbox.net/jquery/simplyscroll/assets/20080608_9N3H5GYL_tb.jpg" width="100" height="90" alt="Firehouse"></a></li>
+                        <li><a href="http://logicbox.net/jquery/simplyscroll/assets/20080513_4D3SD1BQ_tb.jpg" target="_blank"><img src="http://logicbox.net/jquery/simplyscroll/assets/20080513_4D3SD1BQ_tb.jpg" width="100" height="90" alt="Chloe nightclub"></a></li>
+                        <li><a href="http://logicbox.net/jquery/simplyscroll/assets/20080513_VPJWVQRW_tb.jpg" target="_blank"><img src="http://logicbox.net/jquery/simplyscroll/assets/20080513_VPJWVQRW_tb.jpg" width="100" height="90" alt="Firehouse bar"></a></li>
+                        <li><a href="http://logicbox.net/jquery/simplyscroll/assets/20080514_B1YJ08B6_tb.jpg" target="_blank"><img src="http://logicbox.net/jquery/simplyscroll/assets/20080514_B1YJ08B6_tb.jpg" width="100" height="90" alt="Firehouse chloe club fishtank"></a></li>
+                        <li><a href="http://logicbox.net/jquery/simplyscroll/assets/20080514_JYW68XPT_tb.jpg" target="_blank"><img src="http://logicbox.net/jquery/simplyscroll/assets/20080514_JYW68XPT_tb.jpg" width="100" height="90" alt="Firehouse restaurant"></a></li>
+                        <li><a href="http://logicbox.net/jquery/simplyscroll/assets/20080608_38CG51J2_tb.jpg" target="_blank"><img src="http://logicbox.net/jquery/simplyscroll/assets/20080608_38CG51J2_tb.jpg" width="100" height="90" alt="Firehouse"></a></li>
+                    </ul>
                 </div>
             </div>
             <div id="rightcolumn">
@@ -170,7 +228,7 @@
                     <ul id="tabs">
                         <li><a href="javascript:tabSwitch('tab1','content1');" id="tab1" title="content1" class="tab active">User Comments</a></li>
                         <li><a href="javascript:tabSwitch('tab2','content2');" id="tab2" title="content2" class="tab">Useful Contacts</a></li>
-                        <li><a href="javascript:tabSwitch('tab3','content3');" id="tab3" title="content3" class="tab">Report New Grievance</a></li>
+                        <li><a href="javascript:tabSwitch('tab3','content3');" id="tab3" title="content3" class="tab">Recommended Solutions</a></li>
                     </ul>
                     <div id="content1" class="content">
                         <div id="talkspace">
@@ -183,25 +241,7 @@
                         </div>
                     </div>
                     <div id="content3" class="content">
-                        <div id="namer" class="spacer">
-                            <span class="floater" id="grievancename"> Report Grievance: </span>
-                            <input type="text" class="floater" name="grievance" id="nameinput"/>
-                        </div>
-                        <div id="categ" class="spacer">
-                            <span class="floater" id="grievancetype"> Grievance Type: </span>
-                            <input class="floater" name="gtype" id="typeinput" type="text"/>
-                        </div>
-                        <div id="lxn" class="spacer">
-                            <span class="floater" id="lxn"> Your Location: </span>
-                            <input type="text" class="floater" name="lxn" id="lxninput"/>
-                        </div>
-                        <div id="comment" class="spacer">
-                            <span class="floater" id="grievancecomment"> Enter Your Comments: </span>
-                            <input class="floater" name="gcomment" id="commentinput" type="text"/>
-                        </div>
-                        <div id="gsubmit" class="spacer">
-                            <input class="floater" name="gcomment" id="submitbutton" value="submit" type="button"/>
-                        </div>                        
+                                                
                     </div>
                 </div>
             </div>
