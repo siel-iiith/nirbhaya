@@ -41,7 +41,7 @@ function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://10.2.4.239:8080/HeatMap/test?callback=?",
+			url:"http://0.0.0.0:8080/HeatMap/test?callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -56,7 +56,6 @@ var st = "";
 						var thisLoc = newEntry[j].location.locationName;
 						var thisLat = newEntry[j].location.latitude;
 						var thisLon = newEntry[j].location.longitude;
-						
 						var innerDabba = [thisLat, thisLon, newProb];
 						allResults.push(innerDabba);
 						}
