@@ -9,29 +9,33 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- Map interface-->
   <script src="js/mapsinitial.js" type="text/javascript"></script>
+  <script src="js/slideshow.js" type="text/javascript"></script>
   <script src="js/trendshow.js" type="text/javascript"></script>
-
+  <script src="js/cycle.js" type="text/javascript"></script>
+  <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
+  <link rel="stylesheet" href="simplyscrollformain.css" media="all" type="text/css">
   <script type="text/javascript"> 
     $(document).ready(function(){
-      var query;
+      var mapquery;
       $("#locationform").submit(function(){
-          query=$("#query").val();
-   	  var geocoder = new google.maps.Geocoder();
-          if (geocoder) {          
-          geocoder.geocode({ 'address': query }, function (results, status) {
-          //alert(status);
-            if (status == google.maps.GeocoderStatus.OK) {
-              //alert(results[0].geometry.location.lat());
+          mapquery=$("#mapquery").val();
+          alert(mapquery);
+   	 var geocoder = new google.maps.Geocoder();
+          if (geocoder) {
+            geocoder.geocode({ 'address': mapquery }, function (results, status) {
+              alert(status);
+              if (status == google.maps.GeocoderStatus.OK) {
+                alert(results[0].geometry.location.lat());
 		//var data = results[0].geometry.location;
 		//data = data.split('(').join('');
 		//alert("map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
-		$("#someFrame").attr("src", "map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
-            } 
-            else {
-             alert('No results found: ' + status);
-            }
-         });
-        }
+		$("#someframe").attr("src", "map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
+              } 
+              else {
+                alert('No results found: ' + status);
+              }
+            });
+          }
       });
     });
   </script> 
@@ -106,21 +110,27 @@
           </ul>
         </div>
         <div id="element">
-          <div id="searchtag" class="searchspace"> Search Your Region </div>
+          <div id="searchtag" class="searchspace"> Regional Grievances: </div>
           <div id ="locationsearch" class="searchspace">
-            <form action="map6.html" id="locationform">
-              <input type="text" id="query"/>
-            </form>
+            <a href=""><img src="images/maps.png" id="locationimg"/></a>
           </div>
         </div>
       </div>
+      <div class="overlay" id="overlay" style="display:none;"></div>
       <div id="maphider">
-        <iframe name="someFrame" id="someFrame" width="99%" height="340px"></iframe>
+        <iframe name="someframe" id="someframe" width="99%" height="500px"></iframe>
+          <div id ="locationsearch" class="searchspace">
+            <form action="map6.html" id="locationform">
+              <span id="locationtext"> Search location: </span>
+              <input type="text" name="mapquery" id="mapquery"/>
+            </form>
+            <a class="mapboxclose" id="mapboxclose"></a>
+          </div>
       </div>
       <div id="container">
         <div class="rowwrapper">
           <div class="searchcontainer">
-            <span id="searchtext"> Have a Grievance ?</span>
+            <span id="searchtext"> Search For Grievances </span>
             <form action="userpage.html" method="GET">
               <input type="text" name="query"/>
             </form>
@@ -130,11 +140,29 @@
           </ul>
         </div>
         <hr>
-        <ul id="bodycontainer">
-          <li id="prev"><a href="#"><img src="images/prev.png"/></a></li>
+        <div id="bodycontainer">
+          <div id="slideshow">
+            <img src="images/electricity1.jpg" alt="Screenshot 1" />
+            <img src="images/electricity2.jpg" alt="Screenshot 2" />
+            <img src="images/electricity3.jpg" alt="Screenshot 3" />
+            <img src="images/electricity4.jpg" alt=" Screenshot 4" />
+            <img src="images/electricity5.jpg" alt=" Screenshot 5" />
+            <img src="images/electricity6.jpg" alt=" Screenshot 6" />
+            <img src="images/electricity7.jpg" alt=" Screenshot 7" />
+            <img src="images/electricity8.jpg" alt=" Screenshot 8" />
+            <img src="images/electricity9.jpg" alt=" Screenshot 9" />
+            <img src="images/electricity10.jpg" alt=" Screenshot 10" />
+            <img src="images/electricity11.jpg" alt=" Screenshot 11" />
+            <img src="images/electricity12.jpg" alt=" Screenshot 12" />
+          </div>
+          <ul id="pager">
+          </ul>
+        </div>
+        <!--<ul id="bodycontainer">
+          <li id="prev" class="prev"><a href="#"><img src="images/prev.png"/></a></li>
           <li class="slideshowcontainer">
             <ul class="slideshow">
-              <!--<li><img src="images/electricity1.jpg" width="160" height="130"/> Electricity 1 </li>
+              <li><img src="images/electricity1.jpg" width="160" height="130"/> Electricity 1 </li>
               <li><img src="images/electricity2.jpg" width="160" height="130"/> Electricity 2 </li>
               <li><img src="images/electricity3.jpg" width="160" height="130" />Electricity 3 </li>
               <li><img src="images/electricity4.jpg" width="160" height="130" />Electricity 4 </li>
@@ -145,11 +173,11 @@
               <li><img src="images/electricity9.jpg" width="160" height="130" />Electricity 9 </li>
               <li><img src="images/electricity10.jpg" width="160" height="130" />Electricity 10 </li>
               <li><img src="images/electricity11.jpg" width="160" height="130" />Electricity 11 </li>
-              <li><img src="images/electricity12.jpg" width="160" height="130" />Electricity 12 </li>-->
+              <li><img src="images/electricity12.jpg" width="160" height="130" />Electricity 12 </li>
             </ul>
           </li>
-          <li id="next"><a href="#"><img src="images/next.png"/></a></li>
-        </ul>
+          <li id="next" class="next"><a href="#"><img src="images/next.png"/></a></li>
+        </ul>-->
       </div>
       
       <footer>
