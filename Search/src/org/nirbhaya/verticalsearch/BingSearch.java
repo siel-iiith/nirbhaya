@@ -25,7 +25,7 @@ import net.billylieurance.azuresearch.AzureSearchWebResult;
 @Path("/BingSearch")
 public class BingSearch {
 	static String AZURE_APPID="p9CfpJiKGm6btYTZbtyMdSNGwe4hk9rzXkurq6U1mTU=";
-	
+	static QueryExpansion qE = new QueryExpansion();
 	 public ArrayList<BingSearchResult> getBingSearchResults(String query) {
 	        System.setProperty("http.proxyHost", "proxy.iiit.ac.in");
 	        System.setProperty("http.proxyPort", "8080");
@@ -45,7 +45,11 @@ public class BingSearch {
 	 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String searchBing (@QueryParam("q") String query, @QueryParam("callback") String callback) {
+    public String searchBing (@QueryParam("q") String query, @QueryParam("callback") String callback) throws Exception {
+    	
+    	
+    	query = qE.expandedQuery(query);
+    	
         ArrayList<BingSearchResult> results=getBingSearchResults(query);
         Iterator<BingSearchResult> it=results.iterator();
         BingSearchResult current;

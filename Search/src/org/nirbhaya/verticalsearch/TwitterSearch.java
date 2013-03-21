@@ -36,7 +36,7 @@ import twitter4j.conf.ConfigurationBuilder;
 
 @Path("/TwitterSearch")
 public class TwitterSearch {      
-    
+    static QueryExpansion qE = new QueryExpansion();
     public static List<TwitterData> getOldTweets(String QueryQ, ConfigurationBuilder cb) throws TwitterException, IOException{
         Twitter twitter = new TwitterFactory(cb.build()).getInstance();
         List<TwitterData> Vec = new ArrayList<TwitterData>();
@@ -110,9 +110,12 @@ public class TwitterSearch {
       
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public String searchTwitter (@QueryParam("q") String query, @QueryParam("callback") String callback) throws TwitterException, IOException {        
-        ConfigurationBuilder cb = setTwitterConfiguration();
-        List<TwitterData> tweetData = getOldTweets("india", cb);
+    public String searchTwitter (@QueryParam("q") String query, @QueryParam("callback") String callback) throws Exception {        
+    	//QueryExpansion qE = new QueryExpansion();
+    	query = qE.expandedQuery(query);
+    	
+    	ConfigurationBuilder cb = setTwitterConfiguration();
+        List<TwitterData> tweetData = getOldTweets(query, cb);
         
         String result = "{\"searchResults\": [";
         
