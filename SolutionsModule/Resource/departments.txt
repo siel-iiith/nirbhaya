@@ -1,0 +1,4 @@
+electricity	21212121	Gachibowli	Hyderabad	None	STATE
+electricity	21212121	Ramanthapur	Hyderabad	None	STATE
+electricity	21121111	Bidar town	Bidar	None	NGO
+electricity	22122111	Hauz Kaus	Delhi	None	CENTRAL
