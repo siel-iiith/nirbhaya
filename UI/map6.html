@@ -41,7 +41,7 @@ function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://10.2.4.239:8080/HeatMap/test?callback=?",
+			url:"http://0.0.0.0:8080/HeatMap/test?callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -79,7 +79,6 @@ var st = "";
 				});
 
 				var i = 0;
-
 				for(i=0;i<allResults.length;i++){
 					var point = new google.maps.LatLng(allResults[i][0],allResults[i][1]);
 					var icon = 'http://www.google.com/intl/en_us/mapfiles/ms/icons/blue-dot.png';

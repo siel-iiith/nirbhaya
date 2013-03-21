@@ -70,9 +70,9 @@ public class MongoUtil {
 		try {
 		   while(cursor.hasNext()) {
 			   DBObject d = cursor.next();
-			   Problems romil = gson.fromJson(d.toString(),Problems.class);
+			   Problems prob = gson.fromJson(d.toString(),Problems.class);
 			   System.out.println(d.toString());
-//			   System.out.println(romil.getStats().get(1).getLocation().getLocationName());
+//			   System.out.println(prob.getStats().get(1).getLocation().getLocationName());
 		   }
 		} finally {
 		   cursor.close();

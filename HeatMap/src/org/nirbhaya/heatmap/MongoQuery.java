@@ -44,8 +44,8 @@ public class MongoQuery {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
 				
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				ArrayList<Stat> s = romil.stats;
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				ArrayList<Stat> s = prob.stats;
 				ArrayList<Stat> temp = new ArrayList<Stat>();
 				for(int i=0;i<s.size();i++){
 					if(s.get(i).location.locationName.equals(location)){
@@ -53,8 +53,8 @@ public class MongoQuery {
 						System.out.println(s.get(i).location.locationName);
 					}
 				}
-				romil.stats = temp;
-				allProblems.add(romil);
+				prob.stats = temp;
+				allProblems.add(prob);
 			}
 		} finally {
 			cursor.close();
@@ -79,8 +79,8 @@ public class MongoQuery {
 		try {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				toReturn = gson.toJson(romil);
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				toReturn = gson.toJson(prob);
 				System.out.println(d.toString());
 			}
 		} finally {
@@ -107,8 +107,8 @@ public class MongoQuery {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
 				
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				ArrayList<Stat> s = romil.stats;
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				ArrayList<Stat> s = prob.stats;
 				ArrayList<Stat> temp = new ArrayList<Stat>();
 				for(int i=0;i<s.size();i++){
 					if(s.get(i).location.locationName.equals(location)){
@@ -116,8 +116,8 @@ public class MongoQuery {
 						System.out.println(s.get(i).location.locationName);
 					}
 				}
-				romil.stats = temp;
-				toReturn = gson.toJson(romil);
+				prob.stats = temp;
+				toReturn = gson.toJson(prob);
 				System.out.println(d.toString());
 			}
 		} finally {
@@ -141,8 +141,10 @@ public class MongoQuery {
 		try {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				allProblems.add(romil);
+				System.out.println(d.toString());
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				allProblems.add(prob);
+				System.out.println(prob.stats.get(1).location);
 			}
 		} finally {
 			cursor.close();
