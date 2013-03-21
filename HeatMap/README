@@ -1,0 +1,6 @@
+﻿HeatMap API
+Returns the locations and problems in that locations from MongoDB.
+Use as following
+MongoFeed: To insert to MongoDB database
+MongoQuery: To query and retrieve results
+By Romil Bansal and Piyush
