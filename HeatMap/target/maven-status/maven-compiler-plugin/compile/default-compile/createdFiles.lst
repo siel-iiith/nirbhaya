@@ -1,7 +1,0 @@
-org/nirbhaya/heatmap/Problems.class
-org/nirbhaya/heatmap/Stat.class
-org/nirbhaya/heatmap/MongoFeed.class
-org/nirbhaya/heatmap/MongoQuery.class
-org/nirbhaya/heatmap/MongoUtil.class
-org/nirbhaya/heatmap/Location.class
-org/nirbhaya/service/HelloService.class

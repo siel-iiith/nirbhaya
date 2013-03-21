@@ -9,8 +9,8 @@ package org.nirbhaya.heatmap;
  */
 public class Location {
 	String locationName;
-	long latitude;
-	long longitude;
+	double latitude;
+	double longitude;
 
 
 	public String getLocationName() {
@@ -19,16 +19,16 @@ public class Location {
 	public void setLocationName(String locationName) {
 		this.locationName = locationName;
 	}
-	public long getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(long latitude) {
+	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
-	public long getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
-	public void setLongitude(long longitude) {
+	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
 
