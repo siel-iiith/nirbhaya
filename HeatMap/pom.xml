@@ -23,7 +23,7 @@
 			<configuration>
 				<webappDirectory>WebContent</webappDirectory>
 			</configuration>
-		</plugin> 
+			</plugin> 
 		</plugins>
 		
 	</build>
