@@ -162,8 +162,8 @@ a.mapboxclose{
     width:25px;
     height:25px;
     background:transparent url(images/cancel.png) repeat top left;
-    margin-top:-30px;
-    margin-right:5px;
+    margin-top:-0px;
+    margin-right:7px;
     cursor: pointer;
 }
 
