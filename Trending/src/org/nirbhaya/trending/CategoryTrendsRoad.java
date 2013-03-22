@@ -18,12 +18,11 @@ public class CategoryTrendsRoad
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String sendTypes(@QueryParam("callback") String callback) {
-    	String line="";
     	Gson gson = new Gson();
-    	JsonCategoryTrends catContent=null;
+    	catcontentSerialize catContent=null;
     	try
 		{
-    		catContent = gson.fromJson(new FileReader("hazardous roads-Trends"), JsonCategoryTrends.class);
+    		catContent = gson.fromJson(new FileReader("hazardous roads-Trends"), catcontentSerialize.class);
     		System.out.println(gson.toJson(catContent));
 		}
 		catch(Exception e)
