@@ -18,5 +18,12 @@
 	<classpathentry kind="lib" path="/home/sandeep/workspace/jars/jersey-json-1.17.jar"/>
 	<classpathentry kind="lib" path="/home/sandeep/workspace/jars/jersey-server-1.17.jar"/>
 	<classpathentry kind="lib" path="/home/sandeep/workspace/jars/jersey-servlet-1.13.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/workspace/Trending/WebContent/WEB-INF/lib/mongo-2.10.1.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/Desktop/jars/htmlcleaner2_1.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/workspace/Trending/src/joda-time.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/workspace/Trending/src/jollyday.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/workspace/Trending/src/stanford-corenlp-1.3.4.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/workspace/Trending/src/stanford-corenlp-1.3.4-models.jar"/>
+	<classpathentry kind="lib" path="/home/sandeep/workspace/Trending/src/xom.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
