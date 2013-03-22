@@ -1,7 +1,10 @@
 package org.nirbhaya.trending;
 import java.io.BufferedReader;
 import java.io.File;
+<<<<<<< HEAD
 import java.io.FileInputStream;
+=======
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,13 +12,17 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+<<<<<<< HEAD
 import java.util.Properties;
+=======
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
 import com.google.gson.Gson;
 
+<<<<<<< HEAD
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
@@ -24,17 +31,24 @@ import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
 
+=======
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 /***
  * Class GetFrequentNGrams. This class operates on a directory containing content and finds the frequent words from the content.
  * @author kushal
  *
  */
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 public class GetFrequentNGrams 
 {
 	/**
 	 * @param args
 	 */
 	private static HashMap<String, Integer> wordCount = new HashMap<String, Integer>();
+<<<<<<< HEAD
 	private static HashMap<String, Integer> bigramCount = new HashMap<String, Integer>();
 	private static ValueComparator bvc =  new ValueComparator(wordCount);
 	private static ValueComparator bigrambvc =  new ValueComparator(bigramCount);
@@ -52,6 +66,20 @@ public class GetFrequentNGrams
 		try 
 		{
 			br = new BufferedReader(new FileReader(prop.getProperty("stopwordFilePath")));
+=======
+	private static ValueComparator bvc =  new ValueComparator(wordCount);
+	private static TreeMap<String,Integer> sorted_map = new TreeMap<String, Integer>(bvc);
+	private static TreeSet<String> stopWords = new TreeSet<String>();
+	
+	private static void loadStopWords(String path)
+	{
+		BufferedReader br = null;
+		String line = null;
+		
+		try 
+		{
+			br = new BufferedReader(new FileReader(path));
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,6 +100,7 @@ public class GetFrequentNGrams
 			e.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 
 	public static void main(String[] args)
 	{
@@ -80,6 +109,14 @@ public class GetFrequentNGrams
 		loadStopWords();
 		String categoryInputPath = args[0];
 		int countofTrendsToReturn = Integer.parseInt(args[2]);
+=======
+	
+	public static void main(String[] args)
+	{
+		// TODO Auto-generated method stub
+		loadStopWords(args[1]);
+		String categoryInputPath = args[0];
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 		File topCatDir = new File(categoryInputPath);
 		if(!topCatDir.isDirectory())
 		{
@@ -90,6 +127,7 @@ public class GetFrequentNGrams
 		for(int i = 0; i < categoryData.length; i++)
 		{
 			ReadDir(categoryData[i].getAbsolutePath());
+<<<<<<< HEAD
 			writeTopTrends(categoryData[i].getName());
 			wordCount.clear();
 			sorted_map.clear();
@@ -115,6 +153,15 @@ public class GetFrequentNGrams
 		}
 	}
 
+=======
+		
+			writeTopTrends(categoryData[i].getName());
+			wordCount.clear();
+			sorted_map.clear();
+		}
+	}
+	
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 	/**
 	 * This function reads the input directory recursively and looks for the content in the directory
 	 * Parameters:
@@ -124,11 +171,19 @@ public class GetFrequentNGrams
 	public static void ReadDir(String path)
 	{
 		File directoryWithTextFiles = new File(path);
+<<<<<<< HEAD
 
 		if(directoryWithTextFiles.isDirectory())
 		{
 			File []filesInDir = directoryWithTextFiles.listFiles();
 
+=======
+		
+		if(directoryWithTextFiles.isDirectory())
+		{
+			File []filesInDir = directoryWithTextFiles.listFiles();
+			
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 			//Iterate over all the files in the directory
 			for(int index = 0; index < filesInDir.length ; index++)
 			{
@@ -144,14 +199,21 @@ public class GetFrequentNGrams
 		{
 			updateWordCount(path);
 		}
+<<<<<<< HEAD
 
 		System.out.println("wordcount size:"+wordCount.size());
 		sorted_map.putAll(wordCount);
 		bigramSorted_map.putAll(bigramCount);
+=======
+		
+		System.out.println("wordcount size:"+wordCount.size());
+		sorted_map.putAll(wordCount);
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 	}
 
 	private static void writeTopTrends(String catName)
 	{
+<<<<<<< HEAD
 		GetImageFromUrl image=new GetImageFromUrl();
 		PrintWriter pr = null;
 		int topTrendsToShow = Integer.parseInt(prop.getProperty("topTrendsToShow"));
@@ -203,11 +265,45 @@ public class GetFrequentNGrams
 			
 		}
 		json=gson.toJson(jsc);
+=======
+		PrintWriter pr = null;
+		try {
+			pr = new PrintWriter("/home/sandeep/workspace/Trending/"+catName+"-Trends");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Iterator<String> iter = sorted_map.keySet().iterator();
+		String key = null;
+		ArrayList<CategoryContent> jscList = new ArrayList<CategoryContent>();
+		CategoryContent jsc = null;
+		String json = null;
+		
+		Gson gson = new Gson();
+		int count = 0;
+		while(iter.hasNext())
+		{
+			key = iter.next();
+			jsc = new CategoryContent(key,"", "", "", "", "");
+			count++;
+			jscList.add(jsc);
+			if(count == 10)
+			{
+				break;
+			}
+		}
+		json=gson.toJson(jscList);
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 		pr.println("{\"catContent\":"+json+"}");
 		pr.flush();
 		pr.close();
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 	/**
 	 * This function reads the input file and updates the word frequency.
 	 * It can be called from outside using the ReadDir function.
@@ -219,7 +315,11 @@ public class GetFrequentNGrams
 		BufferedReader br = null;
 		String line = null;
 		//TokenizerModel model = null;
+<<<<<<< HEAD
 
+=======
+		
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 		try 
 		{
 			br = new BufferedReader(new FileReader(path));
@@ -227,6 +327,7 @@ public class GetFrequentNGrams
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		String url = null;
 		Stemmer stem = null;
 		String stemmedToken = null;
@@ -234,11 +335,19 @@ public class GetFrequentNGrams
 		String prevToken = null;
 		StringTokenizer stk = null;
 		//String token = null;
+=======
+
+		Stemmer stem = null;
+		String stemmedToken = null;
+		StringTokenizer stk = null;
+		String token = null;
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 		String combined = null;
 		int count = 0;
 		try 
 		{
 			Gson gson = new Gson();
+<<<<<<< HEAD
 			GetImageFromUrl image=new GetImageFromUrl();
 			SearchResult jsonContent = null;
 			Properties props = new Properties();
@@ -253,10 +362,20 @@ public class GetFrequentNGrams
 					jsonContent=gson.fromJson(line, SearchResult.class);
 				}
 				catch(Exception e)
+=======
+			SearchResult jsonContent = null;
+			while((line = br.readLine()) != null)
+			{
+				line = line.toLowerCase();
+				try{
+				jsonContent=gson.fromJson(line, SearchResult.class);
+				}catch(Exception e)
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 				{
 					System.out.println(path);
 					e.printStackTrace();
 				}
+<<<<<<< HEAD
 				Trend trend;
 
 				trend = new Trend(jsonContent.getTitle(), jsonContent.getUrl(), jsonContent.getSnippet(), image.getImageUrlForATrend(jsonContent.getUrl()));
@@ -345,6 +464,12 @@ public class GetFrequentNGrams
 					} 
 				}
 				/*while(stk.hasMoreTokens())
+=======
+				combined=jsonContent.getTitle()+" "+jsonContent.getSnippet();
+				stk = new StringTokenizer(combined, " !@#$%^&*().,<>?-+=%:;'\"\t}{[]”|\\/_`");
+				stem = new Stemmer();
+				while(stk.hasMoreTokens())
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 				{
 					token = stk.nextToken();
 					token = token.replaceAll("[^a-zA-Z0-9]+","");
@@ -367,6 +492,7 @@ public class GetFrequentNGrams
 						{
 							wordCount.put(stemmedToken, 1);
 						}
+<<<<<<< HEAD
 
 						if(prevToken != null)
 						{
@@ -389,6 +515,10 @@ public class GetFrequentNGrams
 
 					}
 				}*/
+=======
+					}
+				}
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 			}
 		}
 		catch (IOException e) 

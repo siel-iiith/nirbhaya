@@ -1,9 +1,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+<<<<<<< HEAD
     <packaging>war</packaging>
     <groupId>Trending</groupId>
     <artifactId>Trending</artifactId>
     <packaging>war</packaging>
+=======
+    <groupId>Trending</groupId>
+    <artifactId>Trending</artifactId>
+   <packaging>war</packaging>
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
     <version>0.0.1-SNAPSHOT</version>
     <build>
 	<sourceDirectory>src</sourceDirectory>
@@ -17,6 +23,7 @@
 	</resources>
 
 	<plugins>
+<<<<<<< HEAD
 		<plugin>
 		<groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-war-plugin</artifactId>
@@ -25,6 +32,8 @@
 		<webappDirectory>WebContent</webappDirectory>
 		</configuration>
 		</plugin>
+=======
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 	    <plugin>
 		<artifactId>maven-compiler-plugin</artifactId>
 		<version>2.3</version>
@@ -66,11 +75,15 @@
 	    <artifactId>1.0</artifactId>
 	    <version>1.0</version>
 	</dependency>
+<<<<<<< HEAD
     <dependency>
 	<groupId>org.mongodb</groupId>
 	<artifactId>mongo-java-driver</artifactId>
 	<version>2.10.1</version>
 </dependency>
+=======
+
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 	<dependency>
 	    <groupId>org.nirbhaya.trending.activation</groupId>
 	    <artifactId>1.0</artifactId>
@@ -244,6 +257,10 @@
 	    <version>1.0</version>
 	</dependency>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
 	<dependency>
 	    <groupId>org.nirbhaya.trending.wstx</groupId>
 	    <artifactId>1.0</artifactId>

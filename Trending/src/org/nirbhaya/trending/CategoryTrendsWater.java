@@ -20,10 +20,17 @@ public class CategoryTrendsWater
     public String sendTypes(@QueryParam("callback") String callback) {
     	String line="";
     	Gson gson = new Gson();
+<<<<<<< HEAD
     	catcontentSerialize catContent=null;
     	try
 		{
     		catContent = gson.fromJson(new FileReader("water logging-Trends"), catcontentSerialize.class);
+=======
+    	JsonCategoryTrends catContent=null;
+    	try
+		{
+    		catContent = gson.fromJson(new FileReader("water logging-Trends"), JsonCategoryTrends.class);
+>>>>>>> 0aac96ad7173c7e92591075bbd5ca04bbedad34e
     		System.out.println(gson.toJson(catContent));
 		}
 		catch(Exception e)
