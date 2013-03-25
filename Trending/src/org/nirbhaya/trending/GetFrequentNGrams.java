@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
-import java.util.StringTokenizer;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -151,7 +150,6 @@ public class GetFrequentNGrams
 
 	private static void writeTopTrends(String catName)
 	{
-		GetImageFromUrl image=new GetImageFromUrl();
 		PrintWriter pr = null;
 		int topTrendsToShow = Integer.parseInt(prop.getProperty("topTrendsToShow"));
 		int percentageBigrams = Integer.parseInt(prop.getProperty("percentageBigrams"));
@@ -175,7 +173,6 @@ public class GetFrequentNGrams
 		ArrayList<Trend> trend = null;
 		ArrayList<CategoryContent> jscList = new ArrayList<CategoryContent>();
 		Gson gson = new Gson();
-		ArrayList<String> imageUrls = new ArrayList<String>();
 
 		int index = 0;
 		for(int count = 1; count <= topTrendsToShow ; count++)
@@ -225,13 +222,9 @@ public class GetFrequentNGrams
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String url = null;
-		Stemmer stem = null;
 		String stemmedToken = null;
 		String bigram = null;
 		String prevToken = null;
-		StringTokenizer stk = null;
-		//String token = null;
 		String combined = null;
 		int count = 0;
 		try 
@@ -260,8 +253,7 @@ public class GetFrequentNGrams
 				trend = new Trend(jsonContent.getTitle(), jsonContent.getUrl(), jsonContent.getSnippet(), image.getImageUrlForATrend(jsonContent.getUrl()));
 
 				combined=jsonContent.getTitle()+" "+jsonContent.getSnippet();
-				url=jsonContent.getUrl();
-				//urlIdToURL.put(urlId++, url);
+
 				Annotation document = pipeline.process(combined);
 
 				for(CoreMap sentence: document.get(SentencesAnnotation.class)) 
@@ -276,7 +268,6 @@ public class GetFrequentNGrams
 						{
 							continue;
 						}
-
 						ArrayList<Trend> tempURLIdArray = null;
 
 						if(!stopWords.contains(stemmedToken))
@@ -339,54 +330,8 @@ public class GetFrequentNGrams
 								prevToken = stemmedToken;
 							}
 						}
-						//System.out.println("lemmatized version :" + lemma);
 					} 
 				}
-				/*while(stk.hasMoreTokens())
-				{
-					token = stk.nextToken();
-					token = token.replaceAll("[^a-zA-Z0-9]+","");
-					if(token.length() <= 2)
-					{
-						continue;
-					}
-					stem.add(token.toCharArray(), token.length());
-					stem.stem();
-					stemmedToken = stem.toString();
-					if(!stopWords.contains(stemmedToken))
-					{
-						if(wordCount.containsKey(stemmedToken))
-						{
-							count  = wordCount.get(stemmedToken);
-							count++;
-							wordCount.put(stemmedToken, count);
-						}
-						else
-						{
-							wordCount.put(stemmedToken, 1);
-						}
-
-						if(prevToken != null)
-						{
-							bigram = prevToken + " " + stemmedToken;
-							if(bigramCount.containsKey(bigram))
-							{
-								count  = bigramCount.get(bigram);
-								count++;
-								bigramCount.put(bigram, count);
-							}
-							else
-							{
-								bigramCount.put(bigram, 1);
-							}
-						}
-						else
-						{
-							prevToken = token;
-						}
-
-					}
-				}*/
 			}
 		}
 		catch (IOException e) 

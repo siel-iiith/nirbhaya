@@ -43,7 +43,7 @@ public class BingSearch extends AbstractAzureSearchTest{
 		while(it.hasNext()) {
 			current=it.next();
 			Gson gson = new Gson();
-			SearchResult r = new SearchResult(current.getTitle(),current.getURL(),current.getSnippet());
+			SearchResult r = new SearchResult(current.getTitle(),current.getURL(),current.getSnippet(),current.getDate(),current.getSource());
 			result = gson.toJson(r);
 			System.out.println(result);
 			try
@@ -68,10 +68,13 @@ public class BingSearch extends AbstractAzureSearchTest{
 		aq.setQuery(query);
 		//aq.setSkip(90);
 		aq.doQuery();
+	
 		AzureSearchResultSet<AzureSearchNewsResult> aswr = aq.getQueryResult();
 		ArrayList<BingSearchResult> bsrList=new ArrayList<BingSearchResult>();
-		for (AzureSearchNewsResult a : aswr){
-			BingSearchResult bsr=new BingSearchResult(a.getUrl(),a.getTitle(),a.getDescription());
+		for (AzureSearchNewsResult a : aswr)
+		{
+			
+			BingSearchResult bsr=new BingSearchResult(a.getUrl(),a.getTitle(),a.getDescription(),a.getDate(),a.getSource());
 			bsrList.add(bsr);
 		}
 		return bsrList;
