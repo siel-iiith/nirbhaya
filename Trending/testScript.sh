@@ -1,4 +1,4 @@
-cwd=/home/sandeep/nirbhaya/Trending
+cwd=`pwd`
 mvn install:install-file -Dfile=$cwd/WebContent/WEB-INF/lib/activation-1.1.1.jar -DgroupId=org.nirbhaya.trending.activation -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=$cwd/WebContent/WEB-INF/lib/asm-3.3.1.jar -DgroupId=org.nirbhaya.trending.asm -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=$cwd/WebContent/WEB-INF/lib/azure-bing-search-java-0.12.0.jar -DgroupId=net.billylieurance.azuresearch -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
