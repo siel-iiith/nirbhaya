@@ -41,7 +41,7 @@ function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://0.0.0.0:8080/HeatMap/test?callback=?",
+			url:"http://10.2.4.239:8080/HeatMap/test?problem="+getUrlVars()['problem']+"&callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -49,13 +49,16 @@ var st = "";
 			success: function(res){
 				var newarr = ['Lat', 'Lon', 'Name'];
 				allResults.push(newarr);
+				//alert(res.result.length);
 				for(i = 0; i<res.result.length; i++){
 					var newProb = res.result[i].problem;
 					var newEntry = res.result[i].stats;
+					//alert(newEntry);
 					for(j=0; j<newEntry.length; j++){
 						var thisLoc = newEntry[j].location.locationName;
-						var thisLat = newEntry[j].location.latitude;
-						var thisLon = newEntry[j].location.longitude;
+						var thisLat = newEntry[j].location.latitude+Math.random()/100;
+						var thisLon = newEntry[j].location.longitude+Math.random()/100;
+						//alert(thisLoc);
 						var innerDabba = [thisLat, thisLon, newProb];
 						allResults.push(innerDabba);
 						}
@@ -63,8 +66,8 @@ var st = "";
 				
 				var data = google.visualization.arrayToDataTable(allResults);
 				var myOptions = {
-					zoom: 12,
-					center: new google.maps.LatLng(getUrlVars()["lat"], getUrlVars()["lon"]),
+					zoom: 4,
+					center: new google.maps.LatLng("23.63", "77.22"),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
 				var infowindow = new google.maps.InfoWindow(
@@ -107,11 +110,18 @@ function createMarker(latlng, html, icon) {
 
 $(document).ready(function(){
     var query;
-          query=getUrlVars()["mapquery"];
+    $("button").click(function(){
+          query=$("#query").val();
    	  var geocoder = new google.maps.Geocoder();
+//	alert(query);
      	 if (geocoder) {
          geocoder.geocode({ 'address': query }, function (results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
+              //alert(results[0].geometry.location.lat());
+		//var data = results[0].geometry.location;
+		//data = data.split('(').join('');
+		//alert(data);
+		alert(results[0].geometry.location.lat());
 		$(location).attr('href',"map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
             } 
             else {
@@ -120,9 +130,29 @@ $(document).ready(function(){
          });
       }
 });
-</script> 
+
+});
+
+
+
+   </script> 
+
 </head>
+
 <body style="margin:0px; padding:0px;">
+<!--<form name="form2">
+<select name="jumpmenu" onChange="jumpto(document.form2.jumpmenu.options[document.form2.jumpmenu.options.selectedIndex].value)">
+<option>Jump to...</option>
+<option value=map5.html>All Problems</option>
+<option value=map1.html>Electricity Problems</option>
+<option value=map2.html>Water Problems</option>
+<option value=map3.html>Sewage Problems</option>
+<option value=map4.html>Other Problems</option>
+</select>
+</form> -->
 <div id="map_div" style="width: 100%; height: 100%"></div>
+<input type="text" id="query" /><button>Region Search</button>
+<div id="results"></div>
+
 </body>
 </html>

@@ -58,6 +58,7 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}
@@ -85,8 +86,9 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
-		return toReturn;
+		return "{\"result\":["+toReturn+"]}";
 	}
 	
 	public static String getBothLocationProblem(String location,String problem) throws IOException {
@@ -122,8 +124,9 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
-		return toReturn;
+		return "{\"result\":["+toReturn+"]}";
 	}
 	
 	public static String getAllProblem() throws IOException {
@@ -148,6 +151,7 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}

@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html">  
   <link rel="stylesheet" type="text/css" href="userpage.css"/>
   <script language="javascript" type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
-  <script src="js/mapsinitial.js" type="text/javascript"></script>
+  
   <script src="js/forumexpander.js" type="text/javascript"></script>
   <script src="js/greporter.js" type="text/javascript"></script>
   <script src="js/trendshow.js" type="text/javascript"></script>
@@ -21,81 +21,60 @@
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <!-- Map interface-->
   <script type="text/javascript"> 
-    $(document).ready(function(){
-      var query;
-      $("#locationform").submit(function(){
-          query=$("#query").val();
-   	  var geocoder = new google.maps.Geocoder();
-          if (geocoder) {          
-          geocoder.geocode({ 'address': query }, function (results, status) {
-          //alert(status);
-            if (status == google.maps.GeocoderStatus.OK) {
-              //alert(results[0].geometry.location.lat());
-		//var data = results[0].geometry.location;
-		//data = data.split('(').join('');
-		//alert("map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
-		$("#someframe").attr("src", "map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
-            } 
-            else {
-             alert('No results found: ' + status);
-            }
-         });
-        }
+$(document).ready(function(){
+    $('#locationimg').click(function(e){
+        $('#overlay').fadeIn('slow',function(e){
+            $('#maphider').slideDown("slow");  
+            $('#someframe').attr('src','map7.html?problem='+getUrlVars()['query']);
+        });
+        e.preventDefault();
+    });
+    $('.mapboxclose').click(function(){
+        $('#maphider').slideUp('slow',function(){
+            $('#overlay').fadeOut("slow");
+            //$('#someframe').attr('src','map5.html');
+        });
+    });
+});
+  </script> 
+  <script type="text/javascript"> 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+      $(document).ready(function(){
+//alert('rb');
+
+      var mapquery;
+     $("button").click(function(){         
+ mapquery=$("#mapquery").val();
+
+   	      var geocoder = new google.maps.Geocoder();
+          if (geocoder) {
+            geocoder.geocode({ 'address': mapquery }, function (results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+			alert("map6.html?location="+mapquery+"&lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
+		            $("#someframe").attr("src", "map8.html?problem="+getUrlVars()['query']+"&location="+mapquery+"&lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
+              } 
+              else {
+                alert('No results found: ' + status);
+
+              }
+            });
+          }
       });
+
     });
   </script> 
 
 
   <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
   <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript">
-  google.load("visualization", "1", {packages:["map"]});
-  google.setOnLoadCallback(drawMap);
 
-  function drawMap() {
-	var data = google.visualization.arrayToDataTable([
-			['Lat', 'Lon', 'Name'],
-			[19.37, 78.30, 'Adilabad Electricty Problems 15%'],
-			[16.50, 80.15, 'Amaravati Electricity Problems 20%'],
-			[14.41, 77.39, 'Anantapur Electricity Problems 40%'],
-			[15.34, 79.09, 'Cumbum Electricity Problems 30%'],
-			[20.37, 79.30, 'Adilabad Electricty Problems 15%'],
-			[19.50, 84.15, 'Amaravati Electricity Problems 20%'],
-			[21.41, 74.39, 'Anantapur Electricity Problems 40%'],
-			[13.34, 78.09, 'Cumbum Electricity Problems 30%'],
-			[24.37, 78.30, 'Water Problems 15%'],
-			[26.50, 80.15, 'Water Problems 20%'],
-			[24.41, 77.39, 'Water Problems 40%'],
-			[25.34, 79.09, 'Water Problems 30%'],
-			[20.37, 78.30, 'Water Problems 15%'],
-			[25.50, 80.15, 'Water Problems 20%'],
-			[26.41, 74.39, 'Water Problems 40%'],
-			[23.34, 75.09, 'Water Problems 30%'],
-			[24.37, 71.30, 'Sewage Problems 15%'],
-			[26.50, 82.15, 'Sewage Problems 20%'],
-			[24.41, 75.39, 'Sewage Problems 40%'],
-			[25.34, 78.09, 'Sewage Problems 30%'],
-			[22.37, 78.30, 'Sewage Problems 15%'],
-			[24.50, 80.15, 'Sewage Problems 20%'],
-			[24.41, 74.39, 'Sewage Problems 40%'],
-			[23.34, 75.09, 'Sewage Problems 30%'],
-			[21.37, 71.30, 'Other Problems 15%'],
-			[16.50, 82.15, 'Other Problems 20%'],
-			[29.41, 75.39, 'Other Problems 40%'],
-			[27.34, 78.09, 'Other Problems 30%'],
-			[21.37, 78.30, 'Other Problems 15%'],
-			[21.50, 80.15, 'Other Problems 20%'],
-			[20.41, 74.39, 'Other Problems 40%'],
-			[21.34, 75.09, 'Other Problems 30%']
-			]);
-
-	var map = new google.visualization.Map(document.getElementById('map_div'));
-	map.draw(data, {showTip: true});
-	//var yourLocation = new google.maps.LatLng(17.385044, 78.4866);
-	//map.setCenter(yourLocation);
-	
-  }
-  </script>
 </head>
 
 <body>
@@ -147,12 +126,9 @@
       </div>
       <!--<div class="overlay" id="overlay" style="display:none;"></div>-->
       <div id="maphider">
-        <iframe name="someframe" id="someframe" width="99%" height="500px"></iframe>
+        <iframe name="someframe" id="someframe" width="99%" height="500px" class="restricted" scrolling="no"></iframe>
           <div id ="locationsearch" class="searchspace">
-            <form action="map6.html" id="locationform">
-              <span id="locationtext"> Search location: </span>
-              <input type="text" id="query"/>
-            </form>
+           <input type="text" id="mapquery" /><button id = "button">Region Search</button>
             <a class="mapboxclose" id="mapboxclose"></a>
           </div>
       </div>
