@@ -14,6 +14,15 @@
   <script type="text/javascript" src="js/jquery.simplyscroll.js"></script>
   <link rel="stylesheet" href="simplyscrollformain.css" media="all" type="text/css">
   <script type="text/javascript"> 
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+
     $(document).ready(function(){
       var mapquery;
      $("button").click(function(){
@@ -22,7 +31,8 @@
           if (geocoder) {
             geocoder.geocode({ 'address': mapquery }, function (results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
-		            $("#someframe").attr("src", "map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
+			alert("map6.html?location="+mapquery+"&lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
+		            $("#someframe").attr("src", "map6.html?location="+mapquery+"&lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
               } 
               else {
                 alert('No results found: ' + status);
