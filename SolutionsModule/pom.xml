@@ -15,8 +15,13 @@
         </excludes>
       </resource>
     </resources>
-  
     <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.0</version>
+        <configuration>
+                <source>1.6</source>                                                                                                                                  <target>1.6</target>                                                                                                                          </configuration>        
+      </plugin>
       <plugin>
        <groupId>org.apache.maven.plugins</groupId>
        <artifactId>maven-war-plugin</artifactId>
@@ -28,16 +33,6 @@
     </plugins>
   </build>
 
-<!--
-<dependencies>
-<dependency>
-  <groupId>net.billylieurance.azuresearch</groupId>
-  <artifactId>1.0</artifactId>
-  <version>1.0</version>
-</dependency>
-</dependencies>
--->
-
 <dependencies>
 <!-- 
    <dependency>
@@ -47,11 +42,11 @@
     </dependency>
 -->
     <dependency>
-      	<groupId>com.mongodb</groupId>
-	<artifactId>mogodb-java-driver</artifactId>
+      	<groupId>org.mongodb</groupId>
+	<artifactId>mongo-java-driver</artifactId>
 	<version>2.10.1</version>
-    </dependency> 
-    <dependency>
+    </dependency>    
+      <dependency>
 	    <groupId>org.nirbhaya.verticalsearch.activation</groupId>
 	    <artifactId>1.0</artifactId>
 	    <version>1.0</version>
@@ -231,12 +226,12 @@
 	    <artifactId>1.0</artifactId>
 	    <version>1.0</version>
 	</dependency>
-<!--   
+<!--
  <dependency>
     	<groupId>org.google.gson</groupId>
     	<artifactId>mygson</artifactId>
     	<version>2.2.2</version>
     </dependency>
--->
+    -->
 </dependencies>
 </project>

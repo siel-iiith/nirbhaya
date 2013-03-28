@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.net.UnknownHostException;
 
 import java.net.UnknownHostException;
+
+import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
@@ -17,6 +19,7 @@ import com.solutions.Department.department;
 
 
 import org.codehaus.jettison.json.JSONException;
+
 import com.google.gson.Gson;
 
 /*import com.saplo.api.client.SaploClient;
@@ -33,12 +36,13 @@ public class TestingWithSaploAPI {
 		try{
 			
 			final String dir = System.getProperty("user.dir");
-			BufferedReader contact = new BufferedReader(new FileReader(new File(dir+"/SolutionsModule/Resource/contacts.txt")));
-			BufferedReader Deptcontact = new BufferedReader(new FileReader(new File(dir+"/SolutionsModule/Resource/departments.txt")));
+			BufferedReader contact = new BufferedReader(new FileReader(new File(dir+"/Resource/contacts.txt")));
+			BufferedReader Deptcontact = new BufferedReader(new FileReader(new File(dir+"/Resource/departments.txt")));
 			
 			Mongo mongo = new Mongo("10.2.4.180", 27017);
 			DB db = mongo.getDB("nirbhaya");
 			DBCollection collection = db.getCollection("Solutions");
+			collection.remove(new BasicDBObject());
 			
 			String str = contact.readLine();
 			while (str!= null)
