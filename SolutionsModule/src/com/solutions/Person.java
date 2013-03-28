@@ -48,6 +48,10 @@ class Person
 	{
 		return departmentid;
 	}
+	public String getDeptName()
+	{
+		return perdeptname;
+	}
 	
 	
 	public static void main(String[] args)
