@@ -90,9 +90,9 @@ public class TestingWithSaploAPI {
 				jsonobj1 = gson.toJson(depts);
 				
 				DBObject dbObject1 = (DBObject)JSON.parse(jsonobj1);
-				collection.insert(dbObject1);
+			//	collection.insert(dbObject1);
 				
-			   // collection.remove(dbObject1);
+			//    collection.remove(dbObject1);
 				str1 = Deptcontact.readLine();
 			}
 			Deptcontact.close();		
