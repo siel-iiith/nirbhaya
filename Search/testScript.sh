@@ -30,3 +30,5 @@ mvn install:install-file -Dfile=$vspath/WebContent/WEB-INF/lib/twitter4j-example
 mvn install:install-file -Dfile=$vspath/WebContent/WEB-INF/lib/twitter4j-media-support-3.0.3.jar -DgroupId=org.nirbhaya.verticalsearch.twitter4j.media -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=$vspath/WebContent/WEB-INF/lib/twitter4j-stream-3.0.3.jar -DgroupId=org.nirbhaya.verticalsearch.twitter4j.stream -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
 mvn install:install-file -Dfile=$vspath/WebContent/WEB-INF/lib/wstx-asl-2.0.2.jar -DgroupId=org.nirbhaya.verticalsearch.wstx -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile=$vspath/WebContent/WEB-INF/lib/mongo-2.10.1.jar -DgroupId=org.nirbhaya.verticalsearch.mongo -DartifactId=1.0 -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+

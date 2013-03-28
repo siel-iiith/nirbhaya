@@ -248,5 +248,13 @@
 	    <artifactId>1.0</artifactId>
 	    <version>1.0</version>
 	</dependency>
-    </dependencies>
+
+	<dependency>
+            <groupId>org.nirbhaya.verticalsearch.mongo</groupId>
+            <artifactId>1.0</artifactId>
+	    <version>1.0</version>
+	</dependency>
+
+	                    								</dependencies>
+
 </project>
