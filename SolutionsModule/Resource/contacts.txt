@@ -1,4 +1,0 @@
-ramesh	electricity	chief	9000405902	X@email.com	21212121
-suresh	electricity	engineer	9000405902	Y@email.com	12121212
-rambabu	electricity	secretary	9000405902	Z@email.com	21321312
-rao	electricity	senior	9000405902	L@email.com	34234322
