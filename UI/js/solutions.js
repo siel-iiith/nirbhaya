@@ -7,7 +7,7 @@ function getURLParameter(name) {
 function getContacts(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
 		
-		var strURL = "http://10.2.4.239:8080/SolutionsModule/solutions/Solution?q="+qresult+"&callback=?";
+		var strURL = "http://localhost:8080/SolutionsModule/solutions/Solution?q="+qresult+"&callback=?";
         
             
 		$.ajax({
