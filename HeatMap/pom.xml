@@ -16,14 +16,14 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-		<!-- 	<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-war-plugin</artifactId>
-			<version>2.3</version>
-			<configuration>
-				<webappDirectory>WebContent</webappDirectory>
-			</configuration>
-		</plugin> -->
+		 	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<webappDirectory>WebContent</webappDirectory>
+				</configuration>
+				</plugin> 
 		</plugins>
 		
 	</build>
