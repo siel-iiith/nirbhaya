@@ -30,7 +30,7 @@ public class MongoFeed {
 		// TODO Auto-generated constructor stub
 
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 		Gson gson = new Gson();
 
@@ -47,7 +47,7 @@ public class MongoFeed {
 			System.out.println(sr[1]);
 			System.out.println(sr[2]);
 			Location delhiLocation = new Location();
-			delhiLocation.setLocationName(sr[0]);
+			delhiLocation.setLocationName(sr[0].toLowerCase());
 			delhiLocation.setLatitude(Double.parseDouble(sr[1]));
 			delhiLocation.setLongitude(Double.parseDouble(sr[2]));
 			gson = new Gson();
@@ -57,7 +57,8 @@ public class MongoFeed {
 		}
 
 		Problems electricityProblem = new Problems();
-		electricityProblem.setProblem("Crime");
+		String prob="Murder";
+		electricityProblem.setProblem(prob.toLowerCase());
 		electricityProblem.setStats(stats);
 		DBObject obj11 = (DBObject)JSON.parse(gson.toJson(electricityProblem)); 
 		coll.insert(obj11);

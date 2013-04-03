@@ -28,8 +28,8 @@ public class MongoQuery {
 	public static String getLocationProblem(String location) throws IOException {
 		// TODO Auto-generated constructor stub
 
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		location=location.toLowerCase();
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 			
@@ -50,7 +50,7 @@ public class MongoQuery {
 				for(int i=0;i<s.size();i++){
 					if(s.get(i).location.locationName.equals(location)){
 						temp.add(s.get(i));
-						System.out.println(s.get(i).location.locationName);
+						//System.out.println(s.get(i).location.locationName);
 					}
 				}
 				prob.stats = temp;
@@ -66,8 +66,8 @@ public class MongoQuery {
 	public static String getProblemLocation(String problem) throws IOException {
 		// TODO Auto-generated constructor stub
 
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		problem=problem.toLowerCase();
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap");
@@ -82,7 +82,7 @@ public class MongoQuery {
 				DBObject d = cursor.next();
 				Problems prob = gson.fromJson(d.toString(),Problems.class);
 				toReturn = gson.toJson(prob);
-				System.out.println(d.toString());
+				//System.out.println(d.toString());
 			}
 		} finally {
 			cursor.close();
@@ -93,9 +93,9 @@ public class MongoQuery {
 	
 	public static String getBothLocationProblem(String location,String problem) throws IOException {
 		// TODO Auto-generated constructor stub
-
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		location=location.toLowerCase();
+		problem=problem.toLowerCase();
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap");
@@ -115,12 +115,12 @@ public class MongoQuery {
 				for(int i=0;i<s.size();i++){
 					if(s.get(i).location.locationName.equals(location)){
 						temp.add(s.get(i));
-						System.out.println(s.get(i).location.locationName);
+						//System.out.println(s.get(i).location.locationName);
 					}
 				}
 				prob.stats = temp;
 				toReturn = gson.toJson(prob);
-				System.out.println(d.toString());
+				//System.out.println(d.toString());
 			}
 		} finally {
 			cursor.close();
@@ -133,7 +133,7 @@ public class MongoQuery {
 		// TODO Auto-generated constructor stub
 
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 		DBCollection coll = db.getCollection("heatmap");
@@ -144,10 +144,10 @@ public class MongoQuery {
 		try {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
-				System.out.println(d.toString());
+				//System.out.println(d.toString());
 				Problems prob = gson.fromJson(d.toString(),Problems.class);
 				allProblems.add(prob);
-				System.out.println(prob.stats.get(1).location);
+				//System.out.println(prob.stats.get(1).location);
 			}
 		} finally {
 			cursor.close();
