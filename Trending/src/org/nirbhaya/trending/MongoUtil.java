@@ -10,6 +10,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.ServerAddress;
 
 import java.util.Arrays;
+import java.util.Set;
 public class MongoUtil {
 
 	/**
@@ -19,8 +20,13 @@ public class MongoUtil {
 		// TODO Auto-generated method stub
 		try
 		{
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
+		Set<String> colls = db.getCollectionNames();
+
+		for (String s : colls) {
+		    System.out.println(s);
+		}
 	
 		}
 		catch(Exception e)
