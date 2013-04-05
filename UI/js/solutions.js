@@ -7,8 +7,7 @@ function getURLParameter(name) {
 function getContacts(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
 		
-		//var strURL = "http://10.2.4.134:8080/JSONBuilder/solutions/Solution?q="+qresult+"&callback=?";
-		var strURL = "http://0.0.0.0:8080/JSONBuilder/solutions/Solution?q="+qresult+"&callback=?";
+		var strURL = "http://localhost:8080/SolutionsModule/solutions/Solution?q="+qresult+"&callback=?";
         
             
 		$.ajax({
@@ -21,24 +20,21 @@ function getContacts(qresult) {
 			success: function(contacts){
 				// Display Results on the Screen
 			    for(i = 0; i<contacts.contactList.length; i++){
-				var deptname = contacts.contactList[i].dept_name;
-				var id = contacts.contactList[i].departmentid;
-				var address = contacts.contactList[i].address;
-				var location = contacts.contactList[i].location;
-				var depttype = contacts.contactList[i].dept_type;
-				var number = contacts.contactList[i].phone;
-				var email = contacts.contactList[i].emailId;
+				var contact_name = contacts.contactList[i].name;
+				var departmentid = contacts.contactList[i].departmentid;
+				var designation = contacts.contactList[i].designation;
+				var perdeptname = contacts.contactList[i].perdeptname;
+				var phone = contacts.contactList[i].phone;
+				var emailid = contacts.contactList[i].emailid;
 
-				
-				
+
 				$("#solutionspace").append("<table id=\"my_table1\" class=\"tableclass\"></table>");
-				$("#my_table1").append("<tr><td class=\"deptcontact\">" +deptname+ "</td>");
-				$("#my_table1").append("<tr><td class=\"columnsizer\">" +depttype+ "</td></tr>");
-				$("#my_table1").append("<tr><td class=\"columnsizer\">" +id+ "</td></tr>");
-				$("#my_table1").append("<tr><td class=\"columnsizer\">" +address+ "</td></tr>");				
-				$("#my_table1").append("<tr><td class=\"columnsizer\">" +location+ "</td></tr>");
-				$("#my_table1").append("<tr><td class=\"columnsizer\">" +number+ "</td></tr>");
-				$("#my_table1").append("<tr><td class=\"columnsizer\">" +email+ "</td></tr>");
+				$("#my_table1").append("<tr><td class=\"deptcontact\">Contact Name: &nbsp;&nbsp;&nbsp;" +contact_name+ "</td>");
+				$("#my_table1").append("<tr><td class=\"columnsizer\">Department ID: &nbsp;&nbsp;&nbsp;" +departmentid+ "</td></tr>");
+				$("#my_table1").append("<tr><td class=\"columnsizer\">Designation: &nbsp;&nbsp;&nbsp;" +designation+ "</td></tr>");
+				$("#my_table1").append("<tr><td class=\"columnsizer\">Department Board: &nbsp;&nbsp;&nbsp;" +perdeptname+ "</td></tr>");				
+				$("#my_table1").append("<tr><td class=\"columnsizer\">Contact Number: &nbsp;&nbsp;&nbsp;" +phone+ "</td></tr>");
+				$("#my_table1").append("<tr><td class=\"columnsizer\">Email Address: &nbsp;&nbsp;&nbsp;" +emailid+ "</td></tr>");
 			    }
 			    
 				/*var innerHTML = "";

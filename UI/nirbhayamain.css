@@ -43,7 +43,7 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
 }
 
 #element .nav{
-    width: 600px;
+    width: 800px;
     padding-left: 2em;
     padding-top: 0.6em;
 }
@@ -89,13 +89,13 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
 #element .nav li:active{
     background-color: #daa520;
 }
+
 #searchtag{
     margin-top: 12px;
     margin-bottom: 8px;
     font-size: 14px;
     color: white;
-    margin-left: 8em;
-    margin-top: 14px;
+    /*margin-left: 8em;*/
 }
 
 #element .searchspace{
@@ -105,9 +105,9 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
 }
 
 #locationsearch form input {
-    width:126px;
+    width:156px;
     height:20px;
-    margin-top:10px;
+    margin-top:3px;
     border:none;
     color:black;
     -moz-border-radius:10px;
@@ -116,7 +116,9 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
     background-image: url("images/magnifier.png");
     background-repeat: no-repeat;
     background-color:#ffffff;
-    text-indent: 1.5em; 
+    text-indent: 1.5em;
+    margin-left: 1em;
+    margin-bottom: 5px;
 }
 
 #locationsearch form input:focus{
@@ -131,22 +133,125 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
 }
 
 #maphider{
-    width: 100%;
+    width: 700px;
     background-color: #003f3f;
-    height: 400px;
-    -webkit-box-shadow: 0px 0px 5px #111111;
-    -moz-box-shadow: 0px 0px 5px #111111;
+    left: 25%;
+    top: 80px;
+    position: absolute;
+    margin: 5px;
+    height: 540px;
+    -webkit-box-shadow: 0px 0px 5px #003f3f;
+    -moz-box-shadow: 0px 0px 5px #003f3f;
     display: none;
-    border-style: inset;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius:10px;
+    -khtml-border-radius:10px;
+    -moz-box-shadow: 0 1px 5px #333;
+    -webkit-box-shadow: 0 1px 5px #333;
+    z-index:101;
+}
+
+#locationtext{
+    color: #ffffff;
+    margin-left: 1em;
+}
+
+a.mapboxclose{
+    float:right;
+    width:25px;
+    height:25px;
+    background:transparent url(images/cancel.png) repeat top left;
+    margin-top:-0px;
+    margin-right:7px;
+    cursor: pointer;
+}
+
+#overlay{
+    background:transparent url(images/overlay.png) repeat top left;
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:100;
+    width: 100%;
+    height: 100%;
+}
+
+#someframe{
+    margin-left: 1px;
+    margin-top: 3px;
+    border-style: none;
+    border-bottom-style: groove;
+}
+
+#locationimg{
+    width: 30px;
+    height: 30px;
+    margin-top: 7px;
 }
 
 #container{
     width: 1300px;
     overflow: hidden;
-    height: 630px;
+    height: 680px;
     background-image: url(images/bg.png);
     float: left;
 }
+
+/*css for cycle starts here*/
+
+#slideshow img {
+    width: 600px;
+    height: 250px;
+    margin-left: 37%;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-color: #003333;
+    border-style: inset;
+    border-width: 20px;
+}
+
+#pager {
+    width: 600px;
+    height: 110px;
+    margin: 10px;
+    margin-left: 35%;
+}
+
+#pager li {
+    width: 90px;
+    float: left;
+    margin: 10px;
+    list-style: none;
+}
+
+#pager a {
+    width: 80px;
+    padding: 5px;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+#pager li.activeSlide a {
+    background: #daa520
+}
+
+#pager li a:hover {
+    background: #aaaaaa;
+}
+
+#pager img {
+    border: none;
+    display: block;
+}
+
+/*css for cycle ends here*/
 
 .rowwrapper{
     width: 1280px;
@@ -161,6 +266,7 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
     height: 130px;
     margin: 5px;
     float: left;
+    margin-left: 20px;
     background-color: #003333;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -207,9 +313,9 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
 
 .categories{
     height: 150px;
-    width: 930px;
+    width: 910px;
     float: right;
-    margin-top: 6px;
+    margin-top: 0px;
 }
 
 .categories li{
@@ -356,7 +462,7 @@ footer{
     margin-top: 10px;
     background-color: #003333;
     overflow: hidden;
-    height: 80px;
+    height: 40px;
     font-weight: bold;
     font-family:Arial, Helvetica, sans-serif;
     -moz-box-shadow: 3px 3px 3px #003333;

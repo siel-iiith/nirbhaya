@@ -2,11 +2,15 @@ package com.solutions;
 
 class Person
 {
-	String name,designation,emailid,phone;
+	String name,designation,emailid,phone,perdeptname;
 	long departmentid;
 	public void setName(String names)
 	{
 		this.name = names;
+	}
+	public void setPerDeptName(String perdeptnames)
+	{
+		this.perdeptname = perdeptnames;
 	}
 	public void setDesignation(String desig)
 	{
@@ -43,6 +47,10 @@ class Person
 	public long getDepartmentId()
 	{
 		return departmentid;
+	}
+	public String getDeptName()
+	{
+		return perdeptname;
 	}
 	
 	

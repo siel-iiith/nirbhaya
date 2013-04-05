@@ -1,5 +1,8 @@
 package org.nirbhaya.heatmap;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,44 +30,38 @@ public class MongoFeed {
 		// TODO Auto-generated constructor stub
 
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
-		Stat s1 = new Stat();
 		Gson gson = new Gson();
-		
+
 		DBCollection coll = db.getCollection("heatmap");
 		ArrayList<Stat> stats = new ArrayList<Stat>();
-		Location delhiLocation = new Location();
-		
-		
-		
-		delhiLocation.setLocationName("Mumbai");
-		delhiLocation.setLatitude(28);
-		delhiLocation.setLongitude(77);
-		gson = new Gson();
-		s1.setLocation(delhiLocation);
-		s1.setValue(100);
-		stats.add(s1);
-	
-		
-	//	stats.add(s2);
+
+
+		BufferedReader reader = new BufferedReader(new FileReader("test.html"));
+		String line = null;
+		while ((line = reader.readLine()) != null) {
+			Stat s1 = new Stat();
+			String[] sr=line.split(" ");
+			System.out.println(sr[0]);
+			System.out.println(sr[1]);
+			System.out.println(sr[2]);
+			Location delhiLocation = new Location();
+			delhiLocation.setLocationName(sr[0].toLowerCase());
+			delhiLocation.setLatitude(Double.parseDouble(sr[1]));
+			delhiLocation.setLongitude(Double.parseDouble(sr[2]));
+			gson = new Gson();
+			s1.setLocation(delhiLocation);
+			s1.setValue(100);
+			stats.add(s1);
+		}
+
 		Problems electricityProblem = new Problems();
-		electricityProblem.setProblem("Crime");
+		String prob="Murder";
+		electricityProblem.setProblem(prob.toLowerCase());
 		electricityProblem.setStats(stats);
 		DBObject obj11 = (DBObject)JSON.parse(gson.toJson(electricityProblem)); 
 		coll.insert(obj11);
-
-		
-//		Location hybLocation = new Location();
-
-//		hybLocation.setLocationName("Mumbai");
-//		hybLocation.setLatitude(15);
-///		hybLocation.setLongitude(71);
-		
-
-//		Stat s2 = new Stat();
-//		s2.setLocation(hybLocation);
-//		s2.setValue(200);
 
 	}
 }

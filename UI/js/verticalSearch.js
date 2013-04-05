@@ -8,12 +8,12 @@ function getURLParameter(name) {
 function sendQueryToBackend(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
 		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
-		//var strURL = "http://10.2.4.251:8080/Nirbhaya/BingSearch?q="+qresult+"&callback=?";
-		var strURL = "http://0.0.0.0:8080/Nirbhaya/BingSearch?q="+qresult+"&callback=?";
+		var strURL = "http://localhost:8080/VerticalSearch/BingSearch?q="+qresult+"&callback=?";
+        
             
 		$.ajax({
 			url:strURL,
-			timeout:10000,
+			timeout:20000,
 			async: true,
 			type: 'GET',
 			dataType: 'jsonp',
@@ -35,7 +35,7 @@ function sendQueryToBackend(qresult) {
 					innerHTML = innerHTML + "<span class = \"vsdescription\"> "+tempDesc+" </span>";
                                         innerHTML = innerHTML + "<hr style='width:99%'/>";
 
-					$("#vresults").append($("<div/>", {class : 'bingFeed'}).append($(innerHTML)));
+					$("#vresults").append(innerHTML);
 				}
 
 			},

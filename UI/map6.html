@@ -41,7 +41,7 @@ function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://10.2.4.239:8080/HeatMap/test?callback=?",
+			url:"http://localhost:8080/HeatMap/test?location="+getUrlVars()['location']+"&callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -54,9 +54,8 @@ var st = "";
 					var newEntry = res.result[i].stats;
 					for(j=0; j<newEntry.length; j++){
 						var thisLoc = newEntry[j].location.locationName;
-						var thisLat = newEntry[j].location.latitude;
-						var thisLon = newEntry[j].location.longitude;
-						
+						var thisLat = newEntry[j].location.latitude+Math.random()/100;
+						var thisLon = newEntry[j].location.longitude+Math.random()/100;
 						var innerDabba = [thisLat, thisLon, newProb];
 						allResults.push(innerDabba);
 						}
@@ -119,7 +118,7 @@ $(document).ready(function(){
 		//var data = results[0].geometry.location;
 		//data = data.split('(').join('');
 		//alert(data);
-		alert(results[0].geometry.location.lat());
+		//alert(results[0].geometry.location.lat());
 		$(location).attr('href',"map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
             } 
             else {

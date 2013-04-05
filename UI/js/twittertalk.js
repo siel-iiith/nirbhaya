@@ -6,9 +6,9 @@ function getURLParameter(name) {
 }
 
 function getUsertalk(qresult) {
-		
-		//var strURL = "http://10.2.4.251:8080/Nirbhaya/TwitterSearch?q="+qresult+"&callback=?";
-		var strURL = "http://0.0.0.0:8080/Nirbhaya/TwitterSearch?q="+qresult+"&callback=?";
+		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
+		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
+		var strURL = "http://10.2.4.239:8080/VerticalSearch/TwitterSearch?q="+qresult+"&callback=?";
         
             
 		$.ajax({
@@ -29,9 +29,9 @@ function getUsertalk(qresult) {
                                         var jTweetid = talkresult.searchResults[i].jTweetId;
 					var innerHTML = "";
 					
-					innerHTML = "<div class = \"vsdescription\"> "+jTweettext+" </div>";                                        				
-                                        innerHTML = innerHTML + "<div class = \"vsurl\" style='color:blue'> "+jTweetloc+" </div>";
-                                        innerHTML = innerHTML + "<div style='color:green'>"+jTweetid+"</div>";
+					innerHTML = "<div class = \"vsdescription\"> Tweet: &nbsp; &nbsp;"+jTweettext+" </div>";                                        				
+                                        innerHTML = innerHTML + "<div class = \"vsurl\" style='color:blue'> Location: &nbsp; &nbsp;"+jTweetloc+" </div>";
+                                        innerHTML = innerHTML + "<div style='color:green'> TweetID: &nbsp; &nbsp;"+jTweetid+"</div>";
                                         innerHTML = innerHTML + "<hr style='width:99%'/>";
 
 					$("#talkspace").append(innerHTML);

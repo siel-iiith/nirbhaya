@@ -28,8 +28,8 @@ public class MongoQuery {
 	public static String getLocationProblem(String location) throws IOException {
 		// TODO Auto-generated constructor stub
 
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		location=location.toLowerCase();
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 			
@@ -44,20 +44,21 @@ public class MongoQuery {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
 				
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				ArrayList<Stat> s = romil.stats;
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				ArrayList<Stat> s = prob.stats;
 				ArrayList<Stat> temp = new ArrayList<Stat>();
 				for(int i=0;i<s.size();i++){
 					if(s.get(i).location.locationName.equals(location)){
 						temp.add(s.get(i));
-						System.out.println(s.get(i).location.locationName);
+						//System.out.println(s.get(i).location.locationName);
 					}
 				}
-				romil.stats = temp;
-				allProblems.add(romil);
+				prob.stats = temp;
+				allProblems.add(prob);
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}
@@ -65,8 +66,8 @@ public class MongoQuery {
 	public static String getProblemLocation(String problem) throws IOException {
 		// TODO Auto-generated constructor stub
 
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		problem=problem.toLowerCase();
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap");
@@ -79,21 +80,22 @@ public class MongoQuery {
 		try {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				toReturn = gson.toJson(romil);
-				System.out.println(d.toString());
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				toReturn = gson.toJson(prob);
+				//System.out.println(d.toString());
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
-		return toReturn;
+		return "{\"result\":["+toReturn+"]}";
 	}
 	
 	public static String getBothLocationProblem(String location,String problem) throws IOException {
 		// TODO Auto-generated constructor stub
-
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		location=location.toLowerCase();
+		problem=problem.toLowerCase();
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap");
@@ -107,30 +109,31 @@ public class MongoQuery {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
 				
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				ArrayList<Stat> s = romil.stats;
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				ArrayList<Stat> s = prob.stats;
 				ArrayList<Stat> temp = new ArrayList<Stat>();
 				for(int i=0;i<s.size();i++){
 					if(s.get(i).location.locationName.equals(location)){
 						temp.add(s.get(i));
-						System.out.println(s.get(i).location.locationName);
+						//System.out.println(s.get(i).location.locationName);
 					}
 				}
-				romil.stats = temp;
-				toReturn = gson.toJson(romil);
-				System.out.println(d.toString());
+				prob.stats = temp;
+				toReturn = gson.toJson(prob);
+				//System.out.println(d.toString());
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
-		return toReturn;
+		return "{\"result\":["+toReturn+"]}";
 	}
 	
 	public static String getAllProblem() throws IOException {
 		// TODO Auto-generated constructor stub
 
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 		DBCollection coll = db.getCollection("heatmap");
@@ -141,11 +144,14 @@ public class MongoQuery {
 		try {
 			while(cursor.hasNext()) {
 				DBObject d = cursor.next();
-				Problems romil = gson.fromJson(d.toString(),Problems.class);
-				allProblems.add(romil);
+				//System.out.println(d.toString());
+				Problems prob = gson.fromJson(d.toString(),Problems.class);
+				allProblems.add(prob);
+				//System.out.println(prob.stats.get(1).location);
 			}
 		} finally {
 			cursor.close();
+			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}

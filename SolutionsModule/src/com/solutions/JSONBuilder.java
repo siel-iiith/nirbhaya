@@ -13,83 +13,76 @@ import javax.ws.rs.core.MediaType;
 
 import org.codehaus.jettison.json.JSONException;
 import com.google.gson.Gson;
-
-class ContactList {
-//	Department department = new Department();
-//	String dept_name = department.getDeptName();
-//	long departmentid = department.getDepartmentId();
-//	String address = department.getAddress();
-//	String location = department.getLocation();
-//	String RTI_Info = department.getRTIInfo();
-//	department dept_type = department.getDepartmentType();
-	String dept_name;
-	String departmentid;
-//	String designation = "Student";
-	String address;
-	String location;
-	String dept_type;
-	String phone;
-	String tag;
-	String emailId;
-	
-	public ContactList(String dept_name, String departmentid, String address, String location, String dept_type, String phone, String emailId) throws IOException {
-		this.dept_name = dept_name;
-		this.departmentid = departmentid;
-		this.address = address;
-		this.location = location;
-		this.dept_type = dept_type;
-		this.phone = phone;
-		this.emailId = emailId;
-	}
-}
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.DBCursor;
+import com.mongodb.Mongo;
 
 @Path("/Solution")
 public class JSONBuilder {
 	
+	public boolean isRelevantPerson (Person person, String query) {
+		for (String str : query.split(" ")) {
+			if (str.contains(person.getName().toLowerCase())
+				|| str.contains(person.getDesignation().toLowerCase())
+				|| str.contains(person.getPhone().toLowerCase())
+				|| str.contains(person.getEmail().toLowerCase())
+				|| str.contains(person.getDeptName().toLowerCase())
+				|| str.contains(Long.toString(person.getDepartmentId()))) {
+				return true;
+			}
+		}
+		return false;
+	}
+	public boolean isRelevantDepartment (Department department, String query) {
+		for (String str : query.split(" ")) {
+			if (str.contains(department.getDeptName().toLowerCase())
+				|| str.contains(department.getAddress().toLowerCase())
+				|| str.contains(department.getLocation().toLowerCase())
+				|| str.contains(department.getRTIInfo().toLowerCase())
+				|| str.contains(department.getDepartmentType().toString().toLowerCase())
+				|| str.contains(Long.toString(department.getDepartmentId()))) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
-	public static String outputJSON (@QueryParam("q") String query, @QueryParam("callback") String callback) throws IOException, JSONException {
+	public String outputJSON (@QueryParam("q") String query, @QueryParam("callback") String callback) throws IOException, JSONException 
+	{
 		
-//		String tag = "";
-//		String dept_name = "";
-//		String departmentid = "";
-//		String designation = "Student";
-//		String address = "";
-//		String location = "";
-//		String dept_type = "";
-//		String phone = "";
+		Mongo mongo = new Mongo("10.2.4.180", 27017);
+		DB db = mongo.getDB("nirbhaya");
+		DBCollection collection = db.getCollection("Solutions");
+//		System.out.println (query);
 		Gson gson =new Gson();
-		ArrayList<ContactList> contactArray = new ArrayList<ContactList>();
-//		if (query.equals("electricity")) {
-//		}
-		BufferedReader contact=new BufferedReader(new FileReader(new File("contacts.txt")));
-		String str = "";
-		while ((str=contact.readLine()) != null) {
-			if (str.split("\t")[0].equals(query)) {
-//				JSONObject jsonObj = new JSONObject();
-				ContactList contactList = new ContactList(str.split("\t")[1],str.split("\t")[2],str.split("\t")[3],str.split("\t")[4],str.split("\t")[5],str.split("\t")[6],str.split("\t")[7]);
-				contactArray.add(contactList);
-//				contactList.put(gson.toJson(jsonObj));
+		DBCursor cursorDoc = collection.find();
+		ArrayList<Person> P1 = new ArrayList<Person>();
+		ArrayList<Department> P2 = new ArrayList<Department>();
+		while (cursorDoc.hasNext()) {
+			String s1 = cursorDoc.next().toString();
+//			System.out.println (s1);
+			if (s1.contains("\"perdeptname\" :")) {
+				Person person = new Person();
+				person = gson.fromJson(s1,Person.class);
+				if (isRelevantPerson (person, query.toLowerCase())) {
+					P1.add(person);
+//					System.out.println (person.getName());
+				}
 			}
+//			else {
+//				Department department = new Department();
+//				department = gson.fromJson(s1,Department.class);
+//				if (isRelevantDepartment (department, query.toLowerCase())) {
+//					P2.add(department);
+//					System.out.println (department.getAddress());
+//				}
+//			}
 		}
-		contact.close();
-		String jsonArray = null;
-		jsonArray = gson.toJson(contactArray);	
-//		try {
-//			//write converted json data to a file named "file.json"
-//			FileWriter writer = new FileWriter("file.json");
-//			writer.append(json1);
-//			writer.append("\n");
-//			writer.close();
-//	 
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-	 
-//		System.out.println(json);
-//		return callback +"("+jsonArray+")";
-		return callback +"({\"contactList\":"+jsonArray+"})";
+		
+		return callback +"({\"contactList\":"+gson.toJson(P1)+"})";
 	}
 	
 	public static void main(String[] args) {
