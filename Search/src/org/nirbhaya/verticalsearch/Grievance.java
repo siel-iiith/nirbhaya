@@ -18,11 +18,11 @@ public class Grievance
 
 	
 
-public String getPlace() {
+public String getGrievance() {
 	return grievance;
 	}
 	
-public void setPlace(String Place) {
+public void setGrievance(String Place) {
 	this.grievance = grievance;
 	}
 
