@@ -34,12 +34,13 @@ public class QueryExpansion
 		boolean grievanceFlag = false;
 		
 		// Some MONGO Stuff
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
+		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
 		DB db = mongoClient.getDB( "nirbhaya" );
 		Gson gson = new Gson();
 
 		DBCollection coll = db.getCollection("queryexpansionPlaces");
 		DBCollection coll2 = db.getCollection("queryexpansionGrievances");
+		DBCollection coll3 = db.getCollection("queryexpansionExtendedPlaces");
 		
 		for (String s : temp) 
 		{
