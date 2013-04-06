@@ -39,7 +39,7 @@ public class TestingWithSaploAPI {
 			BufferedReader contact = new BufferedReader(new FileReader(new File(dir+"/Resource/contacts.txt")));
 			BufferedReader Deptcontact = new BufferedReader(new FileReader(new File(dir+"/Resource/departments.txt")));
 			
-			Mongo mongo = new Mongo("10.2.4.180", 27017);
+			Mongo mongo = new Mongo("10.2.4.238", 27017);
 			DB db = mongo.getDB("nirbhaya");
 			DBCollection collection = db.getCollection("Solutions");
 			collection.remove(new BasicDBObject());
@@ -90,9 +90,9 @@ public class TestingWithSaploAPI {
 				jsonobj1 = gson.toJson(depts);
 				
 				DBObject dbObject1 = (DBObject)JSON.parse(jsonobj1);
-			//	collection.insert(dbObject1);
+				collection.insert(dbObject1);
 				
-			//    collection.remove(dbObject1);
+			   // collection.remove(dbObject1);
 				str1 = Deptcontact.readLine();
 			}
 			Deptcontact.close();		
