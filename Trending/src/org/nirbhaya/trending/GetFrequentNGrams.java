@@ -1,4 +1,14 @@
 package org.nirbhaya.trending;
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import com.mongodb.util.JSON;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -42,7 +53,7 @@ public class GetFrequentNGrams
 	private static TreeSet<String> stopWords = new TreeSet<String>();
 	private static Properties prop = new Properties();
 	private static HashMap<String, ArrayList<Trend>> trendToTrendData = new HashMap<String, ArrayList<Trend>>();
-
+	static DBCollection coll;
 	private static void loadStopWords()
 	{
 		BufferedReader br = null;
@@ -74,6 +85,17 @@ public class GetFrequentNGrams
 
 	public static void main(String[] args)
 	{
+		try
+		{
+		//MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
+		//DB db = mongoClient.getDB( "nirbhaya" );
+		//coll = db.getCollection("trends");
+	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
 		loadProperties();
 		loadStopWords();
@@ -146,6 +168,7 @@ public class GetFrequentNGrams
 		System.out.println("wordcount size:"+wordCount.size());
 		sorted_map.putAll(wordCount);
 		bigramSorted_map.putAll(bigramCount);
+		
 	}
 
 	private static void writeTopTrends(String catName)
@@ -155,7 +178,7 @@ public class GetFrequentNGrams
 		int percentageBigrams = Integer.parseInt(prop.getProperty("percentageBigrams"));
 		try 
 		{
-			pr = new PrintWriter("/home/sandeep/workspace/Trending/"+catName+"-Trends");
+			pr = new PrintWriter("/home/sandeep/workspace/Trending/new/"+catName+"-Trends");
 		} 
 		catch (FileNotFoundException e) 
 		{
@@ -187,8 +210,8 @@ public class GetFrequentNGrams
 			}
 			
 			trend = trendToTrendData.get(key);
-
-			while((imgURL = trend.get(index).imageURL) != null)
+            
+			while((imgURL = trend.get(index).imageURL)== null )
 			{
 				index++;
 			}
@@ -197,6 +220,9 @@ public class GetFrequentNGrams
             jscList.add(jsc);
 		}
 		json=gson.toJson(jscList);
+		//json="{\""+catName+"\":"+json+"}";
+		//DBObject obj11 = (DBObject)JSON.parse(json);
+		//coll.insert(obj11);
 		pr.println("{\"catContent\":"+json+"}");
 		
 		pr.flush();

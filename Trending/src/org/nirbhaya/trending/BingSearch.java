@@ -13,6 +13,7 @@ package org.nirbhaya.trending;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -24,9 +25,10 @@ import net.billylieurance.azuresearch.AzureSearchResultSet;
 import net.billylieurance.azuresearch.test.AbstractAzureSearchTest;
 
 
-public class BingSearch extends AbstractAzureSearchTest{
+public class BingSearch extends AbstractAzureSearchTest
+{
 	AzureSearchNewsResult asr;
-	File file;
+	PrintWriter pr = null;
 	FileWriter fstream;
 	BufferedWriter out1;
 	static String AZURE_APPID="CxlTqDgVZvioFczwIr5bz/+nqEdP98TU9PmDcEUk7z0=";
@@ -34,25 +36,24 @@ public class BingSearch extends AbstractAzureSearchTest{
 	{
 
 	}
-	public String searchBing (String query) 
+	public String searchBing (String query, int skip) 
 	{
-		ArrayList<BingSearchResult> results=getBingSearchResults(query);
+		ArrayList<BingSearchResult> results=getBingSearchResults(query, skip);
 		Iterator<BingSearchResult> it=results.iterator();
 		BingSearchResult current;
 		String result=null;
 		while(it.hasNext()) {
 			current=it.next();
 			Gson gson = new Gson();
-			SearchResult r = new SearchResult(current.getTitle(),current.getURL(),current.getSnippet(),current.getDate(),current.getSource());
+			BingSearchResult r = new BingSearchResult(current.getURL(),current.getTitle(),current.getSnippet(),current.getDate(),current.getSource());
 			result = gson.toJson(r);
 			System.out.println(result);
 			try
 			{
-				file = new File("/home/sandeep/roadrepairs/road25.txt");
-				fstream = new FileWriter(file.getAbsoluteFile());
-				out1 = new BufferedWriter(fstream);
-				out1.write(result);
-				out1.close();
+				pr = new PrintWriter(new BufferedWriter(new FileWriter("/home/sandeep/Dropbox/Nirbhaya/data/"+query, true)));
+				pr.print(result);
+				pr.flush();
+				pr.close();
 			}catch(Exception e)
 			{
 
@@ -60,20 +61,20 @@ public class BingSearch extends AbstractAzureSearchTest{
 		}
 		return result;
 	}
-	public ArrayList<BingSearchResult> getBingSearchResults(String query) {
+	public ArrayList<BingSearchResult> getBingSearchResults(String query, int skip) {
 		System.setProperty("http.proxyHost", "proxy.iiit.ac.in");
 		System.setProperty("http.proxyPort", "8080");
 		AzureSearchNewsQuery aq = new AzureSearchNewsQuery();
 		aq.setAppid(AZURE_APPID);
+		aq.setMarket("en-IN");
+		aq.setLatitude("21");
+		aq.setLongitude("78");
 		aq.setQuery(query);
 		//aq.setSkip(90);
 		aq.doQuery();
-	
 		AzureSearchResultSet<AzureSearchNewsResult> aswr = aq.getQueryResult();
 		ArrayList<BingSearchResult> bsrList=new ArrayList<BingSearchResult>();
-		for (AzureSearchNewsResult a : aswr)
-		{
-			
+		for (AzureSearchNewsResult a : aswr){
 			BingSearchResult bsr=new BingSearchResult(a.getUrl(),a.getTitle(),a.getDescription(),a.getDate(),a.getSource());
 			bsrList.add(bsr);
 		}
@@ -81,11 +82,13 @@ public class BingSearch extends AbstractAzureSearchTest{
 	}
 	public static void main(String args[]) {
 		BingSearch bs=new BingSearch();
-		String query="hazardous roads";
-		bs.searchBing(query);
-		bs.searchBing(query);
+		String query[]={"crime"};
+		for(int i = 0 ; i < query.length; i++)
+		{
+			for(int j = 0 ; j < 3; j++)
+			{
+				bs.searchBing(query[i], j*15);
+			}
+		}
 	}
 }
-
-
-

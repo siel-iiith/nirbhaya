@@ -8,7 +8,7 @@ function getURLParameter(name) {
 function sendQueryToBackend(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
 		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
-		var strURL = "http://10.2.4.239:8080/VerticalSearch/BingSearch?q="+qresult+"&callback=?";
+		var strURL = "http://localhost:8080/VerticalSearch/BingSearch?q="+qresult+"&callback=?";
         
             
 		$.ajax({
