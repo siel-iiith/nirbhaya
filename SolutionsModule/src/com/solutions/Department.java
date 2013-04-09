@@ -2,17 +2,16 @@ package com.solutions;
 
 class Department
 {
-	String dept_name, Address, url, location;
-	long departmentid;
+	String dept_name, Address, url, location, phone;
 	public enum department {CENTRAL, STATE, NGO};
 	department dept_type;
 	public void setDeptName(String names)
 	{
 		this.dept_name = names;
 	}
-	public void setDepartmentId(long deptid)
+	public void setPhone(String phone)
 	{
-		this.departmentid = deptid;
+		this.phone = phone;
 	}
 	public void setAddress(String addr)
 	{
@@ -34,9 +33,9 @@ class Department
 	{
 		return dept_name;
 	}
-	public long getDepartmentId()
+	public String getPhone()
 	{
-		return departmentid;
+		return phone;
 	}
 	public String getAddress()
 	{

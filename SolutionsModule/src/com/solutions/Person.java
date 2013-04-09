@@ -2,8 +2,7 @@ package com.solutions;
 
 class Person
 {
-	String name,designation,emailid,phone,perdeptname;
-	long departmentid;
+	String name,designation,emailid,phone,perdeptname,location;
 	public void setName(String names)
 	{
 		this.name = names;
@@ -24,9 +23,9 @@ class Person
 	{
 		this.emailid = email;
 	}
-	public void setDepartmentId(long deptid)
+	public void setLocation(String location)
 	{
-		this.departmentid = deptid;
+		this.location = location;
 	}
 	public String getName()
 	{
@@ -44,9 +43,9 @@ class Person
 	{
 		return emailid;
 	}
-	public long getDepartmentId()
+	public String getLocation()
 	{
-		return departmentid;
+		return location;
 	}
 	public String getDeptName()
 	{
@@ -59,7 +58,7 @@ class Person
 		Person p = new Person();
 		p.setName("aditya");
 		p.setDesignation("eng");
-		p.setDepartmentId(12121);
+//		p.setDepartmentId(12121);
 		p.setEmail("aditya@rt.com");
 		p.setPhone("132131");
 		System.out.println(p.getEmail());
