@@ -41,7 +41,7 @@ public class TestingWithSaploAPI {
 				contactList.setDesignation(sp[2]);
 				contactList.setPhone(sp[3]);
 				contactList.setEmail(sp[4]);
-				contactList.setDepartmentId(Long.parseLong(sp[5]));
+				contactList.setLocation(sp[5]);
 			
 				Gson gson = new Gson();
 				String jsonobj = null;
@@ -60,17 +60,16 @@ public class TestingWithSaploAPI {
 				Department depts = new Department();
 				String[] sp1 = str1.split("\t");
 				depts.setDeptName(sp1[0]);
-			    depts.setDepartmentId(Long.parseLong(sp1[1]));
-				depts.setAddress(sp1[2]);
+				depts.setAddress(sp1[1]);
+			    depts.setPhone(sp1[2]);
 				depts.setLocation(sp1[3]);
-				depts.setDeptURL(sp1[4]);
-				if (sp1[5].equals("CENTRAL"))
+				if (sp1[4].equals("CENTRAL"))
 					depts.setDepartmentType(department.CENTRAL);
-				if (sp1[5].equals("STATE"))
+				if (sp1[4].equals("STATE"))
 					depts.setDepartmentType(department.STATE);
-				if (sp1[5].equals("NGO"))
+				if (sp1[4].equals("NGO"))
 					depts.setDepartmentType(department.NGO);
-				
+				depts.setDeptURL(sp1[5]);
 				Gson gson = new Gson();
 				String jsonobj1 = null;
 				jsonobj1 = gson.toJson(depts);

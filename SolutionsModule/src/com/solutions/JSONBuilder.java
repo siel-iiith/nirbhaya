@@ -31,16 +31,16 @@ public class JSONBuilder {
 			stemmer.setCurrent(str);
 			stemmer.stem();
 			String stemmed = stemmer.getCurrent();
-			if ((str.contains(person.getName().toLowerCase()) || person.getName().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(person.getName().toLowerCase()) || person.getName().toLowerCase().contains(prev)))) {
+			if (!person.getName().equals("") && (str.contains(person.getName().toLowerCase()) || person.getName().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(person.getName().toLowerCase()) || person.getName().toLowerCase().contains(prev)))) {
 				score = score + 1;
 			}
-			else if ((str.contains(person.getDesignation().toLowerCase()) || person.getDesignation().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(person.getDesignation().toLowerCase()) || person.getDesignation().toLowerCase().contains(prev)))) {
+			else if (!person.getDesignation().equals("") && (str.contains(person.getDesignation().toLowerCase()) || person.getDesignation().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(person.getDesignation().toLowerCase()) || person.getDesignation().toLowerCase().contains(prev)))) {
 				score = score + 1;
 			}
-			else if ((str.contains(person.getEmail().toLowerCase()) || person.getEmail().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(person.getEmail().toLowerCase()) || person.getEmail().toLowerCase().contains(prev)))) {
+			else if (!person.getLocation().equals("") && (str.contains(person.getLocation().toLowerCase()) || person.getLocation().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(person.getLocation().toLowerCase()) || person.getLocation().toLowerCase().contains(prev)))) {
 				score = score + 1;
 			}
-			else if (mapping.containsKey(stemmed)) {
+			else if (!person.getDeptName().equals("") && mapping.containsKey(stemmed)) {
 				for (String s : mapping.get(stemmed).split(";")) {
 					if (s.contains(person.getDeptName().toLowerCase()) || person.getDeptName().toLowerCase().contains(s)) {
 						score = score + 1;
@@ -60,16 +60,16 @@ public class JSONBuilder {
 			stemmer.setCurrent(str);
 			stemmer.stem();
 			String stemmed = stemmer.getCurrent();
-			if ((str.contains(department.getAddress().toLowerCase()) || department.getAddress().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(department.getAddress().toLowerCase()) || department.getAddress().toLowerCase().contains(prev)))) {
+			if (!department.getAddress().equals("") && (str.contains(department.getAddress().toLowerCase()) || department.getAddress().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(department.getAddress().toLowerCase()) || department.getAddress().toLowerCase().contains(prev)))) {
 				score = score + 1;
 			}
-			else if ((str.contains(department.getLocation().toLowerCase()) || department.getLocation().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(department.getLocation().toLowerCase()) || department.getLocation().toLowerCase().contains(prev)))) {
+			else if (!department.getLocation().equals("") && (str.contains(department.getLocation().toLowerCase()) || department.getLocation().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(department.getLocation().toLowerCase()) || department.getLocation().toLowerCase().contains(prev)))) {
 				score = score + 1;
 			}
-			else if ((str.contains(department.getDepartmentType().toString().toLowerCase()) || department.getDepartmentType().toString().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(department.getDepartmentType().toString().toLowerCase()) || department.getDepartmentType().toString().toLowerCase().contains(prev)))) {
+			else if (!department.getDepartmentType().toString().equals("") && (str.contains(department.getDepartmentType().toString().toLowerCase()) || department.getDepartmentType().toString().toLowerCase().contains(str)) && (prev.equals("") || !(prev.contains(department.getDepartmentType().toString().toLowerCase()) || department.getDepartmentType().toString().toLowerCase().contains(prev)))) {
 				score = score + 1;
 			}
-			else if (mapping.containsKey(stemmed)) {
+			else if (!department.getDeptName().equals("") && mapping.containsKey(stemmed)) {
 				for (String s : mapping.get(stemmed).split(";")) {
 					if (s.contains(department.getDeptName().toLowerCase()) || department.getDeptName().toLowerCase().contains(s)) {
 						score = score + 1;
@@ -120,7 +120,7 @@ public class JSONBuilder {
 		P2.add(new ArrayList<Department>());
 		ArrayList<Person> personList = new ArrayList<Person>();
 		ArrayList<Department> departmentList = new ArrayList<Department>();
-		while (cursorDoc.hasNext()) {
+		while (cursorDoc.hasNext() && !query.equals("")) {
 			int score = 0;
 			String s1 = cursorDoc.next().toString();
 			if (s1.contains("\"perdeptname\" :")) {
