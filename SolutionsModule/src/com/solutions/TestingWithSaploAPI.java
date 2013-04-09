@@ -77,7 +77,7 @@ public class TestingWithSaploAPI {
 			    depts.setDepartmentId(Long.parseLong(sp1[1]));
 				depts.setAddress(sp1[2]);
 				depts.setLocation(sp1[3]);
-				depts.setRTIInfo(sp1[4]);
+				depts.setDeptURL(sp1[4]);
 				if (sp1[5].equals("CENTRAL"))
 					depts.setDepartmentType(department.CENTRAL);
 				if (sp1[5].equals("STATE"))

@@ -2,9 +2,9 @@ package com.solutions;
 
 class Department
 {
-	String dept_name, Address, RTI_Info, location;
+	String dept_name, Address, url, location;
 	long departmentid;
-	public enum department {CENTRAL, STATE, NGO}; 
+	public enum department {CENTRAL, STATE, NGO};
 	department dept_type;
 	public void setDeptName(String names)
 	{
@@ -22,9 +22,9 @@ class Department
 	{
 		this.location = loc;
 	}
-	public void setRTIInfo(String rti)
+	public void setDeptURL(String url)
 	{
-		this.RTI_Info = rti;
+		this.url = url;
 	}
 	public void setDepartmentType(department dept)
 	{
@@ -46,9 +46,9 @@ class Department
 	{
 		return location;
 	}
-	public String getRTIInfo()
+	public String getDeptURL()
 	{
-		return RTI_Info;
+		return url;
 	}
 	public department getDepartmentType()
 	{
