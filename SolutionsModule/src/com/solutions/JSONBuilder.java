@@ -23,22 +23,6 @@ import com.mongodb.Mongo;
 @Path("/Solution")
 public class JSONBuilder {
 	
-/*	HashMap<String,String> mapping = new HashMap<String,String>();
-	JSONBuilder() throws IOException {
-		String str;
-		final String dir = System.getProperty("user.dir");
-		BufferedReader synset = new BufferedReader(new FileReader(new File(dir+"/Resource/synonyms-nirbhaya.txt")));
-		while ((str = synset.readLine()) != null) {
-			String dept = str.split(":")[0];
-			for (String s : str.split(":")[1].split(", ")) {
-				if (!mapping.containsKey(s)) {
-					mapping.put(s, dept);
-				}
-			}
-		}
-		synset.close();
-	}*/
-	
 	public int isRelevantPerson (Person person, String query, HashMap<String,String> mapping) {
 		int score = 0;
 		String prev = "";
@@ -101,13 +85,10 @@ public class JSONBuilder {
 	@GET
 	@Produces({MediaType.APPLICATION_JSON})
 	public String outputJSON (@QueryParam("q") String query, @QueryParam("callback") String callback) throws IOException 
-//	public String outputJSON (String query) throws IOException, JSONException 
 	{
-//		JSONBuilder jsonBuilder = new JSONBuilder();
 		englishStemmer stemmer = new org.tartarus.snowball.ext.englishStemmer();
 		HashMap<String,String> mapping = new HashMap<String,String>();
 		String str;
-//		System.out.println (System.getProperty("user.dir"));
 		final String dir = System.getProperty("user.dir");
 		BufferedReader synset = new BufferedReader(new FileReader(new File(dir+"/Resource/synonyms-nirbhaya.txt")));
 		while ((str = synset.readLine()) != null) {
@@ -117,7 +98,6 @@ public class JSONBuilder {
 				stemmer.stem();
 				String stemmed = stemmer.getCurrent();
 				if (!mapping.containsKey(stemmed)) {
-//					System.out.println (stemmer.getCurrent());
 					mapping.put(stemmed.toLowerCase(), dept.toLowerCase());
 				}
 			}
@@ -126,7 +106,6 @@ public class JSONBuilder {
 		Mongo mongo = new Mongo("10.2.4.238", 27017);
 		DB db = mongo.getDB("nirbhaya");
 		DBCollection collection = db.getCollection("Solutions");
-//		System.out.println (mapping.get("electr"));
 		Gson gson =new Gson();
 		DBCursor cursorDoc = collection.find();
 		ArrayList<ArrayList<Person>> P1 = new ArrayList<ArrayList<Person>>();
@@ -144,13 +123,11 @@ public class JSONBuilder {
 		while (cursorDoc.hasNext()) {
 			int score = 0;
 			String s1 = cursorDoc.next().toString();
-//			System.out.println (s1);
 			if (s1.contains("\"perdeptname\" :")) {
 				Person person = new Person();
 				person = gson.fromJson(s1,Person.class);
 				if ((score = isRelevantPerson(person, query.toLowerCase(), mapping)) > 0) {
 					P1.get(score-1).add(person);
-//					System.out.println (person.getName());
 				}
 			}
 			else {
@@ -158,7 +135,6 @@ public class JSONBuilder {
 				department = gson.fromJson(s1,Department.class);
 				if ((score = isRelevantDepartment(department, query.toLowerCase(), mapping)) > 0) {
 					P2.get(score-1).add(department);
-//					System.out.println (department.getAddress());
 				}
 			}
 		}
@@ -176,13 +152,6 @@ public class JSONBuilder {
 		}
 		
 		return callback +"({\"contactList\":"+"{\"person\":"+gson.toJson(personList)+",\"department\":"+gson.toJson(departmentList)+"}})";
-//		return "({\"contactList\":"+"{\"person\":"+gson.toJson(personList)+",\"department\":"+gson.toJson(departmentList)+"}})";
 	}
-	
-//	public static void main(String[] args) throws IOException, JSONException {
-		// TODO Auto-generated method stub
-//		outputJSON("person");
-//		System.out.println (outputJSON("electricity",""));
-//	}
 
 }

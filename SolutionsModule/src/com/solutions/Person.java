@@ -55,8 +55,7 @@ class Person
 	
 	
 	public static void main(String[] args)
-	{
-	//	Person p = new Person("aditya","eng",12121,"0800181","aditya@re.oh");		
+	{	
 		Person p = new Person();
 		p.setName("aditya");
 		p.setDesignation("eng");
