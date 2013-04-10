@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class CategoryContent 
 {
+	
 	String trendName = null;
 	String imageURL = null;
 	ArrayList<Trend> trendArray = null;
@@ -16,6 +17,7 @@ public class CategoryContent
 		this.trendName = trendName;
 		this.imageURL = imageURL;
 		this.trendArray = trendArray;
+		
 	}
 	
 	public CategoryContent() {
