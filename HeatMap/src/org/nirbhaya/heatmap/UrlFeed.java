@@ -1,12 +1,14 @@
 package org.nirbhaya.heatmap;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonParser;
@@ -23,19 +25,21 @@ public class UrlFeed {
 	 * @throws IOException 
 	 * @throws InterruptedException 
 	 */
+	static Properties prop = new Properties();
+	
 	public static void main(String[] args) throws IOException, InterruptedException {
 		// TODO Auto-generated method stub
 		UrlFeed.MongoFeed();
 	}
 	public static void MongoFeed() throws IOException, InterruptedException {
 		// TODO Auto-generated constructor stub
+		prop.load(new FileInputStream("/home/romil/config.properties"));
 
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
+		MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")) );
+		DB db = mongoClient.getDB( prop.getProperty("dbname") );
 		Gson gson = new Gson();
 
-		DBCollection coll = db.getCollection("heatmap1");
+		DBCollection coll = db.getCollection(prop.getProperty("dbcollection"));
 		ArrayList<Stat> stats = new ArrayList<Stat>();
 
 

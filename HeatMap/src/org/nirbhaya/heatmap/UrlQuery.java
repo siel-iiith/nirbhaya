@@ -1,7 +1,11 @@
 package org.nirbhaya.heatmap;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import com.google.gson.Gson;
 import com.mongodb.BasicDBObject;
@@ -12,16 +16,50 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 
 public class UrlQuery {
-
+	static Properties prop = new Properties();
+	static DB db = null;
 	public static void main(String args[]) throws IOException{
-		System.out.println(UrlQuery.getBothLocationProblem("hyderabad","crime"));
+		
+		UrlQuery q= new UrlQuery();
+		//q.getPropertiesFromClasspath("config.properties");
+		System.out.println(q.getBothLocationProblem("hyderabad","crime"));
 	}
-	public static String getLocationProblem(String location) throws IOException {
-		// TODO Auto-generated constructor stub
 
+	private Properties getPropertiesFromClasspath(String propFileName) throws IOException
+	{
+		Properties props = new Properties();
+		System.out.println(System.getProperty("user.dir"));
+		InputStream inputStream =
+				this.getClass().getClassLoader().getResourceAsStream(propFileName);
+
+		if (inputStream == null)
+		{
+			throw new FileNotFoundException("property file '" + propFileName
+					+ "' not found in the classpath");
+		}
+
+		props.load(inputStream);
+		return props;
+	}
+
+	public UrlQuery(){
+		try {
+			prop.load(new FileInputStream("/home/romil/config.properties"));
+
+			MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")));
+			db = mongoClient.getDB( prop.getProperty("dbname") );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	public String getLocationProblem(String location) throws IOException {
+		// TODO Auto-generated constructor stub
 		location=location.toLowerCase();
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 		DBCollection coll = db.getCollection("heatmap1");
 		Gson gson = new Gson();
@@ -56,7 +94,7 @@ public class UrlQuery {
 				if(curr.hasNext()) {
 					DBObject d = curr.next();
 					ExtendedPlaces place = gson.fromJson(d.toString(),ExtendedPlaces.class);
-					System.out.println(place.state);
+					//System.out.println(place.state);
 					if(!place.state.equals(location))
 						return getLocationProblem(place.state);
 					else
@@ -68,23 +106,17 @@ public class UrlQuery {
 
 			}
 
-
-		} finally {
-			cursor.close();
-			mongoClient.close();
-
+		}catch(Exception e){
+			return "{\"result\":[]}";
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}
 
-	public static String getProblemLocation(String problem) throws IOException {
+	public String getProblemLocation(String problem) throws IOException {
 		// TODO Auto-generated constructor stub
-
 		problem=URLDecoder.decode(problem,"UTF-8");
 		problem=problem.toLowerCase();
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap1");
 		Gson gson = new Gson();
@@ -110,7 +142,6 @@ public class UrlQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		if(toReturn.length()==0){
 			return getAllProblem();
@@ -118,13 +149,12 @@ public class UrlQuery {
 		return "{\"result\":["+toReturn+"]}";
 	}
 
-	public static String getBothLocationProblem(String location,String problem) throws IOException {
+	public String getBothLocationProblem(String location,String problem) throws IOException {
 		// TODO Auto-generated constructor stub
+
 		location=location.toLowerCase();
 		problem=URLDecoder.decode(problem,"UTF-8");
 		problem=problem.toLowerCase();
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap1");
 		Gson gson = new Gson();
@@ -140,7 +170,6 @@ public class UrlQuery {
 		}
 		BasicDBObject query = new BasicDBObject("$or", myList);
 
-		//		BasicDBObject query = new BasicDBObject("stats.location.locationName", location).append("problem", problem);
 
 		DBCursor cursor = coll.find(query);
 		String toReturn = "";
@@ -182,17 +211,15 @@ public class UrlQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		return "{\"result\":["+toReturn+"]}";
 	}
 
-	public static String getAllProblem() throws IOException {
+	public String getAllProblem() throws IOException {
 		// TODO Auto-generated constructor stub
 
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
+
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 		DBCollection coll = db.getCollection("heatmap1");
 		Gson gson = new Gson();
@@ -207,7 +234,6 @@ public class UrlQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}

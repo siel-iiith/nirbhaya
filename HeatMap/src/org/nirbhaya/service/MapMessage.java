@@ -15,7 +15,6 @@ import org.nirbhaya.heatmap.MessageQuery;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mongodb.util.JSON;
 
 @Path("/mapmessage")
 public class MapMessage {
@@ -25,6 +24,7 @@ public class MapMessage {
 	public String sayPlainTextHello(@QueryParam("location") String location, @QueryParam("problem") String problem, @QueryParam("callback") String callback)
 	{
 		try {
+			MessageQuery query = new MessageQuery();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Calendar cal = Calendar.getInstance();
 			System.out.println("HeatMap/MapMessage QueryLog: "+dateFormat.format(cal.getTime())+":"+location+"_"+problem+"_"+callback);
@@ -37,21 +37,21 @@ public class MapMessage {
 				value= "All Results";
 			}
 			else if(!location.equals("null") && problem.equals("null")){
-				if(parser.parse(MessageQuery.getLocationProblem(location)).getAsJsonObject().get("result").getAsJsonArray().size()>0)
+				if(parser.parse(query.getLocationProblem(location)).getAsJsonObject().get("result").getAsJsonArray().size()>0)
 					value= "Results for "+location+". Zoom out for all Results.";
 				else
 					value= "No results for "+location+". Showing All Results.";
 			}
 			else if(location.equals("null") && !problem.equals("null")){
-				System.out.println(MessageQuery.getProblemLocation(problem));
-				if(parser.parse(MessageQuery.getProblemLocation(problem)).getAsJsonObject().get("result").getAsJsonArray().size()>0)
+				System.out.println(query.getProblemLocation(problem));
+				if(parser.parse(query.getProblemLocation(problem)).getAsJsonObject().get("result").getAsJsonArray().size()>0)
 					value= "Results for "+problem;
 				else
 					value= "No results for "+problem+". Showing All Results.";
 				
 			}
 			else if(!location.equals("null") && !problem.equals("null"))
-				if(parser.parse(MessageQuery.getBothLocationProblem(location, problem)).getAsJsonObject().get("result").getAsJsonArray().size()>0)
+				if(parser.parse(query.getBothLocationProblem(location, problem)).getAsJsonObject().get("result").getAsJsonArray().size()>0)
 					value= "Results for "+problem+" in "+location;
 				else
 					value= "No results for "+problem+" in "+location+". Showing All Results.";
@@ -65,4 +65,5 @@ public class MapMessage {
 		}
 		return "Showing All Results";
 	}
+	
 }

@@ -21,28 +21,29 @@ public class HelloService {
 	public String sayPlainTextHello(@QueryParam("location") String location, @QueryParam("problem") String problem, @QueryParam("callback") String callback)
 	{
 		try {
+			UrlQuery query= new UrlQuery();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Calendar cal = Calendar.getInstance();
 			System.out.println("HeatMap QueryLog: "+dateFormat.format(cal.getTime())+":"+location+"_"+problem+"_"+callback);
 			if(callback!=null){
 				if(location==null&&problem==null)
-					return callback+"("+UrlQuery.getAllProblem()+")";
+					return callback+"("+query.getAllProblem()+")";
 				else if(location!=null && problem==null)
-					return callback+"("+UrlQuery.getLocationProblem(location)+")";
+					return callback+"("+query.getLocationProblem(location)+")";
 				else if(location==null && problem!=null)
-					return callback+"("+UrlQuery.getProblemLocation(problem)+")";
+					return callback+"("+query.getProblemLocation(problem)+")";
 				else if(location!=null && problem!=null)
-					return callback+"("+UrlQuery.getBothLocationProblem(location, problem)+")";
+					return callback+"("+query.getBothLocationProblem(location, problem)+")";
 			}
 			else{
 				if(location==null&&problem==null)
-					return UrlQuery.getAllProblem();
+					return query.getAllProblem();
 				else if(location!=null && problem==null)
-					return UrlQuery.getLocationProblem(location);
+					return query.getLocationProblem(location);
 				else if(location==null && problem!=null)
-					return UrlQuery.getProblemLocation(problem);
+					return query.getProblemLocation(problem);
 				else if(location!=null && problem!=null)
-					return UrlQuery.getBothLocationProblem(location, problem);
+					return query.getBothLocationProblem(location, problem);
 			}
 			//return callback+"("+MongoQuery.getLocationProblem(query)+")";
 		} catch (IOException e) {

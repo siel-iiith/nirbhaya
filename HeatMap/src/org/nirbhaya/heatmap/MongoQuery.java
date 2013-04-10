@@ -1,9 +1,12 @@
 package org.nirbhaya.heatmap;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Set;
 
 import com.google.gson.Gson;
@@ -21,16 +24,29 @@ import com.mongodb.util.JSON;
 import org.nirbhaya.heatmap.*;
 
 public class MongoQuery {
-
+	static Properties prop = new Properties();
+	static DB db = null;
 	public static void main(String args[]) throws IOException{
 		MongoQuery m = new MongoQuery();
 	}
-	public static String getLocationProblem(String location) throws IOException {
+	
+	public MongoQuery(){
+		try {
+			prop.load(new FileInputStream("/home/romil/config.properties"));
+			MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")));
+			db = mongoClient.getDB( prop.getProperty("dbname") );
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public String getLocationProblem(String location) throws IOException {
 		// TODO Auto-generated constructor stub
 
 		location=location.toLowerCase();
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 			
 		DBCollection coll = db.getCollection("heatmap");
@@ -58,17 +74,15 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}
 	
-	public static String getProblemLocation(String problem) throws IOException {
+	public String getProblemLocation(String problem) throws IOException {
 		// TODO Auto-generated constructor stub
 
 		problem=problem.toLowerCase();
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
+
 
 		DBCollection coll = db.getCollection("heatmap");
 		Gson gson = new Gson();
@@ -86,17 +100,14 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		return "{\"result\":["+toReturn+"]}";
 	}
 	
-	public static String getBothLocationProblem(String location,String problem) throws IOException {
+	public String getBothLocationProblem(String location,String problem) throws IOException {
 		// TODO Auto-generated constructor stub
 		location=location.toLowerCase();
 		problem=problem.toLowerCase();
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
 
 		DBCollection coll = db.getCollection("heatmap");
 		Gson gson = new Gson();
@@ -124,17 +135,14 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		return "{\"result\":["+toReturn+"]}";
 	}
 	
-	public static String getAllProblem() throws IOException {
+	public String getAllProblem() throws IOException {
 		// TODO Auto-generated constructor stub
 
 
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
 		ArrayList<Problems> allProblems = new ArrayList<Problems>();
 		DBCollection coll = db.getCollection("heatmap");
 		Gson gson = new Gson();
@@ -151,7 +159,6 @@ public class MongoQuery {
 			}
 		} finally {
 			cursor.close();
-			mongoClient.close();
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}

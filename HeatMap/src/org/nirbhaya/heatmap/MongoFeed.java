@@ -1,5 +1,6 @@
 package org.nirbhaya.heatmap;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,6 +8,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Set;
 
 import com.google.gson.Gson;
@@ -28,10 +30,10 @@ public class MongoFeed {
 	}
 	public MongoFeed() throws IOException {
 		// TODO Auto-generated constructor stub
-
-
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
+		Properties prop = new Properties();
+		prop.load(new FileInputStream("/home/romil/config.properties"));
+		MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")) );
+		DB db = mongoClient.getDB( prop.getProperty("dbname") );
 		Gson gson = new Gson();
 
 		DBCollection coll = db.getCollection("heatmap");
