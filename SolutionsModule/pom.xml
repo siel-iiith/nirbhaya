@@ -226,12 +226,12 @@
 	    <artifactId>1.0</artifactId>
 	    <version>1.0</version>
 	</dependency>
-<!--
- <dependency>
-    	<groupId>org.google.gson</groupId>
-    	<artifactId>mygson</artifactId>
-    	<version>2.2.2</version>
-    </dependency>
-    -->
+
+ 	<dependency>
+    		<groupId>org.tartarus.snowball.ext</groupId>
+    		<artifactId>english-stemmer</artifactId>
+    		<version>1.0.0</version>
+    	</dependency>
+
 </dependencies>
 </project>
