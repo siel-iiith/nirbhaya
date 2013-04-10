@@ -112,7 +112,7 @@ public class TwitterSearch {
     @Produces({MediaType.APPLICATION_JSON})
     public String searchTwitter (@QueryParam("q") String query, @QueryParam("callback") String callback) throws Exception {        
     	//QueryExpansion qE = new QueryExpansion();
-    	query = qE.expandedQuery(query);
+    	// query = qE.expandedQuery(query);
     	
     	ConfigurationBuilder cb = setTwitterConfiguration();
         List<TwitterData> tweetData = getOldTweets(query, cb);

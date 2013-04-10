@@ -24,8 +24,14 @@ import net.billylieurance.azuresearch.AzureSearchWebResult;
 
 @Path("/BingSearch")
 public class BingSearch {
-	static String AZURE_APPID="p9CfpJiKGm6btYTZbtyMdSNGwe4hk9rzXkurq6U1mTU=";
+	//static String AZURE_APPID="p9CfpJiKGm6btYTZbtyMdSNGwe4hk9rzXkurq6U1mTU=";
+	static String AZURE_APPID=System.getProperty("BingKey");
 	static QueryExpansion qE = new QueryExpansion();
+	
+	public static void main(String[] args)
+	{
+		System.out.println(AZURE_APPID);
+	}
 	 public ArrayList<BingSearchResult> getBingSearchResults(String query) {
 	        System.setProperty("http.proxyHost", "proxy.iiit.ac.in");
 	        System.setProperty("http.proxyPort", "8080");

@@ -28,9 +28,10 @@ public class QuerySuggestion
 	Gson gson;
 	HashSet<String> listOfStates=new HashSet<String>();
 	String finalQuery="";
+	
 	public QuerySuggestion() throws UnknownHostException
 	{
-		mongoClient = new MongoClient( "10.2.4.238" , 27017 );
+		mongoClient = new MongoClient();
 		db = mongoClient.getDB( "nirbhaya" );
 		gson = new Gson();
 		coll = db.getCollection("queryexpansionPlaces");
@@ -51,7 +52,8 @@ public class QuerySuggestion
 	public static void main(String[] args) throws Exception
 	{
 		QuerySuggestion qs=new QuerySuggestion();
-		qs.suggestQuery("india gang rape|andhra pradesh|hyderabad", "callback");
+		//qs.suggestQuery("crime india|bihar|patna", "callback");
+		// System.out.println("FINAL QUERY: "+qs.finalQuery);
 	}
 	
 	
@@ -95,7 +97,7 @@ public class QuerySuggestion
 		     }
 			 if (part1.contains("india"))
 				 query=part1.replaceAll("india", part2);
-			 System.out.println("FINAL QUERY: "+query);
+			 //System.out.println("FINAL QUERY: "+query);
 			 this.finalQuery=query;
 		 }
 		 
@@ -114,7 +116,7 @@ public class QuerySuggestion
 			 result += "]" + "\n" + ",";
 			 result += "\"finalQuery\": \""+this.finalQuery + "\"}";
 			 result = callback+"("+result+");";
-		     System.out.println(result);
+		     //System.out.println(result);
 		     return result;
 		 }
 		 
@@ -142,7 +144,7 @@ public class QuerySuggestion
 				 result += "]" + "\n" + ",";
 				 result += "\"finalQuery\": \""+this.finalQuery + "\"}";
 				 result = callback+"("+result+");";
-			     System.out.println(result);
+			     //System.out.println(result);
 			     return result;
 			 }
 		 }

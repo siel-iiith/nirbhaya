@@ -34,7 +34,7 @@ public class QueryExpansion
 		boolean grievanceFlag = false;
 		
 		// Some MONGO Stuff
-		MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
+		MongoClient mongoClient = new MongoClient();
 		DB db = mongoClient.getDB( "nirbhaya" );
 		Gson gson = new Gson();
 
@@ -88,9 +88,9 @@ public class QueryExpansion
 			result += " crime"; 
 		}
 
-		if ( placeFlag == false ) { //Pick India
+		/*if ( placeFlag == false ) { //Pick India
 			result += " india"; 
-		}		
+		}*/		
 		return result;
 	}
 }
