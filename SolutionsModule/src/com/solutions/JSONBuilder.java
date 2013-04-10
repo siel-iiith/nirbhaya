@@ -125,6 +125,9 @@ public class JSONBuilder {
 		while (cursorDoc.hasNext() && !query.equals("")) {
 			int score = 0;
 			String s1 = cursorDoc.next().toString();
+			if (s1.equals("")) {
+				continue;
+			}
 			if (s1.contains("\"perdeptname\" :")) {
 				Person person = new Person();
 				person = gson.fromJson(s1,Person.class);
@@ -141,7 +144,7 @@ public class JSONBuilder {
 			}
 		}
 		for (int i=3; i >= 0; i--) {
-//			if (query.split(" ").length > 1 && i == 0) {
+//			if (!(P1.get(3).size() == 0 || P1.get(2).size() == 0 || P1.get(1).size() == 0) && !(P2.get(3).size() == 0 || P2.get(2).size() == 0 || P2.get(1).size() == 0) && i == 0) {
 //				break;
 //			}
 			if (P1.get(i).size() > 0) {
