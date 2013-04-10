@@ -37,11 +37,15 @@ function drawMap(param){
 	map.draw(data, {showTip: true});
 }
 
+String.prototype.toProperCase = function () {
+    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+
 function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://localhost:8080/HeatMap/test?location="+getUrlVars()['location']+"&callback=?",
+			url:"http://10.2.4.239:8080/HeatMap/test?location="+getUrlVars()['location']+"&callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -50,13 +54,15 @@ var st = "";
 				var newarr = ['Lat', 'Lon', 'Name'];
 				allResults.push(newarr);
 				for(i = 0; i<res.result.length; i++){
-					var newProb = res.result[i].problem;
+					var newProb = "<h4><a href='userpage.html?query="+res.result[i].problem+"' target='_blank'><font color='red'>"+res.result[i].problem.toUpperCase()+"</font></a></h4>";
 					var newEntry = res.result[i].stats;
 					for(j=0; j<newEntry.length; j++){
 						var thisLoc = newEntry[j].location.locationName;
 						var thisLat = newEntry[j].location.latitude+Math.random()/100;
 						var thisLon = newEntry[j].location.longitude+Math.random()/100;
-						var innerDabba = [thisLat, thisLon, newProb];
+						var snippet= newEntry[j].snippet;
+						var url = newEntry[j].url;
+						var innerDabba = [thisLat, thisLon, newProb+"<a href='"+url+"' target='_blank'><h5>"+snippet.toProperCase()+"</h5></a>"];
 						allResults.push(innerDabba);
 						}
 				}
