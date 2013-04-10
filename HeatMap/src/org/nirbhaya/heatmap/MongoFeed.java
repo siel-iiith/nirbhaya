@@ -38,11 +38,11 @@ public class MongoFeed {
 		ArrayList<Stat> stats = new ArrayList<Stat>();
 
 
-		BufferedReader reader = new BufferedReader(new FileReader("test.html"));
+		BufferedReader reader = new BufferedReader(new FileReader("murder.tsv"));
 		String line = null;
 		while ((line = reader.readLine()) != null) {
 			Stat s1 = new Stat();
-			String[] sr=line.split(" ");
+			String[] sr=line.split("\t");
 			System.out.println(sr[0]);
 			System.out.println(sr[1]);
 			System.out.println(sr[2]);
@@ -56,11 +56,11 @@ public class MongoFeed {
 			stats.add(s1);
 		}
 
-		Problems electricityProblem = new Problems();
+		Problems problem = new Problems();
 		String prob="Murder";
-		electricityProblem.setProblem(prob.toLowerCase());
-		electricityProblem.setStats(stats);
-		DBObject obj11 = (DBObject)JSON.parse(gson.toJson(electricityProblem)); 
+		problem.setProblem(prob.toLowerCase());
+		problem.setStats(stats);
+		DBObject obj11 = (DBObject)JSON.parse(gson.toJson(problem)); 
 		coll.insert(obj11);
 
 	}

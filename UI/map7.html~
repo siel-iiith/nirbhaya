@@ -45,7 +45,7 @@ function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://10.2.4.239:8080/HeatMap/test?callback=?",
+			url:"http://localhost:8080/HeatMap/test?problem="+getUrlVars()['problem']+"&callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -53,9 +53,11 @@ var st = "";
 			success: function(res){
 				var newarr = ['Lat', 'Lon', 'Name'];
 				allResults.push(newarr);
+				//alert(res.result.length);
 				for(i = 0; i<res.result.length; i++){
 					var newProb = "<h4><a href='userpage.html?query="+res.result[i].problem+"' target='_blank'><font color='red'>"+res.result[i].problem.toUpperCase()+"</font></a></h4>";
 					var newEntry = res.result[i].stats;
+					//alert(newEntry);
 					for(j=0; j<newEntry.length; j++){
 						var thisLoc = newEntry[j].location.locationName;
 						var thisLat = newEntry[j].location.latitude+Math.random()/100;

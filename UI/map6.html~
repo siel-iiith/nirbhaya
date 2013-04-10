@@ -45,7 +45,7 @@ function getMapParam(){
 var allResults = [];
 var st = "";
     	$.ajax({	
-			url:"http://10.2.4.239:8080/HeatMap/test?callback=?",
+			url:"http://localhost:8080/HeatMap/test?location="+getUrlVars()['location']+"&callback=?",
 			timeout:10000,
 			async: false,
 			type: 'GET',
@@ -69,8 +69,8 @@ var st = "";
 				
 				var data = google.visualization.arrayToDataTable(allResults);
 				var myOptions = {
-					zoom: 4,
-					center: new google.maps.LatLng("23.63", "77.22"),
+					zoom: 12,
+					center: new google.maps.LatLng(getUrlVars()["lat"], getUrlVars()["lon"]),
 					mapTypeId: google.maps.MapTypeId.ROADMAP
 				}
 				var infowindow = new google.maps.InfoWindow(
@@ -124,7 +124,7 @@ $(document).ready(function(){
 		//var data = results[0].geometry.location;
 		//data = data.split('(').join('');
 		//alert(data);
-		alert(results[0].geometry.location.lat());
+		//alert(results[0].geometry.location.lat());
 		$(location).attr('href',"map6.html?lat="+results[0].geometry.location.lat()+"&lon="+results[0].geometry.location.lng());
             } 
             else {
@@ -154,8 +154,8 @@ $(document).ready(function(){
 </select>
 </form> -->
 <div id="map_div" style="width: 100%; height: 100%"></div>
-<input type="text" id="query" /><button>Region Search</button>
-<div id="results"></div>
+<!--<input type="text" id="query" /><button>Region Search</button>
+<div id="results"></div>-->
 
 </body>
 </html>
