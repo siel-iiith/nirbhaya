@@ -54,6 +54,19 @@ public class GetFrequentNGrams
 	private static Properties prop = new Properties();
 	private static HashMap<String, ArrayList<Trend>> trendToTrendData = new HashMap<String, ArrayList<Trend>>();
 	static DBCollection coll;
+	static Properties props;
+	static StanfordCoreNLP pipeline;
+	static
+	{
+		props = new Properties();
+
+		//Set what you want to do with the lemmatizer.
+		props.put("annotators", "tokenize, ssplit, pos, lemma"); 
+		pipeline = new StanfordCoreNLP(props, false);
+	}
+	/***
+	 * Loads a stop word file, the path of which is stored in the property file under name: stopwordFilePath
+	 */
 	private static void loadStopWords()
 	{
 		BufferedReader br = null;
@@ -87,10 +100,10 @@ public class GetFrequentNGrams
 	{
 		try
 		{
-		//MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
-		//DB db = mongoClient.getDB( "nirbhaya" );
-		//coll = db.getCollection("trends");
-	
+			MongoClient mongoClient = new MongoClient( "10.2.4.238" , 27017 );
+			DB db = mongoClient.getDB( "nirbhaya" );
+			coll = db.getCollection("trends");
+
 		}
 		catch(Exception e)
 		{
@@ -119,6 +132,9 @@ public class GetFrequentNGrams
 		}
 	}
 
+	/**
+	 * Load the property file, which is the part of the build.
+	 */
 	private static void loadProperties() 
 	{
 		// TODO Auto-generated method stub
@@ -168,17 +184,22 @@ public class GetFrequentNGrams
 		System.out.println("wordcount size:"+wordCount.size());
 		sorted_map.putAll(wordCount);
 		bigramSorted_map.putAll(bigramCount);
-		
+
 	}
 
+	/***
+	 * This function writes the top trends computed by the function stopwordFilePath and stores it into either mongodb or local file.
+	 * @param catName
+	 */
 	private static void writeTopTrends(String catName)
 	{
 		PrintWriter pr = null;
 		int topTrendsToShow = Integer.parseInt(prop.getProperty("topTrendsToShow"));
 		int percentageBigrams = Integer.parseInt(prop.getProperty("percentageBigrams"));
+		String type=catName;
 		try 
 		{
-			pr = new PrintWriter("/home/sandeep/workspace/Trending/new/"+catName+"-Trends");
+			pr = new PrintWriter("/home/sandeep/workspace/Trending/"+catName+"-Trends");
 		} 
 		catch (FileNotFoundException e) 
 		{
@@ -188,7 +209,7 @@ public class GetFrequentNGrams
 
 		Iterator<String> unigramIter = sorted_map.keySet().iterator();
 		Iterator<String> bigramIter = bigramSorted_map.keySet().iterator();
-		
+
 		String key = null;
 		CategoryContent jsc = null;
 		String json = null;
@@ -208,23 +229,29 @@ public class GetFrequentNGrams
 			{
 				key = unigramIter.next();
 			}
-			
+
 			trend = trendToTrendData.get(key);
-            
-			while((imgURL = trend.get(index).imageURL)== null )
+
+			while((imgURL = trend.get(index).imageURL)== null)
 			{
 				index++;
 			}
 			index = 0;
 			jsc = new CategoryContent(key, imgURL, trend);
-            jscList.add(jsc);
+			jscList.add(jsc);
 		}
 		json=gson.toJson(jscList);
-		//json="{\""+catName+"\":"+json+"}";
+		// .. and comment this one .. if mongoDB is being used.
+		pr.println("{\"catContent\":"+json+"}");
+		//toggle comments the next three lines, If we plan to fetch content from mongoDB and not by a web service call 
+		json="{\"type\":\""+catName+"\",\"catContent\":"+json+"}";
+
 		//DBObject obj11 = (DBObject)JSON.parse(json);
 		//coll.insert(obj11);
-		pr.println("{\"catContent\":"+json+"}");
-		
+
+
+
+
 		pr.flush();
 		pr.close();
 	}
@@ -255,12 +282,11 @@ public class GetFrequentNGrams
 		int count = 0;
 		try 
 		{
+			//Load the gson object
 			Gson gson = new Gson();
 			GetImageFromUrl image=new GetImageFromUrl();
 			SearchResult jsonContent = null;
-			Properties props = new Properties();
-			props.put("annotators", "tokenize, ssplit, pos, lemma"); 
-			StanfordCoreNLP pipeline = new StanfordCoreNLP(props, false);
+
 
 			while((line = br.readLine()) != null)
 			{
@@ -276,10 +302,12 @@ public class GetFrequentNGrams
 				}
 				Trend trend;
 
+				//Get the content to compute the trends.
 				trend = new Trend(jsonContent.getTitle(), jsonContent.getUrl(), jsonContent.getSnippet(), image.getImageUrlForATrend(jsonContent.getUrl()));
 
 				combined=jsonContent.getTitle()+" "+jsonContent.getSnippet();
 
+				//Use the stanford lemmatizer for each incoming string. 
 				Annotation document = pipeline.process(combined);
 
 				for(CoreMap sentence: document.get(SentencesAnnotation.class)) 
@@ -294,10 +322,15 @@ public class GetFrequentNGrams
 						{
 							continue;
 						}
+
 						ArrayList<Trend> tempURLIdArray = null;
+
+						//Each trend wordis serialized as a Trend class object. which stores different info about the trend such as snippet, url etc.
 
 						if(!stopWords.contains(stemmedToken))
 						{
+							//The foll. nested if's finds unigrams in the twitter trends.
+							//If the trend/token exists append the trend object to the array else create a new oner.
 							if(trendToTrendData.containsKey(stemmedToken))
 							{
 								tempURLIdArray = trendToTrendData.get(stemmedToken);
@@ -322,10 +355,11 @@ public class GetFrequentNGrams
 								wordCount.put(stemmedToken, 1);
 							}
 
+							//The foll. nested if finds bigrams in the twitter trends.
 							if(prevToken != null)
 							{
 								bigram = prevToken + " " + stemmedToken;
-								
+								//If the trend/token/bigram exists append the trend object to the array else create a new one.
 								if(trendToTrendData.containsKey(bigram))
 								{
 									tempURLIdArray = trendToTrendData.get(bigram);
@@ -338,7 +372,7 @@ public class GetFrequentNGrams
 									tempURLIdArray.add(trend);
 									trendToTrendData.put(bigram, tempURLIdArray);
 								}
-								
+
 								if(bigramCount.containsKey(bigram))
 								{
 									count  = bigramCount.get(bigram);

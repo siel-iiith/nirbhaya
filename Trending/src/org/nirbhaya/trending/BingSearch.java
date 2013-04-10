@@ -47,11 +47,11 @@ public class BingSearch extends AbstractAzureSearchTest
 			Gson gson = new Gson();
 			BingSearchResult r = new BingSearchResult(current.getURL(),current.getTitle(),current.getSnippet(),current.getDate(),current.getSource());
 			result = gson.toJson(r);
-			System.out.println(result);
+			//System.out.println(result);
 			try
 			{
 				pr = new PrintWriter(new BufferedWriter(new FileWriter("/home/sandeep/Dropbox/Nirbhaya/data/"+query, true)));
-				pr.print(result);
+				pr.println(result);
 				pr.flush();
 				pr.close();
 			}catch(Exception e)
@@ -66,9 +66,6 @@ public class BingSearch extends AbstractAzureSearchTest
 		System.setProperty("http.proxyPort", "8080");
 		AzureSearchNewsQuery aq = new AzureSearchNewsQuery();
 		aq.setAppid(AZURE_APPID);
-		aq.setMarket("en-IN");
-		aq.setLatitude("21");
-		aq.setLongitude("78");
 		aq.setQuery(query);
 		//aq.setSkip(90);
 		aq.doQuery();
@@ -82,7 +79,7 @@ public class BingSearch extends AbstractAzureSearchTest
 	}
 	public static void main(String args[]) {
 		BingSearch bs=new BingSearch();
-		String query[]={"crime"};
+		String query[]={"hazardous roads", "water logging", "electricity problems", "Food wastage", "sewage problems"};
 		for(int i = 0 ; i < query.length; i++)
 		{
 			for(int j = 0 ; j < 3; j++)

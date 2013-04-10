@@ -8,11 +8,13 @@ public class catcontentSerialize {
 	 * @param args
 	 */
 	
+	public String type=null;
 	 public ArrayList<CategoryContent> catContent;
 	 
 	 public static class CategoryContent 
 	 {
-	 	String trendName = null;
+	 	
+		 String trendName = null;
 	 	String imageURL = null;
 	 	ArrayList<Trend> trendArray = null;
 	 	
@@ -30,7 +32,10 @@ public class catcontentSerialize {
 	 }
 	 public catcontentSerialize()
 	 {
-		 
+	 }
+	 public catcontentSerialize(String type)
+	 {
+		 this.type=type;
 	 }
 	 public ArrayList<CategoryContent> getCatContent() {
 		return catContent;
