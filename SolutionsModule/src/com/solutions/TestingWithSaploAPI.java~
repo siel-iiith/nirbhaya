@@ -28,8 +28,7 @@ public class TestingWithSaploAPI {
 			BufferedReader contact = new BufferedReader(new FileReader(new File(dir+"/Resource/contacts.txt")));
 			BufferedReader Deptcontact = new BufferedReader(new FileReader(new File(dir+"/Resource/departments.txt")));
 			
-			MongoClient mongo = new MongoClient();
-//			Mongo mongo = new Mongo("10.2.4.238", 27017);
+			Mongo mongo = new Mongo("10.2.4.238", 27017);
 			DB db = mongo.getDB("nirbhaya");
 			DBCollection collection = db.getCollection("Solutions");
 			collection.remove(new BasicDBObject());

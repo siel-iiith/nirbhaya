@@ -104,8 +104,7 @@ public class JSONBuilder {
 			}
 		}
 		synset.close();
-		MongoClient mongo = new MongoClient();
-//		Mongo mongo = new Mongo("10.2.4.238", 27017);
+		Mongo mongo = new Mongo("10.2.4.238", 27017);
 		DB db = mongo.getDB("nirbhaya");
 		DBCollection collection = db.getCollection("Solutions");
 		Gson gson =new Gson();
