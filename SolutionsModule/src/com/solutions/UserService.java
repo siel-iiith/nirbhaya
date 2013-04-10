@@ -22,15 +22,15 @@ import com.mongodb.util.JSON;
 
 @Path("/addsolution")
 public class UserService {
-	private static MongoClient mongo;
-//	private static Mongo mongo;
+//	private static MongoClient mongo;
+	private static Mongo mongo;
 	private static DB db;
 	private static DBCollection solutionCollection;
 
 	static{
 		try {
-//			mongo = new Mongo("10.2.4.238", 27017);
-			mongo = new MongoClient();
+			mongo = new Mongo("10.2.4.238", 27017);
+//			mongo = new MongoClient();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
@@ -43,17 +43,20 @@ public class UserService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String addSolution(@QueryParam("name") String name, @QueryParam("designation") String designation,
 			@QueryParam("location") String location, @QueryParam("emailid") String emailid, @QueryParam("phone") String phone, @QueryParam("perdeptname") String perdeptname, @QueryParam("callback") String callback) {
-		Gson gson = new Gson();
-		Person person = new Person();
-		person.setName(name);
-		person.setDesignation(designation);
-		person.setEmail(emailid);
-		person.setLocation(location);
-		person.setPerDeptName(perdeptname);
-		person.setPhone(phone);
-		System.out.println(gson.toJson(person));
-		DBObject obj = (DBObject)JSON.parse(gson.toJson(person));
-		solutionCollection.save(obj);
+		if (name != null && designation != null && emailid != null && location != null && perdeptname != null && phone != null
+			&& !name.equals("")  && !designation.equals("") && !emailid.equals("") && !location.equals("") && !perdeptname.equals("") && !phone.equals("")) {
+			Gson gson = new Gson();
+			Person person = new Person();
+			person.setName(name);
+			person.setDesignation(designation);
+			person.setEmail(emailid);
+			person.setLocation(location);
+			person.setPerDeptName(perdeptname);
+			person.setPhone(phone);
+//			System.out.println(gson.toJson(person));
+			DBObject obj = (DBObject)JSON.parse(gson.toJson(person));
+			solutionCollection.save(obj);
+		}
 		return callback+"({result : \"Success\"})";
 		//return grievanceCollection.insert((DBObject)JSON.parse(new Gson().toJson(new Grievance(name,type,location,comments)))).toString();
 	}
