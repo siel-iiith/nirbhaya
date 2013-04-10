@@ -1,0 +1,41 @@
+{
+   "categories":[
+         {
+            "name":"Civic & Administration",
+            "subcategories":[
+               {
+                  "subname":"WaterLogging"
+               },
+               {
+                  "subname":"Roads"
+               },
+               {
+                  "subname":"Electricity"
+               },
+               {
+                  "subname":"Food Wastage"
+               },
+               {
+                  "subname":"Sewage Problems"
+               }
+            ]
+         },
+         {
+            "name":"Crime",
+            "subcategories":[
+               {
+                  "subname":"Theft"
+               },
+               {
+                  "subname":"Assaults"
+               },
+               {
+                  "subname":"Public Disturbance"
+               },
+               {
+                  "subname":"Pick pocketing"
+               }
+            ]
+         }
+      ]
+   }

@@ -1,8 +1,8 @@
 package org.nirbhaya.trending;
 
 public class SearchResult {	
-	String title;
 	String url;
+	String title;
 	String snippet;
 	String date;
 	public String getDate() {
@@ -34,7 +34,7 @@ public class SearchResult {
 	
 	
 	
-	public SearchResult(String title, String url, String snippet,String date,String source) {
+	public SearchResult(String url, String title, String snippet,String date,String source) {
 		super();
 		this.title = title;
 		this.url = url;

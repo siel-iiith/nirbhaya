@@ -66,201 +66,222 @@
 	    <artifactId>1.0</artifactId>
 	    <version>1.0</version>
 	</dependency>
-    <dependency>
-	<groupId>org.mongodb</groupId>
-	<artifactId>mongo-java-driver</artifactId>
-	<version>2.10.1</version>
+    	<dependency>
+	<groupId>javax.activation</groupId>
+	<artifactId>activation</artifactId>
+	<version>1.1.1</version>
 </dependency>
-	<dependency>
-	    <groupId>org.nirbhaya.trending.activation</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.asm</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>asm</groupId>
+	<artifactId>asm-commons</artifactId>
+	<version>3.3.1</version>
+</dependency>
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.commonscodec</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>commons-codec</groupId>
+	<artifactId>commons-codec</artifactId>
+	<version>1.6</version>
+</dependency>
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.commonslogging</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>commons-logging</groupId>
+	<artifactId>commons-logging</artifactId>
+	<version>1.1.1</version>
+</dependency>
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.fluent</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>org.apache.httpcomponents</groupId>
+	<artifactId>fluent-hc</artifactId>
+	<version>4.2.3</version>
+</dependency>
+            
+<!-- Gson: Java to Json conversion -->
+	<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.2</version>
+			<scope>compile</scope>
+		</dependency>
+<!-- THESE ARE HTTP RELATED MAVEN STUFF -->
+	<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.2.3</version>
+			<scope>compile</scope>
+		</dependency>
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.gson</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient-cache</artifactId>
+			<version>4.2.3</version>
+			<scope>compile</scope>
+		</dependency>
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.httpclient</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.2.3</version>
+			<scope>compile</scope>
+		</dependency>
+<!-- THESE ARE jackson RELATED MAVEN STUFF -->
+	<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-xc</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+<!-- THESE ARE jax RELATED MAVEN STUFF -->
+	<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2.4-1</version>
+		</dependency>
+<!-- THESE ARE jersey RELATED MAVEN STUFF -->
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.httpclientcache</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.17.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-core</artifactId>
+			<version>1.17.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.17.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.17.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-servlet</artifactId>
+			<version>1.17.1</version>
+		</dependency>
+<!-- THESE ARE twitter4j RELATED MAVEN STUFF -->
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.httpcore</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>org.codehaus.jettison</groupId>
+			<artifactId>jettison</artifactId>
+			<version>1.3.3</version>
+		</dependency>
+<!-- THESE ARE jsr RELATED MAVEN STUFF -->
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.httpmime</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+<!-- THESE ARE stax RELATED MAVEN STUFF -->
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.jacksoncore</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>stax</groupId>
+			<artifactId>stax</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+<!-- THESE ARE twitter4j RELATED MAVEN STUFF -->
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.jacksonjaxrs</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-async</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-core</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-examples</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-media-support</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.twitter4j</groupId>
+			<artifactId>twitter4j-stream</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+<!-- THESE ARE woodstox RELATED MAVEN STUFF -->
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.jacksonmapper</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+			<groupId>woodstox</groupId>
+			<artifactId>wstx-asl</artifactId>
+			<version>3.2.0</version>
+		</dependency>
+<!-- THESE ARE mongodb RELATED MAVEN STUFF -->
+<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+	<dependency>
+	<groupId>edu.stanford.nlp</groupId>
+	<artifactId>stanford-corenlp</artifactId>
+	<version>1.3.4</version>
+</dependency>
+            
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.jacksonxc</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jaxbapi</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jaxbimpl</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jerseyclient</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jerseycore</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jerseyjson</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jerseyserver</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jerseyservlet</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jettison</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.jsr</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.stax</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.twitter4j.async</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.twitter4j.core</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.twitter4j.examples</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.twitter4j.media</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.twitter4j.stream</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.wstx</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.nirbhaya.trending.corenlp</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
-	<dependency>
-	    <groupId>org.nirbhaya.trending.opennlp</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
-
+	<groupId>org.apache.opennlp</groupId>
+	<artifactId>opennlp-tools</artifactId>
+	<version>1.5.2-incubating</version>
+</dependency>
+            
+            
 	<dependency>
 	    <groupId>org.nirbhaya.trending.corenlpmod</groupId>
 	    <artifactId>1.0</artifactId>
@@ -268,27 +289,31 @@
 	</dependency>
 
 	<dependency>
-	    <groupId>xom</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>xom</groupId>
+	<artifactId>xom</artifactId>
+	<version>1.2.5</version>
+</dependency>
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.joda</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>joda-time</groupId>
+	<artifactId>joda-time</artifactId>
+	<version>2.2</version>
+</dependency>
+            
 
 	<dependency>
-	    <groupId>org.nirbhaya.trending.jolly</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>de.jollyday</groupId>
+	<artifactId>jollyday</artifactId>
+	<version>0.4.7</version>
+</dependency>
+            
 
 	<dependency>
-	    <groupId>htmlCleaner</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	<groupId>net.sourceforge.htmlcleaner</groupId>
+	<artifactId>htmlcleaner</artifactId>
+	<version>2.2.1</version>
+</dependency>
+            
     </dependencies>
 </project>
