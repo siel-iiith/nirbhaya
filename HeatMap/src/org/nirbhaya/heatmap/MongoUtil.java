@@ -1,9 +1,11 @@
 package org.nirbhaya.heatmap;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Properties;
 import java.util.Set;
 
 import com.google.gson.Gson;
@@ -27,8 +29,10 @@ public class MongoUtil {
 		// TODO Auto-generated constructor stub
 		
 		
-		MongoClient mongoClient = new MongoClient( "10.2.4.180" , 27017 );
-		DB db = mongoClient.getDB( "nirbhaya" );
+		Properties prop = new Properties();
+		prop.load(new FileInputStream("/home/romil/config.properties"));
+		MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")) );
+		DB db = mongoClient.getDB( prop.getProperty("dbname") );
 
 		DBCollection coll = db.getCollection("test");
 
