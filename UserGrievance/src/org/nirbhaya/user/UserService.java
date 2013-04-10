@@ -37,7 +37,7 @@ public class UserService {
 	
 	@Path("add")
 	@GET
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public String addGrievance(@QueryParam("name") String name, @QueryParam("type") String type,
 			@QueryParam("location") String location, @QueryParam("comments") String comments, @QueryParam("callback") String callback) {
 		Gson gson = new Gson();
@@ -46,7 +46,7 @@ public class UserService {
 		System.out.println(gson.toJson(g));
 		DBObject obj = (DBObject)JSON.parse(gson.toJson(g));
 		grievanceCollection.save(obj);
-		return "success";
+		return callback+"({result : \"Success\"})";
 		//return grievanceCollection.insert((DBObject)JSON.parse(new Gson().toJson(new Grievance(name,type,location,comments)))).toString();
 	}
 	
