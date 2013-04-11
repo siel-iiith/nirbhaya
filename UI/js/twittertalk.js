@@ -6,9 +6,8 @@ function getURLParameter(name) {
 }
 
 function getUsertalk(qresult) {
-		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
-		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
-		var strURL = "http://10.2.4.239:8080/VerticalSearch/TwitterSearch?q="+qresult+"&callback=?";
+		
+		var strURL = "http://10.2.4.234:8080/Nirbhaya/TwitterSearch?q="+qresult+"&callback=?";
         
             
 		$.ajax({
@@ -21,8 +20,9 @@ function getUsertalk(qresult) {
 			success: function(talkresult){
 				// Display Results on the Screen
 		    	var i = 0;
-    
-		    	
+			
+			$("#buzzheading").html("<p id=\"buzzheading\"> Social Buzz on " +qresult+"</p>");
+			$("#buzzholder").empty();
 		    	for(i = 0; i<talkresult.searchResults.length; i++){
 					var jTweettext = talkresult.searchResults[i].jTweetText;
 					var jTweetloc = talkresult.searchResults[i].jTweetLocation;
@@ -33,8 +33,7 @@ function getUsertalk(qresult) {
                                         innerHTML = innerHTML + "<div class = \"vsurl\" style='color:blue'> Location: &nbsp; &nbsp;"+jTweetloc+" </div>";
                                         innerHTML = innerHTML + "<div style='color:green'> TweetID: &nbsp; &nbsp;"+jTweetid+"</div>";
                                         innerHTML = innerHTML + "<hr style='width:99%'/>";
-
-					$("#talkspace").append(innerHTML);
+					$("#buzzholder").append(innerHTML);
 				}
 
 			},
@@ -47,8 +46,13 @@ function getUsertalk(qresult) {
 
 }		
 
-
-$(document).ready(function() {
+function Buzzer(){
+    document.getElementById('vsearcher').style.backgroundImage="url('images/vsearch.png')";
+    document.getElementById('buzzer').style.backgroundImage="url('images/buzz.png')";
+    document.getElementById('trender').style.backgroundImage="url('images/trends.png')";
+    document.getElementById('reporter').style.backgroundImage="url('images/report.png')";
+    document.getElementById('solver').style.backgroundImage="url('images/solutions.png')";
+    document.getElementById('buzzer').style.backgroundImage="url('images/buzzcolor.png')";
     var searchquery = getURLParameter("query");
     getUsertalk(searchquery);
-});
+}
