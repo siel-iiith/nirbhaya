@@ -21,31 +21,14 @@ public class UrlQuery {
 	public static void main(String args[]) throws IOException{
 		
 		UrlQuery q= new UrlQuery();
-		//q.getPropertiesFromClasspath("config.properties");
 		System.out.println(q.getBothLocationProblem("hyderabad","crime"));
-	}
-
-	private Properties getPropertiesFromClasspath(String propFileName) throws IOException
-	{
-		Properties props = new Properties();
-		System.out.println(System.getProperty("user.dir"));
-		InputStream inputStream =
-				this.getClass().getClassLoader().getResourceAsStream(propFileName);
-
-		if (inputStream == null)
-		{
-			throw new FileNotFoundException("property file '" + propFileName
-					+ "' not found in the classpath");
-		}
-
-		props.load(inputStream);
-		return props;
 	}
 
 	public UrlQuery(){
 		try {
-			prop.load(new FileInputStream("/home/romil/config.properties"));
-
+			InputStream in = getClass().getResourceAsStream("config.properties");
+			prop.load(in);
+			in.close();
 			MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")));
 			db = mongoClient.getDB( prop.getProperty("dbname") );
 		} catch (FileNotFoundException e) {

@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -31,7 +32,9 @@ public class MongoFeed {
 	public MongoFeed() throws IOException {
 		// TODO Auto-generated constructor stub
 		Properties prop = new Properties();
-		prop.load(new FileInputStream("/home/romil/config.properties"));
+		InputStream ip = getClass().getResourceAsStream("config.properties");
+		prop.load(ip);
+		ip.close();
 		MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")) );
 		DB db = mongoClient.getDB( prop.getProperty("dbname") );
 		Gson gson = new Gson();
