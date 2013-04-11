@@ -2,6 +2,7 @@ package org.nirbhaya.heatmap;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -17,14 +18,16 @@ import com.mongodb.MongoClient;
 public class MessageQuery {
 	static Properties prop = new Properties();
 	static DB db = null;
+	
 	public static void main(String args[]) throws IOException{
 		MessageQuery m = new MessageQuery();
 		System.out.println(m.getBothLocationProblem("delhi","murder"));
 	}
 	public MessageQuery(){
 		try {
-			prop.load(new FileInputStream("/home/romil/config.properties"));
-			System.out.println(prop.getProperty("dport"));
+			InputStream ip = getClass().getResourceAsStream("config.properties");
+			prop.load(ip);
+			ip.close();
 			MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")));
 			db = mongoClient.getDB( prop.getProperty("dbname") );
 		} catch (FileNotFoundException e) {
@@ -71,7 +74,7 @@ public class MessageQuery {
 
 		} finally {
 			cursor.close();
-
+			
 		}
 		return "{\"result\":"+gson.toJson(allProblems)+"}";
 	}

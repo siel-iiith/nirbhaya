@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.nirbhaya.heatmap.UrlQuery;
 
 @Path("/test")
-public class HelloService {
+public class MapLocations {
 
 	@GET
 	@Produces( MediaType.APPLICATION_JSON )
