@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
    
 function trendShow(){
-   var strURL = "http://localhost:8080/Trending/trending-types?callback=?";
+   var strURL = "http://10.2.4.216:8080/Trending/trending-types?callback=?";
    $.ajax({
       url:strURL,
       timeout:10000,
@@ -19,8 +19,9 @@ function trendShow(){
          }
          /*function to load category list*/
          for(var j=0;j<result.categories[0].subcategories.length; j++){
-            $('#categories').append('<li>' + result.categories[0].subcategories[j].subname + '</li> ');
+            $('#categories').append('<a><li>' + result.categories[0].subcategories[j].subname + '</li></a> ');
          }
+         
          /* loading categories based on clicks */
          $('ul[class="nav"] li').click(function(){
             var namelist = $(this).text();
@@ -33,7 +34,8 @@ function trendShow(){
                      }
                   }
                for(i=0;i<result.categories[j].subcategories.length;i++){
-                  $("#categories").append('<li>' + result.categories[j].subcategories[i].subname + '</li> ');
+                  var innertext = result.categories[j].subcategories[i].subname;
+                  $("#categories").append('<a><li>' + innertext + '</li></a>');
                }
          });
       },
@@ -43,3 +45,20 @@ function trendShow(){
       }
    });
 }
+
+
+
+/* code to select the element and send query to userpage from main page */
+$(document).on('click', '#categories li', function(){ 
+   var qcategory = ($(this).text());         
+   var url = "userpage.html?query="+qcategory;
+   $(location).attr('href',url);
+});
+
+$(document).ready(function(){
+   $('ul[class="nav"] li').click(function(e){
+      $(".navactive").removeClass("navactive");
+      $(this).addClass("navactive");
+      e.preventDefault();
+   });
+})
