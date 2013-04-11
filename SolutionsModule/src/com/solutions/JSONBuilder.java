@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,6 +21,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.Mongo;
+import com.solutions.SynonymDB.Synonym;
 
 @Path("/Solution")
 public class JSONBuilder {
@@ -87,28 +89,26 @@ public class JSONBuilder {
 	@Produces({MediaType.APPLICATION_JSON})
 	public String outputJSON (@QueryParam("q") String query, @QueryParam("callback") String callback) throws IOException 
 	{
-		englishStemmer stemmer = new org.tartarus.snowball.ext.englishStemmer();
-		HashMap<String,String> mapping = new HashMap<String,String>();
-		String str;
-		final String dir = System.getProperty("user.dir");
-		BufferedReader synset = new BufferedReader(new FileReader(new File(dir+"/Resource/synonyms-nirbhaya.txt")));
-		while ((str = synset.readLine()) != null) {
-			String dept = str.split(":")[0];
-			for (String s : str.split(":")[1].split(", ")) {
-				stemmer.setCurrent(s);
-				stemmer.stem();
-				String stemmed = stemmer.getCurrent();
-				if (!mapping.containsKey(stemmed)) {
-					mapping.put(stemmed.toLowerCase(), dept.toLowerCase());
-				}
-			}
-		}
-		synset.close();
 		MongoClient mongo = new MongoClient();
 //		Mongo mongo = new Mongo("10.2.4.238", 27017);
 		DB db = mongo.getDB("nirbhaya");
-		DBCollection collection = db.getCollection("Solutions");
 		Gson gson =new Gson();
+		englishStemmer stemmer = new org.tartarus.snowball.ext.englishStemmer();
+		HashMap<String,String> mapping = new HashMap<String,String>();
+		DBCollection syn = db.getCollection("Synonyms");
+		DBCursor synonyms = syn.find();
+		while (synonyms.hasNext()) {
+			SynonymDB.Synonym s = new SynonymDB.Synonym();
+			s = gson.fromJson(synonyms.next().toString(), Synonym.class);
+			String dept = s.synonyms;
+			stemmer.setCurrent(s.word);
+			stemmer.stem();
+			String stemmed = stemmer.getCurrent();
+			if (!mapping.containsKey(stemmed)) {
+				mapping.put(stemmed.toLowerCase(), dept.toLowerCase());
+			}
+		}
+		DBCollection collection = db.getCollection("Solutions");
 		DBCursor cursorDoc = collection.find();
 		ArrayList<ArrayList<Person>> P1 = new ArrayList<ArrayList<Person>>();
 		P1.add(new ArrayList<Person>());

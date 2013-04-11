@@ -22,15 +22,15 @@ import com.mongodb.util.JSON;
 
 @Path("/addsolution")
 public class UserService {
-//	private static MongoClient mongo;
-	private static Mongo mongo;
+	private static MongoClient mongo;
+//	private static Mongo mongo;
 	private static DB db;
 	private static DBCollection solutionCollection;
 
 	static{
 		try {
-			mongo = new Mongo("10.2.4.238", 27017);
-//			mongo = new MongoClient();
+//			mongo = new Mongo("10.2.4.238", 27017);
+			mongo = new MongoClient();
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		}
