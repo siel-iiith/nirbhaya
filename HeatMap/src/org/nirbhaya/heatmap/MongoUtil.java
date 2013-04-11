@@ -1,6 +1,7 @@
 package org.nirbhaya.heatmap;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,9 @@ public class MongoUtil {
 		
 		
 		Properties prop = new Properties();
-		prop.load(new FileInputStream("/home/romil/config.properties"));
+		InputStream ip = getClass().getResourceAsStream("config.properties");
+		prop.load(ip);
+		ip.close();
 		MongoClient mongoClient = new MongoClient( prop.getProperty("dbip") , Integer.parseInt(prop.getProperty("dport")) );
 		DB db = mongoClient.getDB( prop.getProperty("dbname") );
 
