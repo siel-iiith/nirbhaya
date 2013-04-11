@@ -2,39 +2,38 @@ ul,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,input{
     margin:0; padding:0;
 }
 
-body{
-    /*background-color: #d7dfe2;*/
-    background-color: #edf0f5;
-}
-
 #wrapper{
-    width:1200px;
-    margin: auto;
+    width:1300px;
+    margin:30px auto;
 }
 
 #header{
-    width: 1200px;
+    width: 1300px;
     float: left;
     margin: 0 0 1em 0;
     padding: 0;
-    background-color: #2d2d2d;
+    background-color: #003333;
     opacity: 1.0;
     font-size: 16px;
     height:40px;
-    position: fixed;
-    z-index: 101;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    -moz-box-shadow: 3px 3px 3px #003333;
+    -webkit-box-shadow: 3px 3px 3px #003333;
+    box-shadow: 3px 3px 4px #003333;   
 }
 
 #header #element{
     float: left;
-    display: inline-block;
+    display: inline;
 }
 
 #heading a{
     font-size: 25px;
     text-decoration: none;
     font-weight: bold;
-    color: #ffffff;
+    color: gold;
     margin-left: 1em;
 }
 
@@ -44,8 +43,8 @@ body{
 }
 
 #element .nav{
-    width: 700px;
-    margin-left: 2%;
+    width: 800px;
+    padding-left: 2em;
     padding-top: 0.6em;
 }
 
@@ -60,11 +59,20 @@ body{
     list-style: none;
     padding-left: 10px;
     padding-right: 10px;
-    color: #ffffff;
+    color: gold;
     font-weight: bold;
     font-size: 18px;
-    font-family: "Trebuchet MS" Arial serif;
 }
+
+/*#element .nav li a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    color: gold;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 5px;
+}*/
 
 #element .nav li:hover{
     background-color: #ffffff;
@@ -78,29 +86,22 @@ body{
     cursor: pointer;
 }
 
+#element .nav li:active{
+    background-color: #daa520;
+}
+
 #searchtag{
-    margin-top: 1em;
-    font-size: 13px;
-    color: #ffffff;
-    font-weight: bold;
-    margin-left: 20px;
-    width: 150px;
-    font-family: "Trebuchet MS" Arial serif;
-}
-
-.locationsearchdiv{
-    float: right;
-}
-
-#locationimg{
-    width: 30px;
-    height: 30px;
-    margin-top: 7px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: white;
+    /*margin-left: 8em;*/
 }
 
 #element .searchspace{
     display: inline-block;
     float: left;
+    width: 130px;
 }
 
 #locationsearch form input {
@@ -133,30 +134,23 @@ body{
 
 #maphider{
     width: 700px;
-    background-color: #2d2d2d;
-    left: 20%;
-    top: 10px;
-    margin: auto;
+    background-color: #003f3f;
+    left: 25%;
+    top: 80px;
     position: absolute;
-    height: 550px;
+    margin: 5px;
+    height: 540px;
+    -webkit-box-shadow: 0px 0px 5px #003f3f;
+    -moz-box-shadow: 0px 0px 5px #003f3f;
     display: none;
+    border-radius: 10px;
     -moz-border-radius: 10px;
     -webkit-border-radius:10px;
-    -moz-box-shadow: 0 5px 5px #d7dfe2;
-    -webkit-box-shadow: 0 5px 5px #d7dfe2;
-    z-index:901;
-    border: 10px #d7dfe2;
+    -khtml-border-radius:10px;
+    -moz-box-shadow: 0 1px 5px #333;
+    -webkit-box-shadow: 0 1px 5px #333;
+    z-index:101;
 }
-    #mapheading{
-        width: 100%;
-        height: 30px;
-        background-color: inherit;
-    }
-    #mapmsg{
-        font-size: 20px;
-        color: #ffffff;
-        text-align: center;
-    }
 
 #locationtext{
     color: #ffffff;
@@ -168,9 +162,21 @@ a.mapboxclose{
     width:25px;
     height:25px;
     background:transparent url(images/cancel.png) repeat top left;
-    margin-top:0px;
-    margin-right:7px;
+    margin-top:-30px;
+    margin-right:5px;
     cursor: pointer;
+}
+
+#overlay{
+    background:transparent url(images/overlay.png) repeat top left;
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:100;
+    width: 100%;
+    height: 100%;
 }
 
 #someframe{
@@ -180,160 +186,30 @@ a.mapboxclose{
     border-bottom-style: groove;
 }
 
-#sidebar{
-    display: block;
-    float: left;
-    margin: 0 0 1em 0;
-    padding: 0;
-    background-color: #2d2d2d;
-    opacity: 1.0;
-    font-size: 16px;
-    position: fixed;
-    z-index: 101;
-    margin-bottom: 10px;
-    width: 80px;
-    text-align: center;
+#locationimg{
+    width: 30px;
+    height: 30px;
+    margin-top: 7px;
 }
-
-    #sidebar ul{
-        list-style: none;  
-        font-size: 14px;
-	padding-top: 50px;
-    }
-	#sidebar ul li {  
-            display: inline-block;
-            padding-bottom: 20px;
-        }
-	    #sidebar ul li a {  
-	        display: inline-block;  
-	        float: left;
-		padding-bottom: 20px;
-	        text-decoration: none;  
-	    }
-		.sidebarimgdiv{
-		    width: 55px;
-		    height: 55px;
-		}
-		
-		#vsearcher{
-		    background-image: url(images/vsearch.png);
-		}
-		    #vsearcher:hover{
-			background-image: url(images/vsearchcolor.png);
-		    }
-		
-		#buzzer{
-		    background-image: url(images/buzz.png);
-		}
-		    #buzzer:hover{
-			background-image: url(images/buzzcolor.png);
-		    }
-		
-		#solver{
-		    background-image: url(images/solutions.png);
-		}
-		    #solver:hover{
-			background-image: url(images/solutionscolor.png);
-		    }
-		
-		#trender{
-		    background-image: url(images/trends.png);
-		}
-		    #trender:hover{
-			background-image: url(images/trendscolor.png);
-		    }
-		
-		#reporter{
-		    background-image: url(images/report.png);
-		}
-		    #reporter:hover{
-			background-image: url(images/reportcolor.png);
-		    }
-		
-		
-		
-#trendbar{
-    display: block;
-    float: right;
-    margin: 0 0 1em 0;
-    background-color: #2d2d2d;
-    opacity: 1.0;
-    position: fixed;
-    z-index: 101;
-    margin-bottom: 10px;
-    width: 300px;
-    text-align: center;
-    margin-left: 900px;
-}
-
-    #trendheading{
-	color: #ffffff;
-	font-size: 16px;
-	text-align: center;
-	margin-top: 60px;
-	font-weight: bold;
-	font-family: "Trebuchet MS" Arial serif;
-    }
-    #trendbarholder{
-	width: 95%;
-	height: 70%;
-	margin-left: 10px;
-	margin-top: 20px;
-	overflow-x: hidden;
-	overflow-y: scroll;
-    }
-	#trendset{
-	    width: 100%;
-	    height: auto;
-	}
-	
-	#trendset a{
-	    text-decoration: none;
-	    cursor: pointer;
-	}
-	    .trendimage{
-		width: 50px;
-		height: 50px;
-		padding: 2px;
-		border-radius: 5px;
-		border: 2px groove #ffffff;
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-	    }
-		.trendtext{
-		    color: #ffffff;
-		    font-size: 15px;
-		    font-family: "Trebuchet MS" Arial serif;
-		    width: 100%;
-		    height: auto;
-		    text-align: left;
-		    font-weight: bold;
-		}
 
 #container{
-    width: 1200px;
-    height: 100%;
-    background-color: #ffffff;
+    width: 1300px;
+    overflow: hidden;
+    height: 700px;
+    background-image: url(images/bg.png);
     float: left;
     -webkit-margin-top: 1em;
-    margin-top: 40px;
-}
-
-.tutu{
-    height: 95%;
 }
 
 #columnwrapper{
-    width: 820px;
-    margin-left: 80px;
-    display: block;
-    position: absolute;
-    background-color: #ffffff;
+    width: 1300px;
+    height: 700px;
+    display: inline-block;
 }
 
 #grievancereporter{
     width: 500px;
-    background-color: #d7dfe2;
+    background-color: #ffffff;
     left: 30%;
     top: 120px;
     position: absolute;
@@ -348,41 +224,31 @@ a.mapboxclose{
     -khtml-border-radius:10px;
     -moz-box-shadow: 0 1px 5px #333;
     -webkit-box-shadow: 0 1px 5px #333;
-    z-index:501;
+    z-index:101;
 }
 
-    a.greportclose{
-	float:right;
-	width:25px;
-	height:25px;
-	background:transparent url(images/cancel.png) repeat top left;
-	margin-top: 5px;
-	margin-right: 5px;
-	cursor: pointer;
-    }
-    
-    #reportheading{
-	text-align: center;
-	color: #003f3f;
-	font-weight: bold;
-	font-size: 18px;
-	margin-top: 25px;
-	text-transform: uppercase;
-	font-family: "Trebuchet MS" Arial serif;
-    }
+a.greportclose{
+    float:right;
+    width:25px;
+    height:25px;
+    background:transparent url(images/cancel.png) repeat top left;
+    margin-top: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
 
-#vsearchcolumn{
-    width: 100%;
+#leftcolumn{
+    width: 630px;
     height: 100%;
     float: left;
-    display: block;
-    margin: auto;
+    display: inline-block;
+    margin-left: 320px;
     position: relative;
 }
 
 #forumtalk{
     background-color: #ffffff;
-    height: 100%;
+    height: 550px;
     width: 100%;
     margin: 10px;
     border-width: thin;
@@ -422,60 +288,47 @@ a.mapboxclose{
     width: 95%;
     height: 30px;
     margin-left: 2%;
-    background-color: #edf0f5;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
+    background-color: #eeeeee;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
 
-    .forumbarspace{
-	margin-top: 4px;
-	display: inline-block;
-	padding-right:2%;
-	float: left;
-    }
+#forumbar #forumbarspace{
+    margin-top: 4px;
+    display: inline-block;
+    padding-right: 1em;
+    float: left;
+}
 
-	#search{
-	    margin-left: 1%;
-	    float: left;
-	}
+.topics{
+    margin-right: 2em;
+    margin-left: 1em;
+}
 
-	#searchform{
-	    float: left;
-	}
+.search{
+    margin-right: -1em;
+    margin-left: 2em;
+    float: left;
+}
 
-	    #searchform input{
-		margin-left: 1%;
-		border-radius: 5px;
-		-moz-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		text-indent: 5px;
-	    }
+.searchform{
+    float: left;
+}
 
-	#refineform{
-	    width: auto;
-	}
-	
-	    .refineblock{
-		display: inline-block;
-		float: left;
-	    }
-	
-	    #queryList{
-		width: 160px;
-		margin-right: 5px;
-	    }
-	    
-	    #refinesubmit{
-		width: auto;
-		margin-top: 2px;
-		border-radius: 5px;
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		text-align: center;
-		width: 100px;
-		border: 2px inset #cccccc; 
-	    }
+.searchform input{
+    margin-left: 1em;
+}
+
+.refinesearch{
+    margin-left: 2em;
+}
+
+.refineimg{
+    width: 30px;
+    height: 30px;
+    margin-left: -0.5em;
+}
 
 h5{
     margin-left: 3px;
@@ -486,40 +339,39 @@ h5{
 }
 
 #vresults{
-    margin-top: 20px;
+    margin-top: 5px;
     margin-left: 1em;
     width: 97%;
     height: 85%;
     overflow-x: hidden;
     overflow-y: scroll;
-    font-family: "Trebuchet MS" Arial serif;
 }
 
 .vscaption{
     color: #2ba6cb;
     display: block;
-    font-weight: normal;
-    font-size: 15px;
+    font-size: medium;
+    font-family: "Times New Roman", Times, Serif;
     text-align: justify;
-    font-family: "Trebuchet MS" Arial serif;
+    margin-left: 4px;
 }
 
 .vsurl{
     color: #003f3f;
     display: block;
-    font-size: 13px;
-    font-family: "Trebuchet MS" Arial serif;
+    font-size: medium;
     text-align: justify;
-    font-weight: lighter;
+    font-family: "Times New Roman", Times, Serif;
+    margin-left: 4px;
 }
 
 .vsdescription{
     color: #003f3f;
     display: block;
-    font-size: 14px;
+    font-size: medium;
     text-align: justify;
-    font-family: "Trebuchet MS" Arial serif;
     width: 98%;
+    font-family: "Times New Roman", Times, Serif;
     font-weight: normal;
 }
 
@@ -530,7 +382,7 @@ h5{
     bottom:0px;
     left:0px;
     right:0px;
-    z-index:401;
+    z-index:100;
     width: 100%;
     height: 100%;
 }
@@ -538,7 +390,7 @@ h5{
 #refiner{
     position: fixed;
     top:200px;
-    left:25%;
+    left:30%;
     right:30%;
     background-color: #ffffff;
     height: 100px;
@@ -554,7 +406,7 @@ h5{
     -khtml-border-radius:10px;
     -moz-box-shadow: 0 1px 5px #333;
     -webkit-box-shadow: 0 1px 5px #333;
-    z-index:601;
+    z-index:101;
 }
 
 #refinerspace{
@@ -584,25 +436,36 @@ a.boxclose{
     text-align: center;
 }
 
-#solutioncolumn{
-    width: 98.5%;
-    height: 100%;
+#rightcolumn{
+    width: 630px;
+    height: 680px;
     background-color: #ffffff;
+    float: right;
     margin: 10px;
     border-width: thin;
     border-color: #2ba6cb;
-    float: left;
-    display: inline-block;
-    margin: auto;
-    position: relative;
     display: none;
+}
+
+#reporter{
+    float:right;
+    width:35px;
+    height:130px;
+    margin-right: -10px;
+    margin-top: 250px;
+    cursor: pointer;
+    z-index: 101;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    position: fixed;
 }
 
 #tabheader{
     background-color: #ffffff;
     margin-top: 20px;
     margin-left: 5px;
-    width: 100%;
+    width: 98%;
     height: 94%;
     border: solid thin #cccccc;
     border-radius: 5px;
@@ -613,16 +476,16 @@ a.boxclose{
 #tabheader ul{
     list-style: none;
     margin: 1em;
-    margin-left: 40%;
+    margin-left: 4.5em;
     margin-top: -0.7em;
 }
 
 #tabheader #tabs li{
-    display: inline-block;
+    display: inline;
     border: outset;
     border-bottom-width: 1px 1px 0 1px;
     margin: 0 0.5em 0 0;
-    background-color: #edf0f5;
+    background-color: #cccccc;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -651,120 +514,23 @@ a.boxclose{
     background-color: #ffffff;
     padding: 10px;
     margin: 5px;
-    width: 97%;
-    height: 90%;
+    width: 95%;
+    height: 92%;
 }
 
-#content2{ 
+#content2, #content3{ 
     display: none;
 }
 
-#content2{
+#content2, #content1{
     overflow-x: hidden;
     overflow-y: scroll; 
 }
 
-#talkspace{
-    width: 99%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-}
-
-#solutionspace{
+#solutionspace, #talkspace{
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
 }
-
-    #contactheading{
-	text-align: justify;
-	margin: 10px;
-	margin-bottom: 5px;
-        color: green;
-	font-weight: bold;
-	font-size: 16px;
-	text-transform: uppercase;
-	font-family: "Trebuchet MS" Arial serif;
-    }
-    
-.contactspace{
-    display: inline-block;
-    width: 49%;
-    height: 100%;
-}
-
-    #error{
-	font-size: 25px;
-	width: 100%;
-	height: 100%;
-    }
-    
-    #solutionreporter{
-	width: 400px;
-	background-color: #d7dfe2;
-	left:30%;
-	top: 120px;
-	position: absolute;
-	margin: 5px;
-	display: none;	
-	height: auto;
-	-webkit-box-shadow: 0px 0px 5px #003f3f;
-	-moz-box-shadow: 0px 0px 5px #003f3f;	
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius:10px;
-	-moz-box-shadow: 0 1px 5px #333;
-	-webkit-box-shadow: 0 1px 5px #333;
-	z-index: 501;
-    }
-
-	a.solutionclose{
-	    float:right;
-	    width:25px;
-	    height:25px;
-	    background:transparent url(images/cancel.png) repeat top left;
-	    margin-top: 5px;
-	    margin-right: 5px;
-	    cursor: pointer;
-	}
-    
-	#reportheading{
-	    text-align: center;
-	    color: #003f3f;
-	    font-weight: bold;
-	    font-size: 18px;
-	    margin-top: 25px;
-	    text-transform: uppercase;
-	    font-family: "Trebuchet MS" Arial serif;
-	}
-	
-	#solclick{
-	    text-decoration: underline;
-	    cursor: pointer;
-	}
-    
-.tableclass{
-    width: 100%;
-}
-
-    .columnsizer{
-	border-style: 10px inset #2ba6cb;
-	width: 100%;
-	height: 100%;
-	padding:3px;
-	font-size: 14px;
-	font-family: "Trebuchet MS" Arial serif;
-    }
-    
-    .deptcontact{
-	color: #2ba6cb;
-	font-weight: lighter;
-	font-size: 16px;
-	padding-top: 20px;
-	font-family: "Trebuchet MS" Arial serif;
-    }
 
 #tabs{
     margin: 0px;
@@ -774,7 +540,7 @@ a.boxclose{
 
 .spacer{
     display: block;
-    margin: 1em;
+    margin: 2em;
 }
 
 .floater{
@@ -782,198 +548,92 @@ a.boxclose{
 }
 
 #nameinput, #typeinput, #lxninput, #commentinput{
-    width: 250px;
-    height: 25px;
-    font-family: inherit;
-}
-
-#nameinput, #commentinput{
-    height: 50px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-color: #2ba6cb;
+    width: 200px;
 }
 
 #grievancename, #grievancetype, #lxn, #grievancecomment, #grievancesubmit{
-    color: #003f3f;
+    color: #2ba6cb;
 }
 
 #grievancename{
-    margin-right: 3.8em;
+    margin-right: 2.5em;
 }
 
 #grievancetype{
-    margin-right: 1.5em;
+    margin-right: 3.3em;
 }
 
 #lxn{
-    margin-right: 2.3em;    
+    margin-right: 4em;    
 }
 
 #grievancecomment{
-    margin-right: 1.5em;    
+    margin-right: 0.5em;    
 }
 
 #submitbutton{
     width: 70px;
     border-radius: 5px;
-    border-color: #d7dfe2;
+    border-color: #003f3f;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     font-weight: 400;
     color: #003333;
-    margin-left: 40%;
 }
 
 #submitbutton:hover{
     cursor: pointer;
 }
 
-span{
+.deptcontact{
+    color: #2ba6cb;
     text-align: center;
-    color: #003f3f;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.columnsizer{
+    width: auto;
+    height: auto;
+    padding: 5px;
+    border-color: #eeeeee;
+    border-style: groove;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+span{
+    margin-left: 5px;
+    color: #003333;
     font-weight: bold;
     margin-top: 5px;
     padding-bottom: 2px;
-    margin-bottom: 5px;
 }
-
-#buzzcolumn{
-    width: 98.5%;
-    height: 88%;
-    background-color: #ffffff;
-    float: left;
-    display: none;
-    margin: auto;
-    position: relative;
-}
-
-    #buzzholder{
-	width: 100%;
-	height: 99%;
-	margin: 10px;
-	overflow-x: hidden;
-	overflow-y: scroll;
-    }
-
-    #buzzheading{
-	text-align: center;
-	margin: 10px;
-	margin-bottom: 15px;
-        color: #2ba6cb;
-	font-weight: bold;
-	font-size: 17px;
-	text-transform: uppercase;
-	font-family: "Trebuchet MS" Arial serif;
-    }
-    
-#trendscolumn{
-    width: 98.5%;
-    height: 99%;
-    background-color: #ffffff;
-    float: left;
-    display: none;
-    margin: auto;
-    position: relative;
-}
-
-    #fulltrendsholder{
-	width: 100%;
-	height: 90%;
-	margin: 10px;
-	overflow-x: hidden;
-	overflow-y: scroll;
-    }
-    
-    #fulltrendstable{
-	width: 100%;
-	height: 100%;
-	/*margin-top: -10px; use this to change top padding id table is appearing with space at top*/
-    }
-    
-	#fulltrendsheading,#solutionsheading{
-	    text-align: center;
-	    margin: 10px;
-	    color: #2ba6cb;
-	    font-weight: bold;
-	    font-size: 17px;
-	    font-family: "Trebuchet MS" Arial serif;
-	}
-
-	#fulltrendsrow{
-	    width: 100%;
-	    height: auto;
-	}
-	    
-	    .trendsinliner{
-		float: left;
-		padding-right: 10px;
-		display: inline;
-	    }
-	    	
-	    #fulltrendsimage{
-		width: 80px;
-		height: 80px;
-		margin: 10px;
-		border-radius: 10px;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-	    }
-	    
-	    #fulltrendstextblock{
-		width: 620px;
-		height: auto;
-		margin-left: 10px;
-		margin-right: 10px;
-		margin-bottom: 10px;
-	    }
-		#fulltrendstextblock a{
-		    text-decoration: none;
-		}
-		
-		.fulltrendstitle{
-		    color: #2ba6cb;
-		    display: block;
-		    text-align: left;
-		    font-size: 16px;
-		    font-weight: bold;
-		    text-decoration: none;
-		    text-transform: capitalize;
-		    font-family: "Trebuchet MS" Arial serif;
-		}
-		    .fulltrendssnippet{
-			color: #3f3f3f;
-			font-weight: normal;
-			font-size: 14px;
-			text-transform: inherit;
-			text-align: justify;
-			text-transform: capitalize;
-			font-family: "Trebuchet MS" Arial serif;
-		    }
-	    
-	
-
-
-
 
 footer{
-    bottom:-5%;
-    background-color: #2d2d2d;
-    opacity: 1.0;
+    margin-top: 10px;
+    background-color: #003333;
     overflow: hidden;
     height: 40px;
     font-weight: bold;
-    font-family:"Trebuchet MS" Arial serif;
+    font-family:Arial, Helvetica, sans-serif;
+    -moz-box-shadow: 3px 3px 3px #003333;
+    -webkit-box-shadow: 3px 3px 3px #003333;
+    box-shadow: 3px 3px 4px #003333;
     float: left;
-    width: 1200px;
-    position: absolute;
-    z-index: 901;
+    width: 1300px;
 }
 
 footer #leftsubfooter{
     float: left;
-    margin-left: 20px;
 }
 footer #rightsubfooter{
     float: right;
-    margin-right: 80px;
 }
 #contactlist{
     list-style: none;  
@@ -997,9 +657,5 @@ footer #rightsubfooter{
     
 #contactlist li a , #followlist li a{
     text-decoration: none;
-    color: #ffffff;
-}
-
-#followlist li a span{
-    color: #ffffff;
+    color: gold;
 }

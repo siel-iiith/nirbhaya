@@ -1,0 +1,13 @@
+$(document).ready(function(){
+    $('#reporter').click(function(e){
+        $('#overlay').fadeIn('slow',function(e){
+            $('#grievancereporter').slideDown("slow");  
+        });
+        e.preventDefault();
+    });
+    $('.greportclose').click(function(){
+        $('#grievancereporter').slideUp('slow',function(){
+            $('#overlay').fadeOut("slow");
+        });
+    });    
+});
