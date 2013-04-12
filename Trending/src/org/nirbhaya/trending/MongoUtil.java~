@@ -20,7 +20,7 @@ public class MongoUtil {
 		// TODO Auto-generated method stub
 		try {
 			loadProperties();
-			MongoClient mongoClient = new MongoClient("127.0.0.1", 27017);
+			MongoClient mongoClient = new MongoClient("10.2.4.238", 27017);
 			DB db = mongoClient.getDB("nirbhaya");
 			DBCollection coll;
 			coll = db.getCollection("trends");

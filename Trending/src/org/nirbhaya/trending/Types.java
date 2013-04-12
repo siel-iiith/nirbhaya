@@ -10,7 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 
-@Path("/trending-types")
+@Path("/trending-types1")
 public class Types {
     @GET
     @Produces({MediaType.APPLICATION_JSON})

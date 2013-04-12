@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 
-@Path("/category-electricity")
+@Path("/category-electricity1")
 public class CategoryTrendsElectricity 
 {
     @GET
@@ -24,7 +24,7 @@ public class CategoryTrendsElectricity
     	try
 		{
     		catContent = gson.fromJson(new FileReader("electricity problems-Trends"), catcontentSerialize.class);
-    		System.out.println(gson.toJson(catContent));
+    		
 		}
 		catch(Exception e)
 		{
