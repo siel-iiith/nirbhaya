@@ -36,7 +36,7 @@ public class BingSearch extends AbstractAzureSearchTest
 	{
 
 	}
-	public String searchBing (String query, int skip) 
+	public String searchBing (String query, int skip,String path) 
 	{
 		ArrayList<BingSearchResult> results=getBingSearchResults(query, skip);
 		Iterator<BingSearchResult> it=results.iterator();
@@ -47,10 +47,9 @@ public class BingSearch extends AbstractAzureSearchTest
 			Gson gson = new Gson();
 			BingSearchResult r = new BingSearchResult(current.getURL(),current.getTitle(),current.getSnippet(),current.getDate(),current.getSource());
 			result = gson.toJson(r);
-			//System.out.println(result);
 			try
 			{
-				pr = new PrintWriter(new BufferedWriter(new FileWriter("/home/sandeep/Dropbox/Nirbhaya/data/"+query, true)));
+				pr = new PrintWriter(new BufferedWriter(new FileWriter(path+query, true)));
 				pr.println(result);
 				pr.flush();
 				pr.close();
@@ -84,7 +83,7 @@ public class BingSearch extends AbstractAzureSearchTest
 		{
 			for(int j = 0 ; j < 3; j++)
 			{
-				bs.searchBing(query[i], j*15);
+				bs.searchBing(query[i], j*15,args[0]);
 			}
 		}
 	}
