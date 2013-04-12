@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
    
 function trendShow(){
-   var strURL = "http://search.iiit.ac.in:8080/Trending/trending-types?callback=?";
+   var strURL = "http://search.iiit.ac.in/nirbhaya/Trending/trending-types?callback=?";
    $.ajax({
       url:strURL,
       timeout:10000,

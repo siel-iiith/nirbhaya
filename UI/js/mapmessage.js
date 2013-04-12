@@ -6,7 +6,7 @@ function getURLParameter(name) {
 
 function displayMessage(entry, searchquery){
     var mapentry = entry;
-    var strURL = "http://search.iiit.ac.in:8080/HeatMap/mapmessage?location=" +mapentry+"&problem="+searchquery+"&callback=?";
+    var strURL = "http://search.iiit.ac.in/nirbhaya/HeatMap/mapmessage?location=" +mapentry+"&problem="+searchquery+"&callback=?";
     $.ajax({
 	    url:strURL,
 	    timeout:10000,
@@ -23,7 +23,7 @@ function displayMessage(entry, searchquery){
 		    error: function(req, error) {
                         console.log(req);
                     	console.log(error);
-			alert("AJAX-JSON Error : "+req.error);
+			//alert("AJAX-JSON Error : "+req.error);
 		    }
 		});
 }
