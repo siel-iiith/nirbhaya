@@ -56,7 +56,7 @@ $(document).ready(function(){
 /* function to submit grievance */
 function sendGrievance(){
 
-  var strURL = "http://search.iiit.ac.in:8080/UserGrievance/grievance/add?";
+  var strURL = "http://search.iiit.ac.in/nirbhaya/UserGrievance/grievance/add?";
   var grievName =  $("#nameinput").val();
   var grievLoc = $("#lxninput").val();
   var grievComment = $("#commentinput").val();

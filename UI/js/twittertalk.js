@@ -7,7 +7,7 @@ function getURLParameter(name) {
 
 function getUsertalk(qresult) {
 		
-		var strURL = "http://search.iiit.ac.in:8080/Nirbhaya/TwitterSearch?q="+qresult+"&callback=?";
+		var strURL = "http://search.iiit.ac.in/nirbhaya/VerticalSearch/TwitterSearch?q="+qresult+"&callback=?";
         
             
 		$.ajax({
@@ -19,11 +19,13 @@ function getUsertalk(qresult) {
 			crossDomain:true,
 			success: function(talkresult){
 				// Display Results on the Screen
-		    	var i = 0;
-			
-			$("#buzzheading").html("<p id=\"buzzheading\"> Social Buzz on " +qresult+"</p>");
-			$("#buzzholder").empty();
-		    	for(i = 0; i<talkresult.searchResults.length; i++){
+		    	
+			if(talkresult.searchResults.length != 0)
+				{
+				var i = 0;
+				$("#buzzheading").html("<p id=\"buzzheading\"> Social Buzz on " +qresult+"</p>");
+				$("#buzzholder").empty();
+				for(i = 0; i<talkresult.searchResults.length; i++){
 					var jTweettext = talkresult.searchResults[i].jTweetText;
 					var jTweetloc = talkresult.searchResults[i].jTweetLocation;
                                         var jTweetid = talkresult.searchResults[i].jTweetId;
@@ -34,6 +36,11 @@ function getUsertalk(qresult) {
                                         innerHTML = innerHTML + "<div style='color:green'> TweetID: &nbsp; &nbsp;"+jTweetid+"</div>";
                                         innerHTML = innerHTML + "<hr style='width:99%'/>";
 					$("#buzzholder").append(innerHTML);
+				}
+				}else{
+				    var innerHTML = "";
+				    innerHTML = "<p id=\"buzzheading\"> Sorry! No results found for your Query!!</p>"
+				    $("#buzzholder").append(innerHTML);				    
 				}
 
 			},

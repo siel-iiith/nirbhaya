@@ -135,7 +135,7 @@ body{
     width: 700px;
     background-color: #2d2d2d;
     left: 20%;
-    top: 10px;
+    top: 30px;
     margin: auto;
     position: absolute;
     height: 550px;
@@ -332,7 +332,7 @@ a.mapboxclose{
 }
 
 #grievancereporter{
-    width: 500px;
+    width: auto;
     background-color: #d7dfe2;
     left: 30%;
     top: 120px;
@@ -474,7 +474,7 @@ a.mapboxclose{
 		-moz-border-radius: 5px;
 		text-align: center;
 		width: 100px;
-		border: 2px inset #cccccc; 
+		border: 2px groove #cccccc; 
 	    }
 
 h5{
@@ -702,13 +702,13 @@ a.boxclose{
     }
     
     #solutionreporter{
-	width: 400px;
+	width: auto;
 	background-color: #d7dfe2;
 	left:30%;
 	top: 120px;
 	position: absolute;
 	margin: 5px;
-	display: none;	
+	display: none;
 	height: auto;
 	-webkit-box-shadow: 0px 0px 5px #003f3f;
 	-moz-box-shadow: 0px 0px 5px #003f3f;	
@@ -740,6 +740,39 @@ a.boxclose{
 	    font-family: "Trebuchet MS" Arial serif;
 	}
 	
+	.spacer{
+	    display: block;
+	}
+	
+	    #solname, #soldesig, #sollxn, #solemail, #solphone, #soldept{
+		margin-left: 1em;
+	    }
+	    
+	    #solncontname{
+		margin-left: 2em;
+	    }
+	    #solncontdesig{
+		margin-left: 3em;
+	    }
+	    #solncontloc{
+		margin-left: 4.7em;
+	    }
+	    #solncontemail{
+		margin-left: 1.7em;
+	    }
+	    #solncontphone{
+		margin-left: 1.5em;
+	    }
+	    #solncontdept{
+		margin-left: 2.9em;
+	    }
+	    #solsubmitbutton{
+		margin-left: 3em;
+		width: 100px;
+		height: 30px;
+		font-size: 16px;
+	    }
+	
 	#solclick{
 	    text-decoration: underline;
 	    cursor: pointer;
@@ -760,7 +793,7 @@ a.boxclose{
     
     .deptcontact{
 	color: #2ba6cb;
-	font-weight: lighter;
+	font-weight: bold;
 	font-size: 16px;
 	padding-top: 20px;
 	font-family: "Trebuchet MS" Arial serif;
