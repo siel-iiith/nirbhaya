@@ -2,11 +2,11 @@
 function addRibbon() {
 		
     //var strURL = "http://10.2.4.234:8080/VerticalSearch-0.0.1-SNAPSHOT/BingSearch?q="+qresult+"&callback=?";
-    var strURL1 = "http://search.iiit.ac.in:8080/Trending/category-water?callback=?";
-    var strURL2 = "http://search.iiit.ac.in:8080/Trending/category-sewage?callback=?";
-    var strURL3 = "http://search.iiit.ac.in:8080/Trending/category-electricity?callback=?";
-    var strURL4 = "http://search.iiit.ac.in:8080/Trending/category-road?callback=?";
-    var strURL5 = "http://search.iiit.ac.in:8080/Trending/category-food?callback=?";
+    var strURL1 = "http://search.iiit.ac.in/nirbhaya/Trending/category-water?callback=?";
+    var strURL2 = "http://search.iiit.ac.in/nirbhaya/Trending/category-sewage?callback=?";
+    var strURL3 = "http://search.iiit.ac.in/nirbhaya/Trending/category-electricity?callback=?";
+    var strURL4 = "http://search.iiit.ac.in/nirbhaya/Trending/category-road?callback=?";
+    var strURL5 = "http://search.iiit.ac.in/nirbhaya/Trending/category-food?callback=?";
         
             
     $.ajax({
@@ -165,11 +165,11 @@ function addRibbon() {
 function addTrends() {
 		
     //var strURL = "http://10.2.4.234:8080/VerticalSearch-0.0.1-SNAPSHOT/BingSearch?q="+qresult+"&callback=?";
-    var strURL1 = "http://search.iiit.ac.in:8080/Trending/category-water?callback=?";
-    var strURL2 = "http://search.iiit.ac.in:8080/Trending/category-sewage?callback=?";
-    var strURL3 = "http://search.iiit.ac.in:8080/Trending/category-electricity?callback=?";
-    var strURL4 = "http://search.iiit.ac.in:8080/Trending/category-road?callback=?";
-    var strURL5 = "http://search.iiit.ac.in:8080/Trending/category-food?callback=?";
+    var strURL1 = "http://search.iiit.ac.in/nirbhaya/Trending/category-water?callback=?";
+    var strURL2 = "http://search.iiit.ac.in/nirbhaya/Trending/category-sewage?callback=?";
+    var strURL3 = "http://search.iiit.ac.in/nirbhaya/Trending/category-electricity?callback=?";
+    var strURL4 = "http://search.iiit.ac.in/nirbhaya/Trending/category-road?callback=?";
+    var strURL5 = "http://search.iiit.ac.in/nirbhaya/Trending/category-food?callback=?";
     
     $("#fulltrendstable").empty();
     $("#fulltrendsheading").empty();
@@ -354,7 +354,7 @@ function addTrends() {
 
 
 function expandTrends(trendid,trendname){
-    var strURL = "http://search.iiit.ac.in:8080/Trending/category-"+trendid+"?callback=?";
+    var strURL = "http://search.iiit.ac.in/nirbhaya/Trending/category-"+trendid+"?callback=?";
 
     $("#fulltrendstable").empty();
     

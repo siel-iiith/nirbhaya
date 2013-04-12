@@ -3,7 +3,7 @@ $(document).ready(function(){
         $('#overlay').fadeIn('slow',function(e){
             $('#maphider').slideDown("slow");
             $('#someframe').attr('src','map5.html');
-	    displayMessage("null","null");
+            displayMessage("null","null");
         });
         e.preventDefault();
     });
