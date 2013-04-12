@@ -1,7 +1,7 @@
 
 // USE URL 
-var devServer= "http://search.iiit.ac.in:8080/Nirbhaya";
-var deployServer = "http://search.iiit.ac.in:8080/VerticalSearch";
+var devServer= "http://search.iiit.ac.in/nirbhaya";
+var deployServer = "http://10.2.4.238:8080/VerticalSearch";
 var useServer = devServer;
 // for Testing/Dev
 
@@ -33,7 +33,7 @@ function sendQueryToBackend(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
 		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
 		var newresult = qresult.replace('/\+/g'," ");
-		var strURL = "http://search.iiit.ac.in:8080/Nirbhaya/BingSearch?q="+newresult+"&callback=?";
+		var strURL = "http://search.iiit.ac.in/nirbhaya/VerticalSearch/BingSearch?q="+newresult+"&callback=?";
 		document.getElementById("searchformquery").value = newresult;
         
             
@@ -75,9 +75,8 @@ function sendQueryToBackend(qresult) {
 }
 
 function getQuerySuggestion(qresult) {
-		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
-		//var strURL = "http://10.2.4.234:8080/RestSimpleAppMaven/rest/BingSearch?q="+qresult+"&callback=?";
-		var strURL = useServer+"/QuerySuggestion?q="+qresult+"&callback=?";
+		
+		var strURL = useServer+"/VerticalSearch/QuerySuggestion?q="+qresult+"&callback=?";
         var finalQuery = qresult;
         var suggestionQuery = qresult;
 		suggestionQuery = suggestionQuery.replace(" in ","|");
@@ -101,7 +100,7 @@ function getQuerySuggestion(qresult) {
 					var i=0;
 					var cleanQuery = queryCleaner(qresult);
 					var newresult = qresult.replace('/\+/g'," ");
-					var strURL = "http://search.iiit.ac.in:8080//Nirbhaya/BingSearch?q="+newresult+"&callback=?";
+					var strURL = "http://search.iiit.ac.in/nirbhaya/VerticalSearch/BingSearch?q="+newresult+"&callback=?";
 					document.getElementById("searchformquery").value = cleanQuery;
 					for(i=0; i<result.expansionResults.length; i++){
 						var newWords = result.finalQuery + "|" + result.expansionResults[i].placeName;
@@ -127,7 +126,7 @@ function getQuerySuggestion(qresult) {
 				sendQueryToBackend(finalQuery);
 			},
 			error: function(req, error) { 
-				alert("FAIL");
+				//alert("FAIL");
 				console.log(req);
 				console.log(error);
 				//alert("AJAX-JSON Error : "+req.error);

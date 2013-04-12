@@ -7,7 +7,7 @@ function getURLParameter(name) {
 function getContacts(qresult) {
 		//var strURL = "http://localhost:8080/RestSimpleAppMaven-0.0.1-SNAPSHOT/rest/BingSearch?q="+qresult+"&callback=?";
 		
-		var strURL = "http://search.iiit.ac.in:8080/SolutionsModule/solutions/Solution?q="+qresult+"&callback=?";
+		var strURL = "http://search.iiit.ac.in/nirbhaya/SolutionsModule/solutions/Solution?q="+qresult+"&callback=?";
         
             
 		$.ajax({
@@ -37,7 +37,7 @@ function getContacts(qresult) {
 				    $("#my_table1").append("<tr><td class=\"columnsizer\">Department Board: &nbsp;&nbsp;&nbsp;" +per_deptname+ "</td></tr>");				
 				    $("#my_table1").append("<tr><td class=\"columnsizer\">Contact Number: &nbsp;&nbsp;&nbsp;" +per_phone+ "</td></tr>");
 				    $("#my_table1").append("<tr><td class=\"columnsizer\">Email Address: &nbsp;&nbsp;&nbsp;" +per_emailid+ "</td></tr>");
-				    $("#my_table1").append("<tr><td class=\"columnsizer\">Location &nbsp;&nbsp;&nbsp;" +per_location+ "</td></tr>");
+				    $("#my_table1").append("<tr><td class=\"columnsizer\">Location: &nbsp;&nbsp;&nbsp;" +per_location+ "</td></tr>");
 				    }
 				}
 				else{
@@ -66,7 +66,7 @@ function getContacts(qresult) {
 				    }
 				}else{
 				    $("#departmentspace").append("<table id=\"my_table2\" class=\"tableclass\"></table>");
-				    $("#my_table2").append("<tr><td id=\"error\">Sorry! No Person specific Contacts found for your Grievance!To add a contact <a id=\"solclick\">Click Here</a></td><tr>");
+				    $("#my_table2").append("<tr><td id=\"error\">Sorry! No Department specific Contacts found for your Grievance!</td><tr>");
 				}
 
 			},
@@ -93,7 +93,7 @@ function solver(){
 /*code to send new contact*/
 function sendSolution(){
 
-  var strURL = "http://search.iiit.ac.in:8080/SolutionsModule/solutions/addsolution/add?";
+  var strURL = "http://search.iiit.ac.in/nirbhaya/SolutionsModule/solutions/addsolution/add?";
   var contName =  $("#solncontname").val();
   var contDesig = $("#solncontdesig").val();
   var contLoc = $("#solncontloc").val();
