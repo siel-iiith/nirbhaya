@@ -1,10 +1,10 @@
 #comments wont be read. For the perusal of user
 #The path of the stopword file
-stopwordFilePath=stopwords.txt
+stopwordFilePath=/home/sandeep/stopwords.txt
 #Top trends to show on the web site for each category
 topTrendsToShow=10
 #Percentage of bigrams of all trends, scale 0 (0%) to 10 (100%)
 percentageBigrams=7
 #Category types are mentioned here in the json format
-categoryTypes=types.txt
-waterLogging=water logging-Trends
+categoryTypes=/home/sandeep/workspace/Trending/types.txt
+waterLogging=/home/sandeep/workspace/Trending/water- logging-Trends

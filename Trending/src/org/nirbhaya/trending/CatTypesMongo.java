@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.nirbhaya.trending.MongoQuery;
 
-@Path("/trending-types1")
+@Path("/trending-types")
 public class CatTypesMongo {
 
 	@GET
@@ -20,7 +20,7 @@ public class CatTypesMongo {
 
 	public String sayPlainTextHello(@QueryParam("callback") String callback)
 	{
-		System.out.println("hello");
+		
 		try {
 			
 			if(callback!=null){
@@ -30,7 +30,7 @@ public class CatTypesMongo {
 				
 					return MongoQuery.getCatTypes("categories.name","Civic & Administration");
 			}
-			//return callback+"("+MongoQuery.getLocationProblem(query)+")";
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

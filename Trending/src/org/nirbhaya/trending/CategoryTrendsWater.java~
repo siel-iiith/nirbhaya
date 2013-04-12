@@ -12,19 +12,18 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 
-@Path("/category-food1")
-public class CategoryTrendsFood 
+@Path("/category-water")
+public class CategoryTrendsWater 
 {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String sendTypes(@QueryParam("callback") String callback) {
-    	String line="";
     	Gson gson = new Gson();
     	catcontentSerialize catContent=null;
     	try
 		{
-    		catContent = gson.fromJson(new FileReader("Food wastage-Trends"), catcontentSerialize.class);
-    		
+    		catContent = gson.fromJson(new FileReader("water logging-Trends"), catcontentSerialize.class);
+    		System.out.println(gson.toJson(catContent));
 		}
 		catch(Exception e)
 		{
