@@ -1,6 +1,7 @@
 package org.nirbhaya.trending;
+import java.io.FileReader;
 import java.io.IOException;
-
+import com.google.gson.Gson;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
@@ -12,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.nirbhaya.trending.MongoQuery;
 
-@Path("/category-water1")
+@Path("/category-water")
 public class CategoryTrendsWaterMongo {
 
 	@GET
@@ -20,17 +21,19 @@ public class CategoryTrendsWaterMongo {
 
 	public String sayPlainTextHello(@QueryParam("callback") String callback)
 	{
-		System.out.println("hello");
+		catcontentSerialize catContent=null;
+		Gson gson = new Gson();
 		try {
 			
 			if(callback!=null){
-					return callback+"("+MongoQuery.getCatTypes("type","water logging")+")";
+				catContent=	gson.fromJson(MongoQuery.getCatTypes("type","water logging"), catcontentSerialize.class);
+					return callback+"("+"{\"catContent\":"+gson.toJson(catContent.catContent)+"}"+")";
 			}
 			else{
-				
-					return MongoQuery.getCatTypes("type","water logging");
+				catContent=	gson.fromJson(MongoQuery.getCatTypes("type","water logging"), catcontentSerialize.class);
+				return "{\"catContent\":"+gson.toJson(catContent.catContent)+"}";
 			}
-			//return callback+"("+MongoQuery.getLocationProblem(query)+")";
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
