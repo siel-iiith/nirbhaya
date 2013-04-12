@@ -1,6 +1,6 @@
 package org.nirbhaya.trending;
 import java.io.IOException;
-
+import com.google.gson.Gson;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.GET;
@@ -12,7 +12,9 @@ import javax.ws.rs.core.MediaType;
 
 import org.nirbhaya.trending.MongoQuery;
 
-@Path("/category-road1")
+import com.google.gson.Gson;
+
+@Path("/category-road")
 public class CategoryTrendsRoadMongo {
 
 	@GET
@@ -20,17 +22,21 @@ public class CategoryTrendsRoadMongo {
 
 	public String sayPlainTextHello(@QueryParam("callback") String callback)
 	{
-		System.out.println("hello");
+		catcontentSerialize catContent=null;
+		Gson gson = new Gson();
 		try {
 			
 			if(callback!=null){
-					return callback+"("+MongoQuery.getCatTypes("type","hazardous roads")+")";
+				catContent=	gson.fromJson(MongoQuery.getCatTypes("type","hazardous roads"), catcontentSerialize.class);
+				return callback+"("+"{\"catContent\":"+gson.toJson(catContent.catContent)+"}"+")";
+					
 			}
 			else{
-				
-					return MongoQuery.getCatTypes("type","hazardous roads");
+				catContent=	gson.fromJson(MongoQuery.getCatTypes("type","hazardous roads"), catcontentSerialize.class);
+				return "{\"catContent\":"+gson.toJson(catContent.catContent)+"}";
+					
 			}
-			//return callback+"("+MongoQuery.getLocationProblem(query)+")";
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
