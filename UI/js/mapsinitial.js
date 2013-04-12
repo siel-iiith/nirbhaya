@@ -1,15 +1,15 @@
 $(document).ready(function(){
     $('#locationimg').click(function(e){
         $('#overlay').fadeIn('slow',function(e){
-            $('#maphider').slideDown("slow");  
+            $('#maphider').slideDown("slow");
             $('#someframe').attr('src','map5.html');
+	    displayMessage("null","null");
         });
         e.preventDefault();
     });
     $('.mapboxclose').click(function(){
         $('#maphider').slideUp('slow',function(){
             $('#overlay').fadeOut("slow");
-            //$('#someframe').attr('src','map5.html');
         });
     });
 });
