@@ -297,11 +297,7 @@
 </dependency>
             
             
-	<dependency>
-	    <groupId>org.nirbhaya.trending.corenlpmod</groupId>
-	    <artifactId>1.0</artifactId>
-	    <version>1.0</version>
-	</dependency>
+	
 
 	<dependency>
 	<groupId>xom</groupId>
